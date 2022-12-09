@@ -23,6 +23,7 @@
 		7637507B2943EE7200DA3F39 /* CollectionThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637507A2943EE7200DA3F39 /* CollectionThumbnailView.swift */; };
 		7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637507C2943F08300DA3F39 /* SearchBarView.swift */; };
 		7637507F2943F09800DA3F39 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637507E2943F09800DA3F39 /* UIApplication.swift */; };
+		763750822943F5C500DA3F39 /* LoadingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750812943F5C500DA3F39 /* LoadingPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		7637507A2943EE7200DA3F39 /* CollectionThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionThumbnailView.swift; sourceTree = "<group>"; };
 		7637507C2943F08300DA3F39 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		7637507E2943F09800DA3F39 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		763750812943F5C500DA3F39 /* LoadingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				7637506C2943DA0F00DA3F39 /* TabBar.swift */,
+				763750802943F5B300DA3F39 /* Loading */,
 				7637506E2943DC5000DA3F39 /* Home */,
 				7637506B2943D72300DA3F39 /* Login */,
 				763750682943D00200DA3F39 /* Components */,
@@ -173,6 +176,14 @@
 				763750772943EACE00DA3F39 /* FavoriteCollectionsView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		763750802943F5B300DA3F39 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				763750812943F5C500DA3F39 /* LoadingPageView.swift */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +265,7 @@
 				763750782943EACE00DA3F39 /* FavoriteCollectionsView.swift in Sources */,
 				7637507B2943EE7200DA3F39 /* CollectionThumbnailView.swift in Sources */,
 				7637507F2943F09800DA3F39 /* UIApplication.swift in Sources */,
+				763750822943F5C500DA3F39 /* LoadingPageView.swift in Sources */,
 				763750672943CC4200DA3F39 /* OnboardingRegistrationView.swift in Sources */,
 				7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */,
 				763750702943DC6300DA3F39 /* HomeView.swift in Sources */,
