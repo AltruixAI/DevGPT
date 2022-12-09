@@ -1,5 +1,5 @@
 //
-//  DevGPTApp.swift
+//  AppPrimaryButton.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,13 +25,36 @@
 
 import SwiftUI
 
-@main
-struct DevGPTApp: App {
-    var body: some Scene {
-        WindowGroup {
-            NavigationStack {
-                OnboardingView()
-            }
+struct AppPrimaryButton: View {
+    let content: String
+    let isDisabled: Bool
+    let action: () -> Void
+    
+    init(_ content: String, isDisabled: Bool = false, action: @escaping () -> Void) {
+        self.isDisabled = isDisabled
+        self.content = content
+        self.action = action
+    }
+    
+    var body: some View {
+        Button(action: self.action) {
+            Text(content)
+                .font(.headline)
+                .foregroundColor(.black)
+                .frame(width: 270, height: 50)
+                .background(
+                    self.isDisabled ?
+                    Color(.systemGray5) :
+                        Color(uiColor: .systemGray3)
+                )
+                .clipShape(Capsule())
+                .padding(.top, 8)
         }
+    }
+}
+
+struct AppPrimaryButton_Previews: PreviewProvider {
+    static var previews: some View {
+        AppPrimaryButton("Hello world!") { print("Button pressed.") }
     }
 }

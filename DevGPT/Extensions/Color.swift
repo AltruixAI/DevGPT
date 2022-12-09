@@ -1,5 +1,5 @@
 //
-//  DevGPTApp.swift
+//  Color.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,13 +25,12 @@
 
 import SwiftUI
 
-@main
-struct DevGPTApp: App {
-    var body: some Scene {
-        WindowGroup {
-            NavigationStack {
-                OnboardingView()
-            }
-        }
-    }
+extension Color {
+    static let theme = ColorTheme()
+}
+
+struct ColorTheme {
+    let accent = Color("AccentColor")
+    let background = Color("BackgroundColor")
+    let secondaryText = Color("SecondaryTextColor")
 }

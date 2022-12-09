@@ -1,5 +1,5 @@
 //
-//  DevGPTApp.swift
+//  ImageOnboardingView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,13 +25,20 @@
 
 import SwiftUI
 
-@main
-struct DevGPTApp: App {
-    var body: some Scene {
-        WindowGroup {
-            NavigationStack {
-                OnboardingView()
-            }
-        }
+struct ImageOnboardingView: View {
+    let imageName: String
+    
+    var body: some View {
+        Image(imageName)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 330, height: 229)
+            .padding(.top, 100)
+    }
+}
+
+struct ImageOnboardingView_Previews: PreviewProvider {
+    static var previews: some View {
+        ImageOnboardingView(imageName: "templateOnboardingImage1")
     }
 }
