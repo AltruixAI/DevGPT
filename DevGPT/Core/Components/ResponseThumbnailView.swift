@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  ResponseThumbnailView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,44 +25,45 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct ResponseThumbnailView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-            
-            Text("Collection")
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
-            
-            Text("History")
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+        ZStack {
+            baseThumbnail
+                .overlay(overlayView.mask(baseThumbnail))
         }
+    }
+    
+    private var overlayView: some View {
+        GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .foregroundColor(Color(uiColor: .black))
+                    .frame(width: 170, height: 100)
+                    .cornerRadius(10)
+                    .padding(.top, 70)
+                    .offset(x: -10)
+                    .opacity(0.75)
+                
+                Text("Project 1")
+                    .font(.system(size: 16))
+                    .foregroundColor(.white)
+                    .padding(.leading)
+                    .bold()
+            }
+        }
+    }
+    
+    private var baseThumbnail: some View {
+        Image("templateResponseThumbnail")
+            .resizable()
+            .scaledToFill()
+            .frame(width: 150, height: 100)
+            .cornerRadius(10)
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct ResponseThumbnailView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        ResponseThumbnailView()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  CollectionThumbnailView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,44 +25,45 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct CollectionThumbnailView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-            
-            Text("Collection")
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
-            
-            Text("History")
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+        ZStack {
+            baseThumbnail
+                .overlay(overlayView.mask(baseThumbnail))
         }
+    }
+    
+    private var overlayView: some View {
+        GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .foregroundColor(Color(uiColor: .black))
+                    .frame(width: 220, height: 150)
+                    .cornerRadius(10)
+                    .padding(.top, 110)
+                    .offset(x: -10)
+                    .opacity(0.75)
+                
+                Text("Collection 1")
+                    .font(.system(size: 16))
+                    .foregroundColor(.white)
+                    .padding(.leading)
+                    .bold()
+            }
+        }
+    }
+    
+    private var baseThumbnail: some View {
+        Image("templateResponseThumbnail")
+            .resizable()
+            .scaledToFill()
+            .frame(width: 200, height: 150)
+            .cornerRadius(10)
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct CollectionThumbnailView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        CollectionThumbnailView()
     }
 }

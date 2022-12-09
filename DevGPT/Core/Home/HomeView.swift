@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  HomeView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,44 +25,25 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct HomeView: View {
+    @State private var text: String = ""
+    
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
+        ZStack {
+            // Recent Responses
+            RecentResponsesView()
             
-            Text("Collection")
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
+            FavoriteCollectionsView()
+                .frame(maxWidth: UIScreen.main.bounds.width - 20)
             
-            Text("History")
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+            SearchBarView(searchText: $text)
+                .padding(.top, 675)
         }
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        HomeView()
     }
 }

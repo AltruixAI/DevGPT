@@ -16,6 +16,13 @@
 		763750672943CC4200DA3F39 /* OnboardingRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750662943CC4200DA3F39 /* OnboardingRegistrationView.swift */; };
 		7637506A2943D01400DA3F39 /* AppPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750692943D01400DA3F39 /* AppPrimaryButton.swift */; };
 		7637506D2943DA0F00DA3F39 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637506C2943DA0F00DA3F39 /* TabBar.swift */; };
+		763750702943DC6300DA3F39 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637506F2943DC6300DA3F39 /* HomeView.swift */; };
+		763750742943E4E900DA3F39 /* RecentResponsesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750732943E4E900DA3F39 /* RecentResponsesView.swift */; };
+		763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750752943E5BF00DA3F39 /* ResponseThumbnailView.swift */; };
+		763750782943EACE00DA3F39 /* FavoriteCollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750772943EACE00DA3F39 /* FavoriteCollectionsView.swift */; };
+		7637507B2943EE7200DA3F39 /* CollectionThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637507A2943EE7200DA3F39 /* CollectionThumbnailView.swift */; };
+		7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637507C2943F08300DA3F39 /* SearchBarView.swift */; };
+		7637507F2943F09800DA3F39 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637507E2943F09800DA3F39 /* UIApplication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +36,13 @@
 		763750662943CC4200DA3F39 /* OnboardingRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRegistrationView.swift; sourceTree = "<group>"; };
 		763750692943D01400DA3F39 /* AppPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPrimaryButton.swift; sourceTree = "<group>"; };
 		7637506C2943DA0F00DA3F39 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		7637506F2943DC6300DA3F39 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		763750732943E4E900DA3F39 /* RecentResponsesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentResponsesView.swift; sourceTree = "<group>"; };
+		763750752943E5BF00DA3F39 /* ResponseThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseThumbnailView.swift; sourceTree = "<group>"; };
+		763750772943EACE00DA3F39 /* FavoriteCollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionsView.swift; sourceTree = "<group>"; };
+		7637507A2943EE7200DA3F39 /* CollectionThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionThumbnailView.swift; sourceTree = "<group>"; };
+		7637507C2943F08300DA3F39 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		7637507E2943F09800DA3F39 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				7637506C2943DA0F00DA3F39 /* TabBar.swift */,
+				7637506E2943DC5000DA3F39 /* Home */,
 				7637506B2943D72300DA3F39 /* Login */,
 				763750682943D00200DA3F39 /* Components */,
 				7637505F2943BAD900DA3F39 /* Onboarding */,
@@ -103,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				763750622943BF0300DA3F39 /* Color.swift */,
+				7637507E2943F09800DA3F39 /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -135,6 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				763750692943D01400DA3F39 /* AppPrimaryButton.swift */,
+				763750752943E5BF00DA3F39 /* ResponseThumbnailView.swift */,
+				7637507A2943EE7200DA3F39 /* CollectionThumbnailView.swift */,
+				7637507C2943F08300DA3F39 /* SearchBarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -144,6 +163,16 @@
 			children = (
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		7637506E2943DC5000DA3F39 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7637506F2943DC6300DA3F39 /* HomeView.swift */,
+				763750732943E4E900DA3F39 /* RecentResponsesView.swift */,
+				763750772943EACE00DA3F39 /* FavoriteCollectionsView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,9 +247,16 @@
 			files = (
 				7637506A2943D01400DA3F39 /* AppPrimaryButton.swift in Sources */,
 				763750652943C7AC00DA3F39 /* ImageOnboardingView.swift in Sources */,
+				763750742943E4E900DA3F39 /* RecentResponsesView.swift in Sources */,
 				763750612943BAE800DA3F39 /* OnboardingView.swift in Sources */,
+				763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */,
 				7637504D2943B69C00DA3F39 /* DevGPTApp.swift in Sources */,
+				763750782943EACE00DA3F39 /* FavoriteCollectionsView.swift in Sources */,
+				7637507B2943EE7200DA3F39 /* CollectionThumbnailView.swift in Sources */,
+				7637507F2943F09800DA3F39 /* UIApplication.swift in Sources */,
 				763750672943CC4200DA3F39 /* OnboardingRegistrationView.swift in Sources */,
+				7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */,
+				763750702943DC6300DA3F39 /* HomeView.swift in Sources */,
 				763750632943BF0300DA3F39 /* Color.swift in Sources */,
 				7637506D2943DA0F00DA3F39 /* TabBar.swift in Sources */,
 			);

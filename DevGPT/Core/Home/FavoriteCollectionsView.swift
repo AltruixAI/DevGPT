@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  FavoriteCollectionsView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,44 +25,38 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct FavoriteCollectionsView: View {
+    private let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    private let spacing: CGFloat = 25
+    
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
+        VStack(alignment: .leading) {
+            Text("Favorites")
+                .font(.title)
+                .bold()
+                .padding(.leading, 6)
+                .padding(.top, 68)
             
-            Text("Collection")
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
-            
-            Text("History")
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+            LazyVGrid(
+                columns: columns,
+                alignment: .leading,
+                spacing: spacing,
+                pinnedViews: []) {
+                    ForEach(0..<4) { _ in
+                        CollectionThumbnailView()
+                            .padding(.leading, 4)
+                    }
+            }
         }
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct FavoriteCollectionsView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        FavoriteCollectionsView()
     }
 }

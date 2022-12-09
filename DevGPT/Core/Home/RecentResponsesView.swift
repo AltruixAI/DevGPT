@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  RecentResponsesView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,44 +25,33 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct RecentResponsesView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
+        VStack(alignment: .leading) {
+            Text("Recent")
+                .font(.title)
+                .bold()
+                .padding(.leading)
+                .padding(.top, 48)
             
-            Text("Collection")
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 10) {
+                    ForEach(0..<6) { _ in
+                        ResponseThumbnailView()
+                            .padding(.leading, 28)
+                            .frame(width: 150, height: 100)
+                    }
                 }
-            
-            Text("History")
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+                .padding(.bottom, 590)
+            }
         }
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct RecentResponsesView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        NavigationStack {
+            RecentResponsesView()
+        }
     }
 }

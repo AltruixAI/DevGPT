@@ -30,7 +30,11 @@ struct DevGPTApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                OnboardingView()
+                if true {
+                    TabBar()
+                } else {
+                    OnboardingView()
+                }
             }
         }
     }
