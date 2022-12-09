@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TabBar.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,20 +25,44 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct TabBar: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView {
+            Text("Profile")
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("Profile")
+                }
+            
+            Text("Settings")
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+            
+            Text("Home")
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
+                }
+            
+            Text("History")
+                .tabItem {
+                    Image(systemName: "stopwatch.fill")
+                    Text("History")
+                }
+            
+            Text("Collection")
+                .tabItem {
+                    Image(systemName: "folder.fill")
+                    Text("Collections")
+                }
         }
-        .padding()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        TabBar()
     }
 }
