@@ -1,5 +1,5 @@
 //
-//  DevGPTApp.swift
+//  Response.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,34 +23,13 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
-import Firebase
+import Foundation
+import FirebaseFirestoreSwift
 
-@main
-struct DevGPTApp: App {
-    init() {
-        FirebaseApp.configure()
-    }
-    
-    var body: some Scene {
-        WindowGroup {
-            DevGPTSwitcher()
-                .environmentObject(AuthenticationViewModel.shared)
-        }
-    }
-}
-
-struct DevGPTSwitcher: View {
-    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    
-    var body: some View {
-        Group {
-            if authenticationViewModel.userSession != nil,
-               let user = authenticationViewModel.currentUser {
-                TabBar(user: user)
-            } else {
-                OnboardingView()
-            }
-        }
-    }
+struct Response: Identifiable, Codable {
+    @DocumentID var id: String?
+    var collection: String
+    let prompt: String
+    let response: String
+    let feedback: [Feedback]
 }

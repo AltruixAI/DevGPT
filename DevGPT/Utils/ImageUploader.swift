@@ -1,5 +1,5 @@
 //
-//  DevGPTApp.swift
+//  ImageUploader.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,33 +23,27 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
-import Firebase
+import Foundation
+import FirebaseStorage
+import UIKit
 
-@main
-struct DevGPTApp: App {
-    init() {
-        FirebaseApp.configure()
-    }
-    
-    var body: some Scene {
-        WindowGroup {
-            DevGPTSwitcher()
-                .environmentObject(AuthenticationViewModel.shared)
-        }
-    }
-}
+struct ImageUploader {
+    static func uploadImage(image: UIImage, completion: @escaping(String) -> Void) {
+        guard let imageData = image.jpegData(compressionQuality: 0.25) else { return }
+        
+        let filename = NSUUID().uuidString
 
-struct DevGPTSwitcher: View {
-    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    
-    var body: some View {
-        Group {
-            if authenticationViewModel.userSession != nil,
-               let user = authenticationViewModel.currentUser {
-                TabBar(user: user)
-            } else {
-                OnboardingView()
+        let storageReference = Storage.storage().reference(withPath: "/profile_images/\(filename)")
+        
+        storageReference.putData(imageData, metadata: nil) { _, error in
+            if let error = error {
+                print("DEBUG: Failed to upload image with error \(error.localizedDescription)")
+                return
+            }
+            
+            storageReference.downloadURL { url, _ in
+                guard let imageURL = url?.absoluteString else { return }
+                completion(imageURL)
             }
         }
     }

@@ -26,6 +26,8 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
     @Environment(\.presentationMode) var mode
     
     @State private var email = ""
@@ -94,7 +96,12 @@ struct RegistrationView: View {
             }
             
             Button {
-                
+                authenticationViewModel.register(
+                    withEmail: email,
+                    password: password,
+                    username: username,
+                    image: selectedImage
+                ) { _ in }
             } label: {
                 Text("Sign Up")
                   .font(.headline)
@@ -106,21 +113,6 @@ struct RegistrationView: View {
             }
             
             Spacer()
-            
-            Button(
-              action: {
-                mode.wrappedValue.dismiss()
-              }) {
-              HStack {
-                Text("Already have an account?")
-                  .font(.system(size: 16))
-
-                Text("Sign In")
-                  .font(.system(size: 16, weight: .semibold))
-              }
-              .foregroundColor(Color(.black))
-            }
-            .padding(.bottom, 16)
         }
     }
 }

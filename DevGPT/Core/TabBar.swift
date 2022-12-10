@@ -26,45 +26,50 @@
 import SwiftUI
 
 struct TabBar: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    let user: User
+    
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-            
-            AllCollectionsView()
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
-            
-            HistoryView()
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            AccountView()
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+        NavigationStack {
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Home")
+                    }
+                
+                AllCollectionsView()
+                    .tabItem {
+                        Image(systemName: "folder.fill")
+                        Text("Collections")
+                    }
+                
+                HistoryView()
+                    .tabItem {
+                        Image(systemName: "stopwatch.fill")
+                        Text("History")
+                    }
+                
+                AccountView()
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("Profile")
+                    }
+                
+                SettingsView()
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
+            }
         }
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            TabBar()
-        }
-    }
-}
+//struct TabBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            TabBar()
+//        }
+//    }
+//}

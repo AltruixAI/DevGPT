@@ -26,6 +26,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
     @State private var email = ""
     @State private var password = ""
     
@@ -54,7 +56,10 @@ struct LoginView: View {
             }
             
             Button(action: {
-
+                authenticationViewModel.login(
+                    withEmail: email,
+                    password: password
+                ) { logMessage in print(logMessage) }
             }, label: {
               Text("Sign In")
                 .font(.headline)
@@ -66,18 +71,6 @@ struct LoginView: View {
             })
             
             Spacer()
-            
-            NavigationLink(
-              destination: EmptyView()) {
-              HStack {
-                Text("Don't have an account?")
-                  .font(.system(size: 16))
-                Text("Sign Up")
-                  .font(.system(size: 16, weight: .semibold))
-              }
-              .foregroundColor(Color(.black))
-            }
-            .padding(.bottom, 16)
         }
     }
 }

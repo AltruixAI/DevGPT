@@ -1,5 +1,5 @@
 //
-//  DevGPTApp.swift
+//  User.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,34 +23,21 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
-import Firebase
+import FirebaseFirestoreSwift
+import Foundation
 
-@main
-struct DevGPTApp: App {
-    init() {
-        FirebaseApp.configure()
+struct User: Identifiable, Codable, Equatable {
+    @DocumentID var id: String?
+    let tokens: Int
+    let email: String
+    let profileImageUrl: String
+    let completions: [Response]?
+    
+    static func ==(lhs: User, rhs: User) -> Bool {
+      return lhs.id == rhs.id
     }
     
-    var body: some Scene {
-        WindowGroup {
-            DevGPTSwitcher()
-                .environmentObject(AuthenticationViewModel.shared)
-        }
-    }
-}
-
-struct DevGPTSwitcher: View {
-    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    
-    var body: some View {
-        Group {
-            if authenticationViewModel.userSession != nil,
-               let user = authenticationViewModel.currentUser {
-                TabBar(user: user)
-            } else {
-                OnboardingView()
-            }
-        }
+    static func !=(lhs: User, rhs: User) -> Bool {
+      return lhs.id != rhs.id
     }
 }

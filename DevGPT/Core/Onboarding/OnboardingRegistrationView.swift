@@ -26,6 +26,11 @@
 import SwiftUI
 
 struct OnboardingRegistrationView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
+    @State private var isRegisteringAccount: Bool = false
+    @State private var isLoggingInWithAccount: Bool = false
+    
     var body: some View {
         VStack {
             // Logo
@@ -51,6 +56,10 @@ struct OnboardingRegistrationView: View {
             loginButton
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            isRegisteringAccount = false
+            isLoggingInWithAccount = false
+        }
     }
 }
 
@@ -85,18 +94,32 @@ extension OnboardingRegistrationView {
     }
     
     private var registrationButton: some View {
-        AppPrimaryButton("Create an account") {
+        ZStack {
+            NavigationLink(
+                destination: RegistrationView(),
+                isActive: $isRegisteringAccount,
+                label: { EmptyView() }
+            )
             
+            AppPrimaryButton("Create an account") {
+                isRegisteringAccount.toggle()
+            }
+                .padding(.bottom, 50)
         }
-        .padding(.bottom, 50)
     }
     
     private var loginButton: some View {
         HStack {
+            NavigationLink(
+                destination: LoginView(),
+                isActive: $isLoggingInWithAccount,
+                label: { EmptyView() }
+            )
+            
             Text("Have an account already?")
             
             Button {
-                
+                isLoggingInWithAccount.toggle()
             } label: {
                 Text("Log in").underline().bold()
             }
@@ -108,6 +131,8 @@ extension OnboardingRegistrationView {
 
 struct OnboardingRegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingRegistrationView()
+        NavigationStack {
+            OnboardingRegistrationView()
+        }
     }
 }

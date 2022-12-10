@@ -31,31 +31,33 @@ struct OnboardingView: View {
     @State var showRegistrationOnboard: Bool = false
     
     var body: some View {
-        VStack {
-            // Logo
-            Text("Logo")
-                .font(.headline)
-                .padding(.vertical, 20)
-                .offset(y: 15)
-            
-            // Template image
-            imageHeadline
-            
-            // Template text
-            textHeadline
-            
-            // Progression dots
-            onboardProgression
-            Spacer()
-            
-            // Bottom Buttons
-            onboardButtons
-        }
-        .background(
-            NavigationLink(destination: OnboardingRegistrationView(), isActive: $showRegistrationOnboard, label: {
-                EmptyView()
-            })
+        NavigationStack {
+            VStack {
+                // Logo
+                Text("Logo")
+                    .font(.headline)
+                    .padding(.vertical, 20)
+                    .offset(y: 15)
+                
+                // Template image
+                imageHeadline
+                
+                // Template text
+                textHeadline
+                
+                // Progression dots
+                onboardProgression
+                Spacer()
+                
+                // Bottom Buttons
+                onboardButtons
+            }
+            .background(
+                NavigationLink(destination: OnboardingRegistrationView(), isActive: $showRegistrationOnboard, label: {
+                    EmptyView()
+                })
         )
+        }
     }
 }
 
