@@ -38,7 +38,7 @@ struct HomeView: View {
                     .frame(maxWidth: UIScreen.main.bounds.width - 10)
             }
             SearchBarView(searchText: $text)
-                .offset(y: -120)
+                .offset(y: -90)
         }
     }
 }
