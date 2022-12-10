@@ -36,6 +36,7 @@
 		763750992944198F00DA3F39 /* HistoryTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750982944198F00DA3F39 /* HistoryTabs.swift */; };
 		7637509C2944226E00DA3F39 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637509B2944226E00DA3F39 /* AccountView.swift */; };
 		7637509F2944258500DA3F39 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637509E2944258500DA3F39 /* SettingsView.swift */; };
+		763750A129442A1C00DA3F39 /* AddToCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750A029442A1C00DA3F39 /* AddToCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		763750982944198F00DA3F39 /* HistoryTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabs.swift; sourceTree = "<group>"; };
 		7637509B2944226E00DA3F39 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		7637509E2944258500DA3F39 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		763750A029442A1C00DA3F39 /* AddToCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				76375088294404AC00DA3F39 /* ChatResponseView.swift */,
 				7637508A29440E2F00DA3F39 /* PositiveFeedbackView.swift */,
 				7637508C294411B900DA3F39 /* NegativeFeedbackView.swift */,
+				763750A029442A1C00DA3F39 /* AddToCollectionView.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				763750632943BF0300DA3F39 /* Color.swift in Sources */,
 				7637509C2944226E00DA3F39 /* AccountView.swift in Sources */,
 				7637506D2943DA0F00DA3F39 /* TabBar.swift in Sources */,
+				763750A129442A1C00DA3F39 /* AddToCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
