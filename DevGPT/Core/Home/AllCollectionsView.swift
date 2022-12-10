@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  AllCollectionsView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,46 +25,17 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct AllCollectionsView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-            
-            AllCollectionsView()
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
-            
-            Text("History")
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
-        }
+        CollectionsGridView(title: "All Collections")
+            .frame(maxWidth: UIScreen.main.bounds.width - 10)
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct AllCollectionsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            TabBar()
+            AllCollectionsView()
         }
     }
 }

@@ -34,7 +34,7 @@ struct HomeView: View {
             RecentResponsesView()
             
             FavoriteCollectionsView()
-                .frame(maxWidth: UIScreen.main.bounds.width - 20)
+                .frame(maxWidth: UIScreen.main.bounds.width - 10)
             
             SearchBarView(searchText: $text)
                 .padding(.top, 675)

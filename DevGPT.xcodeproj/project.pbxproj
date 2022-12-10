@@ -30,6 +30,8 @@
 		7637508B29440E2F00DA3F39 /* PositiveFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637508A29440E2F00DA3F39 /* PositiveFeedbackView.swift */; };
 		7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637508C294411B900DA3F39 /* NegativeFeedbackView.swift */; };
 		7637508F2944121900DA3F39 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637508E2944121900DA3F39 /* CheckBoxView.swift */; };
+		76375092294415DB00DA3F39 /* CollectionsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76375091294415DB00DA3F39 /* CollectionsGridView.swift */; };
+		76375094294416CB00DA3F39 /* AllCollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76375093294416CB00DA3F39 /* AllCollectionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		7637508A29440E2F00DA3F39 /* PositiveFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveFeedbackView.swift; sourceTree = "<group>"; };
 		7637508C294411B900DA3F39 /* NegativeFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeFeedbackView.swift; sourceTree = "<group>"; };
 		7637508E2944121900DA3F39 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		76375091294415DB00DA3F39 /* CollectionsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsGridView.swift; sourceTree = "<group>"; };
+		76375093294416CB00DA3F39 /* AllCollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCollectionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				7637506C2943DA0F00DA3F39 /* TabBar.swift */,
+				763750902944158600DA3F39 /* Collections */,
 				763750682943D00200DA3F39 /* Components */,
 				763750832944010400DA3F39 /* Response */,
 				763750802943F5B300DA3F39 /* Loading */,
@@ -188,6 +193,7 @@
 				7637506F2943DC6300DA3F39 /* HomeView.swift */,
 				763750732943E4E900DA3F39 /* RecentResponsesView.swift */,
 				763750772943EACE00DA3F39 /* FavoriteCollectionsView.swift */,
+				76375093294416CB00DA3F39 /* AllCollectionsView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -210,6 +216,14 @@
 				7637508C294411B900DA3F39 /* NegativeFeedbackView.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		763750902944158600DA3F39 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				76375091294415DB00DA3F39 /* CollectionsGridView.swift */,
+			);
+			path = Collections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +303,9 @@
 				7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */,
 				763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */,
 				7637504D2943B69C00DA3F39 /* DevGPTApp.swift in Sources */,
+				76375094294416CB00DA3F39 /* AllCollectionsView.swift in Sources */,
 				7637508F2944121900DA3F39 /* CheckBoxView.swift in Sources */,
+				76375092294415DB00DA3F39 /* CollectionsGridView.swift in Sources */,
 				763750782943EACE00DA3F39 /* FavoriteCollectionsView.swift in Sources */,
 				763750852944011A00DA3F39 /* ResponseView.swift in Sources */,
 				7637507B2943EE7200DA3F39 /* CollectionThumbnailView.swift in Sources */,

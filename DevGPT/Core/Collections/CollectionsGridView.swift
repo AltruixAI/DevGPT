@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  CollectionsGridView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,46 +25,44 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct CollectionsGridView: View {
+    let title: String
+    
+    private let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    private let spacing: CGFloat = 20
+    
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-            
-            AllCollectionsView()
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
-            
-            Text("History")
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.title)
+                    .bold()
+                    .padding(.leading, 6)
+                    .padding(.top, 68)
+                
+                LazyVGrid(
+                    columns: columns,
+                    alignment: .leading,
+                    spacing: spacing,
+                    pinnedViews: []) {
+                        ForEach(0..<4) { _ in
+                            CollectionThumbnailView()
+                                .padding(.leading, 4)
+                        }
+                    }
+            }
         }
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct CollectionsGridView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            TabBar()
+            CollectionsGridView(title: "Collections")
         }
     }
 }
