@@ -27,6 +27,9 @@
 		763750852944011A00DA3F39 /* ResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750842944011A00DA3F39 /* ResponseView.swift */; };
 		76375087294402EA00DA3F39 /* InputResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76375086294402EA00DA3F39 /* InputResultView.swift */; };
 		76375089294404AC00DA3F39 /* ChatResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76375088294404AC00DA3F39 /* ChatResponseView.swift */; };
+		7637508B29440E2F00DA3F39 /* PositiveFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637508A29440E2F00DA3F39 /* PositiveFeedbackView.swift */; };
+		7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637508C294411B900DA3F39 /* NegativeFeedbackView.swift */; };
+		7637508F2944121900DA3F39 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637508E2944121900DA3F39 /* CheckBoxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		763750842944011A00DA3F39 /* ResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseView.swift; sourceTree = "<group>"; };
 		76375086294402EA00DA3F39 /* InputResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResultView.swift; sourceTree = "<group>"; };
 		76375088294404AC00DA3F39 /* ChatResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponseView.swift; sourceTree = "<group>"; };
+		7637508A29440E2F00DA3F39 /* PositiveFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveFeedbackView.swift; sourceTree = "<group>"; };
+		7637508C294411B900DA3F39 /* NegativeFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeFeedbackView.swift; sourceTree = "<group>"; };
+		7637508E2944121900DA3F39 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,7 @@
 				763750752943E5BF00DA3F39 /* ResponseThumbnailView.swift */,
 				7637507A2943EE7200DA3F39 /* CollectionThumbnailView.swift */,
 				7637507C2943F08300DA3F39 /* SearchBarView.swift */,
+				7637508E2944121900DA3F39 /* CheckBoxView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -199,6 +206,8 @@
 				763750842944011A00DA3F39 /* ResponseView.swift */,
 				76375086294402EA00DA3F39 /* InputResultView.swift */,
 				76375088294404AC00DA3F39 /* ChatResponseView.swift */,
+				7637508A29440E2F00DA3F39 /* PositiveFeedbackView.swift */,
+				7637508C294411B900DA3F39 /* NegativeFeedbackView.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -277,13 +286,16 @@
 				763750652943C7AC00DA3F39 /* ImageOnboardingView.swift in Sources */,
 				763750742943E4E900DA3F39 /* RecentResponsesView.swift in Sources */,
 				763750612943BAE800DA3F39 /* OnboardingView.swift in Sources */,
+				7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */,
 				763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */,
 				7637504D2943B69C00DA3F39 /* DevGPTApp.swift in Sources */,
+				7637508F2944121900DA3F39 /* CheckBoxView.swift in Sources */,
 				763750782943EACE00DA3F39 /* FavoriteCollectionsView.swift in Sources */,
 				763750852944011A00DA3F39 /* ResponseView.swift in Sources */,
 				7637507B2943EE7200DA3F39 /* CollectionThumbnailView.swift in Sources */,
 				7637507F2943F09800DA3F39 /* UIApplication.swift in Sources */,
 				763750822943F5C500DA3F39 /* LoadingPageView.swift in Sources */,
+				7637508B29440E2F00DA3F39 /* PositiveFeedbackView.swift in Sources */,
 				76375089294404AC00DA3F39 /* ChatResponseView.swift in Sources */,
 				763750672943CC4200DA3F39 /* OnboardingRegistrationView.swift in Sources */,
 				7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */,
