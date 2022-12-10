@@ -26,6 +26,12 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var viewModel: HomeViewModel
+    
+    init(user: User) {
+        self.viewModel = HomeViewModel(user: user)
+    }
+    
     @State private var text: String = ""
     
     var body: some View {
@@ -34,17 +40,20 @@ struct HomeView: View {
                 // Recent Responses
                 RecentResponsesView()
                 
-                FavoriteCollectionsView()
+                FavoriteCollectionsView(collections: viewModel.user.collections)
                     .frame(maxWidth: UIScreen.main.bounds.width - 10)
             }
-            SearchBarView(searchText: $text)
-                .offset(y: -90)
+            
+            if let userId = viewModel.user.id {
+                SearchBarView(searchText: $text, userId: userId)
+                    .offset(y: -90)
+            }
         }
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}

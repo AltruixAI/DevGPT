@@ -32,7 +32,7 @@ struct TabBar: View {
     var body: some View {
         NavigationStack {
             TabView {
-                HomeView()
+                HomeView(user: user)
                     .tabItem {
                         Image(systemName: "house")
                         Text("Home")
@@ -50,7 +50,7 @@ struct TabBar: View {
                         Text("History")
                     }
                 
-                AccountView()
+                AccountView(user: user)
                     .tabItem {
                         Image(systemName: "person.fill")
                         Text("Profile")

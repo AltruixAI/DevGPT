@@ -26,27 +26,30 @@
 import SwiftUI
 
 struct InputResultView: View {
+    let input: String
+    
     var body: some View {
-        HStack {
+        HStack() {
             Image(systemName: "person.circle.fill")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 40)
-                .padding(.bottom, 48)
-                .padding(.horizontal)
+                .padding(.leading)
             
-            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a elit risus. Nullam non tortor ac augue malesuada tempor. Curabitur varius tortor purus, nec condimentum leo vulputate id.")
+            Text(input)
                 .lineLimit(4)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.leading)
-                .padding(.trailing)
+                .padding(.leading, 30)
+            
+            Spacer()
         }
     }
 }
 
 struct InputResultView_Previews: PreviewProvider {
     static var previews: some View {
-        InputResultView()
+        InputResultView(input: "This is a test")
             .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 100))
     }
 }

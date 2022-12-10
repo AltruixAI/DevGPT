@@ -1,5 +1,5 @@
 //
-//  ChatResponseView.swift
+//  AccountViewModel.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,42 +23,13 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
+import Foundation
+import Firebase
 
-struct ChatResponseView: View {
-    let output: String
+class AccountViewModel: ObservableObject {
+    @Published var user: User
     
-    var body: some View {
-        VStack {
-            HStack {
-                VStack {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .padding(.horizontal)
-                }
-                
-                Text(output)
-                    .foregroundColor(.white)
-                    .padding()
-                
-                Spacer()
-            }
-        }
-        .background(
-            Rectangle()
-                .frame(width: UIScreen.main.bounds.width - 80)
-                .cornerRadius(10)
-                .padding(.leading, 56)
-                .foregroundColor(Color(uiColor: .systemGray2))
-        )
-    }
-}
-
-struct ChatResponseView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatResponseView(output: "Lorem ipsum")
-            .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 500))
+    init(user: User) {
+        self.user = user
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ChatResponseView.swift
+//  LoadingViewModel.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,42 +23,43 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
+import Foundation
+import OpenAIKit
 
-struct ChatResponseView: View {
-    let output: String
+@MainActor class LoadingViewModel: ObservableObject {
+    @Published var response: Response?
+    @Published var isNotLoading: Bool = false
     
-    var body: some View {
-        VStack {
-            HStack {
-                VStack {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .padding(.horizontal)
-                }
-                
-                Text(output)
-                    .foregroundColor(.white)
-                    .padding()
-                
-                Spacer()
-            }
-        }
-        .background(
-            Rectangle()
-                .frame(width: UIScreen.main.bounds.width - 80)
-                .cornerRadius(10)
-                .padding(.leading, 56)
-                .foregroundColor(Color(uiColor: .systemGray2))
-        )
+    let input: String
+    let userId: String
+    
+    init(input: String, userId: String) {
+        self.input = input
+        self.userId = userId
     }
-}
-
-struct ChatResponseView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatResponseView(output: "Lorem ipsum")
-            .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 500))
+    
+    func getResponse() async throws {
+        let apiKey = await GPT3Services.shared.getAPIKey()
+        
+        if apiKey.contains("ERROR") {
+            print("Error with the API Key")
+            return
+        }
+        
+        let openAI = OpenAI(Configuration(organization: "MarcoDotIO", apiKey: apiKey))
+        let completionParameters = CompletionParameters(
+            model: "text-davinci-003",
+            prompt: [input],
+            temperature: 0.01,
+            user: userId
+        )
+        let completionResponse = try await openAI.generateCompletion(parameters: completionParameters)
+        let outputText = completionResponse.choices[0].text
+        
+        self.response = Response(prompt: input, response: outputText)
+        
+        print(outputText)
+        
+        self.isNotLoading = true
     }
 }

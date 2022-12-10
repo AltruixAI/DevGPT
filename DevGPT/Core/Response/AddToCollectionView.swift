@@ -48,8 +48,8 @@ struct AddToCollectionView: View {
                     spacing: spacing,
                     pinnedViews: []) {
                         ForEach(0..<4) { _ in
-                            CollectionThumbnailView()
-                                .padding(.leading, 4)
+//                            CollectionThumbnailView()
+//                                .padding(.leading, 4)
                         }
                         
                         Button {

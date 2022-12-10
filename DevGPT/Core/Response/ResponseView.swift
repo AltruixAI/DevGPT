@@ -26,25 +26,40 @@
 import SwiftUI
 
 struct ResponseView: View {
-    @Binding var text: String
+    @State private var text: String = ""
+    
+    let userId: String
+    let outputResponse: Response?
     
     var body: some View {
-        VStack {
-            ScrollView {
-                InputResultView()
-                    .padding(.top, 28)
+        if let outputResponse = outputResponse {
+            ZStack {
+                VStack {
+                    ScrollView {
+                        InputResultView(input: outputResponse.prompt)
+                        
+                        ChatResponseView(output: outputResponse.response)
+
+                        responseBar
+                            .padding(.top)
+                    }
+                    .padding(.bottom, 90)
+                }
                 
-                ChatResponseView()
-                    .offset(y: -60)
-                
-                responseBar
-                    .offset(x: 25, y: -180)
-                
-                SearchBarView(searchText: $text)
-                    .offset(y: -170)
+                SearchBarView(searchText: $text, userId: userId)
+                    .offset(y: 390)
             }
-            
-            Spacer()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        
+                    } label: {
+                        Text("Back")
+                            .padding(.bottom)
+                    }
+
+                }
+            }
         }
     }
 }
@@ -90,7 +105,17 @@ extension ResponseView {
 }
 
 struct ResponseView_Previews: PreviewProvider {
+    struct helperResponse: View {
+        let response = Response(prompt: "Say this is a test", response: "Lorem ipsum dolor sit amet")
+        
+        var body: some View {
+            ResponseView(userId: "Test", outputResponse: response)
+        }
+    }
+    
     static var previews: some View {
-        ResponseView(text: .constant(""))
+        NavigationStack {
+            helperResponse()
+        }
     }
 }

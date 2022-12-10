@@ -58,6 +58,12 @@
 		763750CD2944550300DA3F39 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750CC2944550300DA3F39 /* ImageUploader.swift */; };
 		763750D32944720C00DA3F39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 763750D22944720C00DA3F39 /* GoogleService-Info.plist */; };
 		763750D62944796900DA3F39 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 763750D52944796900DA3F39 /* Kingfisher */; };
+		763750D82944C25100DA3F39 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750D72944C25000DA3F39 /* AccountViewModel.swift */; };
+		763750DA2944CC4300DA3F39 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750D92944CC4300DA3F39 /* Collection.swift */; };
+		763750DC2944CE2E00DA3F39 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750DB2944CE2E00DA3F39 /* HomeViewModel.swift */; };
+		763750DE2944D10500DA3F39 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750DD2944D10500DA3F39 /* LoadingViewModel.swift */; };
+		763750E02944D31B00DA3F39 /* GPT3Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750DF2944D31B00DA3F39 /* GPT3Services.swift */; };
+		763750E32944D86900DA3F39 /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 763750E22944D86900DA3F39 /* OpenAIKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +111,11 @@
 		763750CA294453C400DA3F39 /* FirebaseDatabases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabases.swift; sourceTree = "<group>"; };
 		763750CC2944550300DA3F39 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		763750D22944720C00DA3F39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		763750D72944C25000DA3F39 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		763750D92944CC4300DA3F39 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		763750DB2944CE2E00DA3F39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		763750DD2944D10500DA3F39 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
+		763750DF2944D31B00DA3F39 /* GPT3Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT3Services.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +128,7 @@
 				763750B929444DFE00DA3F39 /* FirebaseFirestore in Frameworks */,
 				763750BD29444DFE00DA3F39 /* FirebaseFunctions in Frameworks */,
 				763750D62944796900DA3F39 /* Kingfisher in Frameworks */,
+				763750E32944D86900DA3F39 /* OpenAIKit in Frameworks */,
 				763750BF29444DFE00DA3F39 /* FirebaseStorage in Frameworks */,
 				763750B529444DFE00DA3F39 /* FirebaseDatabase in Frameworks */,
 				763750B329444DFE00DA3F39 /* FirebaseAuth in Frameworks */,
@@ -189,6 +201,7 @@
 		7637505B2943B96700DA3F39 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				763750DF2944D31B00DA3F39 /* GPT3Services.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -218,6 +231,7 @@
 				763750C2294450DD00DA3F39 /* User.swift */,
 				763750C42944515900DA3F39 /* Response.swift */,
 				763750C6294451A900DA3F39 /* Feedback.swift */,
+				763750D92944CC4300DA3F39 /* Collection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,6 +269,7 @@
 		7637506E2943DC5000DA3F39 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				763750DB2944CE2E00DA3F39 /* HomeViewModel.swift */,
 				7637506F2943DC6300DA3F39 /* HomeView.swift */,
 				763750732943E4E900DA3F39 /* RecentResponsesView.swift */,
 				763750772943EACE00DA3F39 /* FavoriteCollectionsView.swift */,
@@ -267,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				763750812943F5C500DA3F39 /* LoadingPageView.swift */,
+				763750DD2944D10500DA3F39 /* LoadingViewModel.swift */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -304,9 +320,10 @@
 		7637509A2944225A00DA3F39 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				763750D72944C25000DA3F39 /* AccountViewModel.swift */,
+				763750A4294431EF00DA3F39 /* AddTokensViewModel.swift */,
 				7637509B2944226E00DA3F39 /* AccountView.swift */,
 				763750A229442D4F00DA3F39 /* AddTokensView.swift */,
-				763750A4294431EF00DA3F39 /* AddTokensViewModel.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -353,6 +370,7 @@
 				763750BC29444DFE00DA3F39 /* FirebaseFunctions */,
 				763750BE29444DFE00DA3F39 /* FirebaseStorage */,
 				763750D52944796900DA3F39 /* Kingfisher */,
+				763750E22944D86900DA3F39 /* OpenAIKit */,
 			);
 			productName = DevGPT;
 			productReference = 763750492943B69C00DA3F39 /* DevGPT.app */;
@@ -385,6 +403,7 @@
 			packageReferences = (
 				763750B129444DFE00DA3F39 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				763750D42944796900DA3F39 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				763750E12944D86900DA3F39 /* XCRemoteSwiftPackageReference "OpenAIKit" */,
 			);
 			productRefGroup = 7637504A2943B69C00DA3F39 /* Products */;
 			projectDirPath = "";
@@ -414,8 +433,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				763750AC294444CD00DA3F39 /* RegistrationView.swift in Sources */,
+				763750E02944D31B00DA3F39 /* GPT3Services.swift in Sources */,
 				7637506A2943D01400DA3F39 /* AppPrimaryButton.swift in Sources */,
 				763750972944196800DA3F39 /* HistoryView.swift in Sources */,
+				763750DC2944CE2E00DA3F39 /* HomeViewModel.swift in Sources */,
 				763750AE2944457600DA3F39 /* ImagePicker.swift in Sources */,
 				763750652943C7AC00DA3F39 /* ImageOnboardingView.swift in Sources */,
 				763750C52944515900DA3F39 /* Response.swift in Sources */,
@@ -423,10 +444,12 @@
 				763750612943BAE800DA3F39 /* OnboardingView.swift in Sources */,
 				763750A329442D4F00DA3F39 /* AddTokensView.swift in Sources */,
 				763750A5294431EF00DA3F39 /* AddTokensViewModel.swift in Sources */,
+				763750DE2944D10500DA3F39 /* LoadingViewModel.swift in Sources */,
 				7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */,
 				763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */,
 				7637504D2943B69C00DA3F39 /* DevGPTApp.swift in Sources */,
 				763750992944198F00DA3F39 /* HistoryTabs.swift in Sources */,
+				763750D82944C25100DA3F39 /* AccountViewModel.swift in Sources */,
 				763750AA2944428E00DA3F39 /* CustomField.swift in Sources */,
 				76375094294416CB00DA3F39 /* AllCollectionsView.swift in Sources */,
 				763750C7294451A900DA3F39 /* Feedback.swift in Sources */,
@@ -445,6 +468,7 @@
 				763750A8294440F300DA3F39 /* LoginView.swift in Sources */,
 				7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */,
 				7637509F2944258500DA3F39 /* SettingsView.swift in Sources */,
+				763750DA2944CC4300DA3F39 /* Collection.swift in Sources */,
 				76375087294402EA00DA3F39 /* InputResultView.swift in Sources */,
 				763750702943DC6300DA3F39 /* HomeView.swift in Sources */,
 				763750632943BF0300DA3F39 /* Color.swift in Sources */,
@@ -671,6 +695,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		763750E12944D86900DA3F39 /* XCRemoteSwiftPackageReference "OpenAIKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MarcoDotIO/OpenAIKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -713,6 +745,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 763750D42944796900DA3F39 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		763750E22944D86900DA3F39 /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 763750E12944D86900DA3F39 /* XCRemoteSwiftPackageReference "OpenAIKit" */;
+			productName = OpenAIKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

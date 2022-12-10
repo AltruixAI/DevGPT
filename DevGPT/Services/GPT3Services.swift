@@ -1,5 +1,5 @@
 //
-//  ChatResponseView.swift
+//  GPT3Services.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,42 +23,36 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
+import Foundation
+import Firebase
 
-struct ChatResponseView: View {
-    let output: String
+class GPT3Services {
+    static let shared = GPT3Services()
     
-    var body: some View {
-        VStack {
-            HStack {
-                VStack {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .padding(.horizontal)
+    private init() { }
+    
+    func getAPIKey() async -> String {
+        let collectionName = "Secrets"
+        let documentName = "OpenAIKey"
+        
+        let secretsCollection = Firestore.firestore().collection(collectionName)
+        
+        return await withCheckedContinuation({ con in
+            secretsCollection.document(documentName).getDocument { snapshot, error in
+                if let documents = snapshot {
+                    if let secret = try? documents.data(as: Secrets.self) {
+                        con.resume(returning: secret.Key)
+                    } else {
+                        con.resume(returning: "ERROR with decoding Secrets")
+                    }
+                } else {
+                    con.resume(returning: "ERROR with unwrapping snapshot")
                 }
-                
-                Text(output)
-                    .foregroundColor(.white)
-                    .padding()
-                
-                Spacer()
             }
-        }
-        .background(
-            Rectangle()
-                .frame(width: UIScreen.main.bounds.width - 80)
-                .cornerRadius(10)
-                .padding(.leading, 56)
-                .foregroundColor(Color(uiColor: .systemGray2))
-        )
+        })
     }
 }
 
-struct ChatResponseView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatResponseView(output: "Lorem ipsum")
-            .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 500))
-    }
+struct Secrets: Codable {
+    let Key: String
 }

@@ -26,7 +26,11 @@
 import SwiftUI
 
 struct SearchBarView: View {
+    @State private var isLoading: Bool = false
+    
     @Binding var searchText: String
+    
+    let userId: String
     
     var body: some View {
         HStack {
@@ -57,7 +61,7 @@ struct SearchBarView: View {
                     , alignment: .trailing)
             
             Button {
-                // TODO: Handle sending prompts
+                isLoading.toggle()
             } label: {
                 Image(systemName: "paperplane.fill")
                     .foregroundColor(
@@ -66,7 +70,13 @@ struct SearchBarView: View {
                         Color.theme.accent
                     )
             }
-
+            
+            NavigationLink(
+                destination: LoadingPageView(input: searchText, userId: userId)
+                    .navigationBarBackButtonHidden(true),
+                isActive: $isLoading,
+                label: { EmptyView() }
+            )
         }
         .font(.headline)
         .padding()
@@ -82,8 +92,8 @@ struct SearchBarView: View {
     }
 }
 
-struct SearchBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchBarView(searchText: .constant(""))
-    }
-}
+//struct SearchBarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchBarView(searchText: .constant(""))
+//    }
+//}

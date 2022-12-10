@@ -26,9 +26,15 @@
 import SwiftUI
 
 struct LoadingPageView: View {
+    @ObservedObject var viewModel: LoadingViewModel
+    
     @State private var downloadAmount = 0.0
     
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+    
+    init(input: String, userId: String) {
+        self.viewModel = LoadingViewModel(input: input, userId: userId)
+    }
     
     var body: some View {
         VStack {
@@ -48,6 +54,19 @@ struct LoadingPageView: View {
                 .padding(.trailing, 40)
             
             Spacer()
+            
+            NavigationLink(
+                destination: ResponseView(userId: viewModel.userId, outputResponse: viewModel.response).navigationBarBackButtonHidden(true),
+                isActive: $viewModel.isNotLoading,
+                label: { EmptyView() }
+            )
+        }
+        .task {
+            do {
+                try await self.viewModel.getResponse()
+            } catch {
+                print("Error: \(error)")
+            }
         }
     }
 }
@@ -58,15 +77,15 @@ extension LoadingPageView {
             .padding()
             .padding(.horizontal, 38)
             .onReceive(timer) { _ in
-                if downloadAmount < 150 {
+                if downloadAmount < 149 {
                     downloadAmount += 0.1
                 }
             }
     }
 }
 
-struct LoadingPageView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoadingPageView()
-    }
-}
+//struct LoadingPageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoadingPageView()
+//    }
+//}

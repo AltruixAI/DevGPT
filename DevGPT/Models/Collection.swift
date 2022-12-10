@@ -1,5 +1,5 @@
 //
-//  ChatResponseView.swift
+//  Collection.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,42 +23,11 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
+import Foundation
+import FirebaseFirestoreSwift
 
-struct ChatResponseView: View {
-    let output: String
-    
-    var body: some View {
-        VStack {
-            HStack {
-                VStack {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .padding(.horizontal)
-                }
-                
-                Text(output)
-                    .foregroundColor(.white)
-                    .padding()
-                
-                Spacer()
-            }
-        }
-        .background(
-            Rectangle()
-                .frame(width: UIScreen.main.bounds.width - 80)
-                .cornerRadius(10)
-                .padding(.leading, 56)
-                .foregroundColor(Color(uiColor: .systemGray2))
-        )
-    }
-}
-
-struct ChatResponseView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatResponseView(output: "Lorem ipsum")
-            .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 500))
-    }
+struct Collection: Identifiable, Codable {
+    @DocumentID var id: String?
+    var name: String
+    var responses: [Response]
 }

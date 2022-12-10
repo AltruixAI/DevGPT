@@ -30,13 +30,22 @@ struct AddTokensView: View {
     
     @ObservedObject var viewModel = AddTokensViewModel()
     
+    @Binding var tokens: Int
+    
     var body: some View {
         VStack {
-            Image(systemName: "bitcoinsign.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 150, height: 150)
-                .offset(y: -270)
+            HStack {
+                Image(systemName: "bitcoinsign.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+                    .offset(y: -270)
+                
+                Text("\(tokens + (Int(viewModel.value) ?? 0))")
+                    .font(.system(size: 60))
+                    .bold()
+                    .offset(y: -270)
+            }
             
             TextField("0", text: $viewModel.value)
                 .multilineTextAlignment(.center)
@@ -47,8 +56,9 @@ struct AddTokensView: View {
                 .frame(width: 200)
                 .keyboardType(.decimalPad)
             
-            Text("Minimum Amount 100")
+            Text(((Int(viewModel.value) ?? 0) >= 100) ? "Adding \(viewModel.value) Tokens" : "Minimum Amount 100")
                 .offset(y: -210)
+                .foregroundColor(((Int(viewModel.value) ?? 0) >= 100) ? .black : Color(uiColor: .systemGray4))
         }
         .offset(y: 110)
         .toolbar {
@@ -78,10 +88,10 @@ struct AddTokensView: View {
     }
 }
 
-struct AddTokensView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AddTokensView()
-        }
-    }
-}
+//struct AddTokensView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            AddTokensView()
+//        }
+//    }
+//}

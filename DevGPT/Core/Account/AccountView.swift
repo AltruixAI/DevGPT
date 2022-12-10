@@ -24,28 +24,36 @@
 //  
 
 import SwiftUI
+import Kingfisher
 
 struct AccountView: View {
+    @ObservedObject var viewModel: AccountViewModel
+    
     @State private var showAddTokens: Bool = false
+    
+    init(user: User) {
+        self.viewModel = AccountViewModel(user: user)
+    }
     
     var body: some View {
         VStack {
-            Image(systemName: "person.circle")
+            KFImage(URL(string: viewModel.user.profileImageUrl))
                 .resizable()
                 .scaledToFit()
                 .frame(width: 200, height: 200)
+                .clipShape(Circle())
                 .padding(.top, 110)
             
-            Text("Marcus Arnett")
+            Text(viewModel.user.username)
                 .font(.title)
                 .bold()
                 .padding(.top, 24)
             
-            Text("Marcus.Arnett10@gmail.com")
+            Text(viewModel.user.email)
                 .padding(.top, -8)
             
             HStack {
-                Text("100")
+                Text("\(viewModel.user.tokens)")
                     .font(.system(size: 60))
                     .bold()
                 
@@ -64,16 +72,16 @@ struct AccountView: View {
         }
         .sheet(isPresented: $showAddTokens) {
             NavigationStack {
-                AddTokensView()
+                AddTokensView(tokens: $viewModel.user.tokens)
             }
         }
     }
 }
 
-struct AccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AccountView()
-        }
-    }
-}
+//struct AccountView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            AccountView()
+//        }
+//    }
+//}

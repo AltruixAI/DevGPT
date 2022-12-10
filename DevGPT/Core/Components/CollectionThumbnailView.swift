@@ -24,12 +24,38 @@
 //  
 
 import SwiftUI
+import Kingfisher
 
 struct CollectionThumbnailView: View {
+    let collection: Collection
+    
     var body: some View {
         ZStack {
-            baseThumbnail
-                .overlay(overlayView.mask(baseThumbnail))
+            if let thumbnail = collection.responses[0].thumbnail {
+                KFImage(URL(string: thumbnail))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 200, height: 150)
+                    .cornerRadius(10)
+                    .overlay(overlayView.mask(
+                        KFImage(URL(string: thumbnail))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 200, height: 150)
+                            .cornerRadius(10)
+                    ))
+            } else {
+                Rectangle()
+                    .frame(width: 200, height: 150)
+                    .cornerRadius(10)
+                    .overlay(
+                        overlayView.mask(
+                            Rectangle()
+                                .frame(width: 200, height: 150)
+                                .cornerRadius(10)
+                        )
+                    )
+            }
         }
     }
     
@@ -44,7 +70,7 @@ struct CollectionThumbnailView: View {
                     .offset(x: -10)
                     .opacity(0.75)
                 
-                Text("Collection 1")
+                Text(collection.name)
                     .font(.system(size: 16))
                     .foregroundColor(.white)
                     .padding(.leading)
@@ -52,18 +78,10 @@ struct CollectionThumbnailView: View {
             }
         }
     }
-    
-    private var baseThumbnail: some View {
-        Image("templateResponseThumbnail")
-            .resizable()
-            .scaledToFill()
-            .frame(width: 200, height: 150)
-            .cornerRadius(10)
-    }
 }
 
-struct CollectionThumbnailView_Previews: PreviewProvider {
-    static var previews: some View {
-        CollectionThumbnailView()
-    }
-}
+//struct CollectionThumbnailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CollectionThumbnailView()
+//    }
+//}

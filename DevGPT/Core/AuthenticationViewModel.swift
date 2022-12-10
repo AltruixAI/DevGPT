@@ -114,7 +114,6 @@ class AuthenticationViewModel: ObservableObject {
         
         COLLECTION_USERS.document(uid).getDocument { snapshot, _ in
             guard let user = try? snapshot?.data(as: User.self) else { return }
-            print("\(user.email)")
             self.currentUser = user
         }
     }

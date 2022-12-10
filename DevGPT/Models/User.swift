@@ -28,10 +28,12 @@ import Foundation
 
 struct User: Identifiable, Codable, Equatable {
     @DocumentID var id: String?
-    let tokens: Int
-    let email: String
-    let profileImageUrl: String
-    let completions: [Response]?
+    var tokens: Int
+    var email: String
+    var profileImageUrl: String
+    var username: String
+    var collections: [Collection]?
+    var responses: [Response]?
     
     static func ==(lhs: User, rhs: User) -> Bool {
       return lhs.id == rhs.id

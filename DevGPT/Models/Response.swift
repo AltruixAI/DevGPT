@@ -28,8 +28,22 @@ import FirebaseFirestoreSwift
 
 struct Response: Identifiable, Codable {
     @DocumentID var id: String?
-    var collection: String
     let prompt: String
     let response: String
-    let feedback: [Feedback]
+    let thumbnail: String?
+    let feedback: Feedback?
+    
+    init(
+        id: String? = nil,
+        prompt: String,
+        response: String,
+        thumbnail: String? = nil,
+        feedback: Feedback? = nil
+    ) {
+        self.id = id
+        self.prompt = prompt
+        self.response = response
+        self.thumbnail = thumbnail
+        self.feedback = feedback
+    }
 }
