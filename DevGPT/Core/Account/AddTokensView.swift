@@ -38,20 +38,19 @@ struct AddTokensView: View {
                 .frame(width: 150, height: 150)
                 .offset(y: -270)
             
-            HStack(alignment: .center) {
-                TextField("0", text: $viewModel.value)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(1)
-                    .font(.title)
-                    .textFieldStyle(.plain)
-                    .offset(y: -220)
-                    .frame(width: 200)
-                    .keyboardType(.decimalPad)
-            }
+            TextField("0", text: $viewModel.value)
+                .multilineTextAlignment(.center)
+                .lineLimit(1)
+                .font(.title)
+                .textFieldStyle(.plain)
+                .offset(y: -220)
+                .frame(width: 200)
+                .keyboardType(.decimalPad)
             
             Text("Minimum Amount 100")
                 .offset(y: -210)
         }
+        .offset(y: 110)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {

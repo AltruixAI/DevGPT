@@ -29,15 +29,16 @@ struct HomeView: View {
     @State private var text: String = ""
     
     var body: some View {
-        ZStack {
-            // Recent Responses
-            RecentResponsesView()
-            
-            FavoriteCollectionsView()
-                .frame(maxWidth: UIScreen.main.bounds.width - 10)
-            
+        ScrollView(showsIndicators: false) {
+            ZStack {
+                // Recent Responses
+                RecentResponsesView()
+                
+                FavoriteCollectionsView()
+                    .frame(maxWidth: UIScreen.main.bounds.width - 10)
+            }
             SearchBarView(searchText: $text)
-                .padding(.top, 675)
+                .offset(y: -120)
         }
     }
 }
