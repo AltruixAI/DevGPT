@@ -35,6 +35,7 @@
 		763750972944196800DA3F39 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750962944196800DA3F39 /* HistoryView.swift */; };
 		763750992944198F00DA3F39 /* HistoryTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750982944198F00DA3F39 /* HistoryTabs.swift */; };
 		7637509C2944226E00DA3F39 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637509B2944226E00DA3F39 /* AccountView.swift */; };
+		7637509F2944258500DA3F39 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637509E2944258500DA3F39 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		763750962944196800DA3F39 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		763750982944198F00DA3F39 /* HistoryTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabs.swift; sourceTree = "<group>"; };
 		7637509B2944226E00DA3F39 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		7637509E2944258500DA3F39 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				7637506C2943DA0F00DA3F39 /* TabBar.swift */,
+				7637509D2944254600DA3F39 /* Settings */,
 				7637509A2944225A00DA3F39 /* Account */,
 				763750952944194C00DA3F39 /* History */,
 				763750902944158600DA3F39 /* Collections */,
@@ -251,6 +254,14 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		7637509D2944254600DA3F39 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7637509E2944258500DA3F39 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,6 +353,7 @@
 				76375089294404AC00DA3F39 /* ChatResponseView.swift in Sources */,
 				763750672943CC4200DA3F39 /* OnboardingRegistrationView.swift in Sources */,
 				7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */,
+				7637509F2944258500DA3F39 /* SettingsView.swift in Sources */,
 				76375087294402EA00DA3F39 /* InputResultView.swift in Sources */,
 				763750702943DC6300DA3F39 /* HomeView.swift in Sources */,
 				763750632943BF0300DA3F39 /* Color.swift in Sources */,

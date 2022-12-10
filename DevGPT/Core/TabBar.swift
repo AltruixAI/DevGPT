@@ -52,7 +52,7 @@ struct TabBar: View {
                     Text("Profile")
                 }
             
-            Text("Settings")
+            SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
