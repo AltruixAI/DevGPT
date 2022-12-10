@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  AllCollectionsViewModel.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,15 +23,12 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
+import Foundation
 
-extension Color {
-    static let theme = ColorTheme()
-}
-
-struct ColorTheme {
-    let accent = Color("Accent")
-    let background = Color("Background")
-    let secondaryText = Color("SecondaryText")
-    let statusBar = Color("StatusBar")
+class AllCollectionsViewModel: ObservableObject {
+    @Published var user: User
+    
+    init(user: User) {
+        self.user = user
+    }
 }

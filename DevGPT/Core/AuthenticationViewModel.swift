@@ -113,8 +113,15 @@ class AuthenticationViewModel: ObservableObject {
         guard let uid = userSession?.uid else { return }
         
         COLLECTION_USERS.document(uid).getDocument { snapshot, _ in
-            guard let user = try? snapshot?.data(as: User.self) else { return }
-            self.currentUser = user
+            guard let snapshot = snapshot else { return }
+            guard var user = try? snapshot.data(as: User.self) else { return }
+            
+            COLLECTION_USERS.document(uid).collection("collections").getDocuments { snapshot, _ in
+                guard let documents = snapshot?.documents else { return }
+                let collections = documents.compactMap { try? $0.data(as: Collection.self) }
+                user.collections = collections
+                self.currentUser = user
+            }
         }
     }
 }

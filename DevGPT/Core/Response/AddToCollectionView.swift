@@ -26,12 +26,25 @@
 import SwiftUI
 
 struct AddToCollectionView: View {
+    @ObservedObject var viewModel: AddToCollectionViewModel
+    @State private var showNamingScreen: Bool = false
+    
     private let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
     private let spacing: CGFloat = 20
+    
+    let response: Response
+    let userId: String
+    
+    init(response: Response, userId: String) {
+        self.response = response
+        self.userId = userId
+        
+        self.viewModel = AddToCollectionViewModel(userId: userId)
+    }
     
     var body: some View {
         ScrollView {
@@ -47,13 +60,13 @@ struct AddToCollectionView: View {
                     alignment: .leading,
                     spacing: spacing,
                     pinnedViews: []) {
-                        ForEach(0..<4) { _ in
-//                            CollectionThumbnailView()
-//                                .padding(.leading, 4)
+                        ForEach(self.viewModel.collections) { collection in
+                            CollectionThumbnailView(collection: collection)
+                                .padding(.leading, 4)
                         }
                         
                         Button {
-                            
+                            showNamingScreen = true
                         } label: {
                             Rectangle()
                                 .foregroundColor(Color(uiColor: .systemGray2))
@@ -67,15 +80,32 @@ struct AddToCollectionView: View {
                                         .frame(width: 30, height: 30)
                                 )
                         }
-
+                        .tint(Color.theme.accent)
                     }
             }
         }
+        .overlay(
+            showNamingScreen ?
+            NameCollectionOverlay(
+                isShowing: $showNamingScreen,
+                response: response,
+                userId: userId
+            ) :
+            nil
+        )
     }
 }
 
 struct AddToCollectionView_Previews: PreviewProvider {
+    struct handlerCollection: View {
+        let response = Response(prompt: "Hello", response: "World")
+        
+        var body: some View {
+            AddToCollectionView(response: response, userId: "Test")
+        }
+    }
+    
     static var previews: some View {
-        AddToCollectionView()
+        handlerCollection()
     }
 }

@@ -46,4 +46,21 @@ struct Response: Identifiable, Codable {
         self.thumbnail = thumbnail
         self.feedback = feedback
     }
+    
+    func toAnyObject() -> Any {
+        var result = [
+            "prompt": prompt,
+            "response": response
+        ] as [String: Any]
+        
+        if let thumbnail = thumbnail {
+            result["thumbnail"] = thumbnail
+        }
+        
+        if let feedback = feedback {
+            result["feedback"] = feedback.toAnyObject()
+        }
+        
+        return result
+    }
 }

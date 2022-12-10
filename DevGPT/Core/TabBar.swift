@@ -38,7 +38,7 @@ struct TabBar: View {
                         Text("Home")
                     }
                 
-                AllCollectionsView()
+                AllCollectionsView(user: user)
                     .tabItem {
                         Image(systemName: "folder.fill")
                         Text("Collections")

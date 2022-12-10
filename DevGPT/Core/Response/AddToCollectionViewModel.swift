@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  AddToCollectionViewModel.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,15 +23,33 @@
 //  THE SOFTWARE.
 //  
 
+import Foundation
 import SwiftUI
+import Firebase
 
-extension Color {
-    static let theme = ColorTheme()
-}
-
-struct ColorTheme {
-    let accent = Color("Accent")
-    let background = Color("Background")
-    let secondaryText = Color("SecondaryText")
-    let statusBar = Color("StatusBar")
+class AddToCollectionViewModel: ObservableObject {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
+    @Published var collections: [Collection] = []
+    
+    let userId: String
+    
+    init(userId: String) {
+        self.userId = userId
+        self.getCollections()
+    }
+    
+    func getCollections() {
+        COLLECTION_USERS.document(userId).collection("collections").getDocuments { snapshot, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            
+            guard let documents = snapshot?.documents else { return }
+            let results = documents.compactMap { try? $0.data(as: Collection.self) }
+            
+            self.collections = results
+        }
+    }
 }

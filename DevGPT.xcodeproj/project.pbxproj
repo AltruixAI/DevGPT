@@ -64,6 +64,11 @@
 		763750E02944D31B00DA3F39 /* GPT3Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750DF2944D31B00DA3F39 /* GPT3Services.swift */; };
 		763750E32944D86900DA3F39 /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 763750E22944D86900DA3F39 /* OpenAIKit */; };
 		763750E72944F74E00DA3F39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 763750E62944F74E00DA3F39 /* GoogleService-Info.plist */; };
+		763750EB294509E000DA3F39 /* AddToCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750EA294509E000DA3F39 /* AddToCollectionViewModel.swift */; };
+		763750ED2945101C00DA3F39 /* NameCollectionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750EC2945101C00DA3F39 /* NameCollectionOverlay.swift */; };
+		763750EF294513DB00DA3F39 /* NameCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750EE294513DB00DA3F39 /* NameCollectionViewModel.swift */; };
+		763750F12945244200DA3F39 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F02945244200DA3F39 /* View.swift */; };
+		763750F32945344400DA3F39 /* AllCollectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +121,11 @@
 		763750DD2944D10500DA3F39 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
 		763750DF2944D31B00DA3F39 /* GPT3Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT3Services.swift; sourceTree = "<group>"; };
 		763750E62944F74E00DA3F39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		763750EA294509E000DA3F39 /* AddToCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCollectionViewModel.swift; sourceTree = "<group>"; };
+		763750EC2945101C00DA3F39 /* NameCollectionOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCollectionOverlay.swift; sourceTree = "<group>"; };
+		763750EE294513DB00DA3F39 /* NameCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCollectionViewModel.swift; sourceTree = "<group>"; };
+		763750F02945244200DA3F39 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCollectionsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +221,7 @@
 			children = (
 				763750622943BF0300DA3F39 /* Color.swift */,
 				7637507E2943F09800DA3F39 /* UIApplication.swift */,
+				763750F02945244200DA3F39 /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -273,7 +284,6 @@
 				7637506F2943DC6300DA3F39 /* HomeView.swift */,
 				763750732943E4E900DA3F39 /* RecentResponsesView.swift */,
 				763750772943EACE00DA3F39 /* FavoriteCollectionsView.swift */,
-				76375093294416CB00DA3F39 /* AllCollectionsView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -290,12 +300,15 @@
 		763750832944010400DA3F39 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				763750EA294509E000DA3F39 /* AddToCollectionViewModel.swift */,
+				763750EE294513DB00DA3F39 /* NameCollectionViewModel.swift */,
 				763750842944011A00DA3F39 /* ResponseView.swift */,
 				76375086294402EA00DA3F39 /* InputResultView.swift */,
 				76375088294404AC00DA3F39 /* ChatResponseView.swift */,
 				7637508A29440E2F00DA3F39 /* PositiveFeedbackView.swift */,
 				7637508C294411B900DA3F39 /* NegativeFeedbackView.swift */,
 				763750A029442A1C00DA3F39 /* AddToCollectionView.swift */,
+				763750EC2945101C00DA3F39 /* NameCollectionOverlay.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -303,7 +316,9 @@
 		763750902944158600DA3F39 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				76375093294416CB00DA3F39 /* AllCollectionsView.swift */,
 				76375091294415DB00DA3F39 /* CollectionsGridView.swift */,
+				763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -432,7 +447,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				763750F32945344400DA3F39 /* AllCollectionsViewModel.swift in Sources */,
 				763750AC294444CD00DA3F39 /* RegistrationView.swift in Sources */,
+				763750EF294513DB00DA3F39 /* NameCollectionViewModel.swift in Sources */,
 				763750E02944D31B00DA3F39 /* GPT3Services.swift in Sources */,
 				7637506A2943D01400DA3F39 /* AppPrimaryButton.swift in Sources */,
 				763750972944196800DA3F39 /* HistoryView.swift in Sources */,
@@ -443,6 +460,8 @@
 				763750742943E4E900DA3F39 /* RecentResponsesView.swift in Sources */,
 				763750612943BAE800DA3F39 /* OnboardingView.swift in Sources */,
 				763750A329442D4F00DA3F39 /* AddTokensView.swift in Sources */,
+				763750F12945244200DA3F39 /* View.swift in Sources */,
+				763750EB294509E000DA3F39 /* AddToCollectionViewModel.swift in Sources */,
 				763750A5294431EF00DA3F39 /* AddTokensViewModel.swift in Sources */,
 				763750DE2944D10500DA3F39 /* LoadingViewModel.swift in Sources */,
 				7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */,
@@ -459,6 +478,7 @@
 				763750782943EACE00DA3F39 /* FavoriteCollectionsView.swift in Sources */,
 				763750852944011A00DA3F39 /* ResponseView.swift in Sources */,
 				7637507B2943EE7200DA3F39 /* CollectionThumbnailView.swift in Sources */,
+				763750ED2945101C00DA3F39 /* NameCollectionOverlay.swift in Sources */,
 				7637507F2943F09800DA3F39 /* UIApplication.swift in Sources */,
 				763750822943F5C500DA3F39 /* LoadingPageView.swift in Sources */,
 				7637508B29440E2F00DA3F39 /* PositiveFeedbackView.swift in Sources */,

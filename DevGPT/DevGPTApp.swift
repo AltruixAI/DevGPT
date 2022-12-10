@@ -43,14 +43,50 @@ struct DevGPTApp: App {
 struct DevGPTSwitcher: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    @State private var animate = false
+    @State private var endSplash = false
+    
     var body: some View {
-        Group {
-            if authenticationViewModel.userSession != nil,
-               let user = authenticationViewModel.currentUser {
-                TabBar(user: user)
-            } else {
-                OnboardingView()
+        ZStack {
+            Group {
+                if authenticationViewModel.userSession != nil,
+                   let user = authenticationViewModel.currentUser {
+                    TabBar(user: user)
+                } else {
+                    OnboardingView()
+                }
             }
+            
+            ZStack {
+                Color(.white)
+              
+              Image("splash")
+                .resizable()
+                .renderingMode(.original)
+                .aspectRatio(contentMode: animate ? .fill : .fit)
+                .frame(width: animate ? nil : 110, height: animate ? nil : 22)
+              
+                .scaleEffect(animate ? 3 : 1)
+              
+                .frame(width: UIScreen.main.bounds.width)
+            }
+            .ignoresSafeArea(.all, edges: .all)
+            .onAppear(perform: animateSplash)
+            .opacity(endSplash ? 0 : 1)
+        }
+    }
+    
+    func animateSplash() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
+            
+            withAnimation(Animation.easeOut(duration: 0.85)){
+                animate.toggle()
+            }
+            
+            withAnimation(Animation.easeOut(duration: 0.75)){
+                endSplash.toggle()
+            }
+            
         }
     }
 }

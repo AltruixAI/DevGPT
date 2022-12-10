@@ -26,16 +26,22 @@
 import SwiftUI
 
 struct AllCollectionsView: View {
+    @ObservedObject var viewModel: AllCollectionsViewModel
+    
+    init(user: User) {
+        self.viewModel = AllCollectionsViewModel(user: user)
+    }
+    
     var body: some View {
-        CollectionsGridView(title: "All Collections")
+        CollectionsGridView(title: "All Collections", collections: viewModel.user.collections)
             .frame(maxWidth: UIScreen.main.bounds.width - 10)
     }
 }
 
-struct AllCollectionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AllCollectionsView()
-        }
-    }
-}
+//struct AllCollectionsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            AllCollectionsView()
+//        }
+//    }
+//}

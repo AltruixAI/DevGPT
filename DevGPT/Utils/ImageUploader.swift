@@ -26,22 +26,39 @@
 import Foundation
 import FirebaseStorage
 import UIKit
+import Firebase
+
+enum UploadType {
+    case thumbnail
+    case profile
+    
+    var filePath: StorageReference {
+        let filename = NSUUID().uuidString
+        
+        switch self {
+        case .profile: return Storage.storage().reference(withPath: "/profile_image/\(filename)")
+        case .thumbnail: return Storage.storage().reference(withPath: "/thumbnail_images/\(filename)")
+        }
+    }
+}
 
 struct ImageUploader {
-    static func uploadImage(image: UIImage, completion: @escaping(String) -> Void) {
+    static func uploadImage(
+        image: UIImage,
+        type: UploadType = .profile,
+        completion: @escaping(String) -> Void
+    ) {
         guard let imageData = image.jpegData(compressionQuality: 0.25) else { return }
-        
-        let filename = NSUUID().uuidString
 
-        let storageReference = Storage.storage().reference(withPath: "/profile_images/\(filename)")
+        let ref = type.filePath
         
-        storageReference.putData(imageData, metadata: nil) { _, error in
+        ref.putData(imageData, metadata: nil) { _, error in
             if let error = error {
                 print("DEBUG: Failed to upload image with error \(error.localizedDescription)")
                 return
             }
             
-            storageReference.downloadURL { url, _ in
+            ref.downloadURL { url, _ in
                 guard let imageURL = url?.absoluteString else { return }
                 completion(imageURL)
             }

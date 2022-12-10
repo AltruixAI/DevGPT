@@ -35,34 +35,38 @@ struct CollectionsGridView: View {
     
     private let spacing: CGFloat = 20
     
+    let collections: [Collection]?
+    
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.title)
-                    .bold()
-                    .padding(.leading, 6)
-                    .padding(.top, 68)
-                
-                LazyVGrid(
-                    columns: columns,
-                    alignment: .leading,
-                    spacing: spacing,
-                    pinnedViews: []) {
-                        ForEach(0..<4) { _ in
-//                            CollectionThumbnailView()
-//                                .padding(.leading, 4)
+            if let collections = collections {
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.title)
+                        .bold()
+                        .padding(.leading, 6)
+                        .padding(.top, 68)
+                    
+                    LazyVGrid(
+                        columns: columns,
+                        alignment: .leading,
+                        spacing: spacing,
+                        pinnedViews: []) {
+                            ForEach(collections) { collection in
+                                CollectionThumbnailView(collection: collection)
+                                    .padding(.leading, 4)
+                            }
                         }
-                    }
+                }
             }
         }
     }
 }
 
-struct CollectionsGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            CollectionsGridView(title: "Collections")
-        }
-    }
-}
+//struct CollectionsGridView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            CollectionsGridView(title: "Collections")
+//        }
+//    }
+//}

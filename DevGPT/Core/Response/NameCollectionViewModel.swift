@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  NameCollectionViewModel.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,15 +23,35 @@
 //  THE SOFTWARE.
 //  
 
+import Foundation
+import Firebase
 import SwiftUI
 
-extension Color {
-    static let theme = ColorTheme()
-}
-
-struct ColorTheme {
-    let accent = Color("Accent")
-    let background = Color("Background")
-    let secondaryText = Color("SecondaryText")
-    let statusBar = Color("StatusBar")
+class NameCollectionViewModel: ObservableObject {
+    init() {
+        
+    }
+    
+    func saveNewCollection(response: Response, name: String, userId: String) {
+        let imageView: UIImage = ResponseView(userId: userId, outputResponse: response).asUiImage()
+        
+        ImageUploader.uploadImage(image: imageView, type: .thumbnail) { imageURL in
+            let imageResponse = Response(
+                prompt: response.prompt,
+                response: response.response,
+                thumbnail: imageURL
+            )
+            
+            let data = [
+                "name": name,
+                "responses": [imageResponse.toAnyObject()]
+            ] as [String: Any]
+            
+            COLLECTION_USERS
+                .document(userId)
+                .collection("collections")
+                .document(UUID().uuidString)
+                .setData(data)
+        }
+    }
 }

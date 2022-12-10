@@ -31,6 +31,14 @@ struct Feedback: Identifiable, Codable {
     let isSatisfied: Bool
     let feedbackComment: String
     let category: Category
+    
+    func toAnyObject() -> Any {
+        return [
+            "isSatisfied": isSatisfied,
+            "feedbackComment": feedbackComment,
+            "category": category.rawValue
+        ]
+    }
 }
 
 enum Category: String, Codable {

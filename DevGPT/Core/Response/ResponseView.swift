@@ -26,6 +26,7 @@
 import SwiftUI
 
 struct ResponseView: View {
+    @State private var showSaveResponse: Bool = false
     @State private var text: String = ""
     
     let userId: String
@@ -49,6 +50,11 @@ struct ResponseView: View {
                 SearchBarView(searchText: $text, userId: userId)
                     .offset(y: 390)
             }
+            .sheet(isPresented: $showSaveResponse, content: {
+                if let outputResponse = outputResponse {
+                    AddToCollectionView(response: outputResponse, userId: userId)
+                }
+            })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
@@ -57,7 +63,6 @@ struct ResponseView: View {
                         Text("Back")
                             .padding(.bottom)
                     }
-
                 }
             }
         }
@@ -79,6 +84,14 @@ extension ResponseView {
                 
             } label: {
                 Image(systemName: "doc.on.doc.fill")
+                    .foregroundColor(.black)
+            }
+            .padding(.leading, 16)
+            
+            Button {
+                showSaveResponse = true
+            } label: {
+                Image(systemName: "plus.square")
                     .foregroundColor(.black)
             }
             .padding(.leading, 16)
