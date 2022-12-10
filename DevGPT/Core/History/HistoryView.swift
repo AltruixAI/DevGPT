@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  HistoryView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,46 +25,31 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct HistoryView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("History")
+                    .font(.title)
+                    .bold()
+                    .padding(.leading, 18)
+                    .padding(.top, 68)
+                
+                ForEach(0..<8) { _ in
+                    Button {
+                        
+                    } label: {
+                        HistoryTabs()
+                    }
+
                 }
-            
-            AllCollectionsView()
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
-            
-            HistoryView()
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+            }
         }
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            TabBar()
-        }
+        HistoryView()
     }
 }

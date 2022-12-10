@@ -32,6 +32,8 @@
 		7637508F2944121900DA3F39 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637508E2944121900DA3F39 /* CheckBoxView.swift */; };
 		76375092294415DB00DA3F39 /* CollectionsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76375091294415DB00DA3F39 /* CollectionsGridView.swift */; };
 		76375094294416CB00DA3F39 /* AllCollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76375093294416CB00DA3F39 /* AllCollectionsView.swift */; };
+		763750972944196800DA3F39 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750962944196800DA3F39 /* HistoryView.swift */; };
+		763750992944198F00DA3F39 /* HistoryTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750982944198F00DA3F39 /* HistoryTabs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		7637508E2944121900DA3F39 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		76375091294415DB00DA3F39 /* CollectionsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsGridView.swift; sourceTree = "<group>"; };
 		76375093294416CB00DA3F39 /* AllCollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCollectionsView.swift; sourceTree = "<group>"; };
+		763750962944196800DA3F39 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		763750982944198F00DA3F39 /* HistoryTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				7637506C2943DA0F00DA3F39 /* TabBar.swift */,
+				763750952944194C00DA3F39 /* History */,
 				763750902944158600DA3F39 /* Collections */,
 				763750682943D00200DA3F39 /* Components */,
 				763750832944010400DA3F39 /* Response */,
@@ -226,6 +231,15 @@
 			path = Collections;
 			sourceTree = "<group>";
 		};
+		763750952944194C00DA3F39 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				763750962944196800DA3F39 /* HistoryView.swift */,
+				763750982944198F00DA3F39 /* HistoryTabs.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -297,12 +311,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7637506A2943D01400DA3F39 /* AppPrimaryButton.swift in Sources */,
+				763750972944196800DA3F39 /* HistoryView.swift in Sources */,
 				763750652943C7AC00DA3F39 /* ImageOnboardingView.swift in Sources */,
 				763750742943E4E900DA3F39 /* RecentResponsesView.swift in Sources */,
 				763750612943BAE800DA3F39 /* OnboardingView.swift in Sources */,
 				7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */,
 				763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */,
 				7637504D2943B69C00DA3F39 /* DevGPTApp.swift in Sources */,
+				763750992944198F00DA3F39 /* HistoryTabs.swift in Sources */,
 				76375094294416CB00DA3F39 /* AllCollectionsView.swift in Sources */,
 				7637508F2944121900DA3F39 /* CheckBoxView.swift in Sources */,
 				76375092294415DB00DA3F39 /* CollectionsGridView.swift in Sources */,

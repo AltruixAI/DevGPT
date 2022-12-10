@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  HistoryTabs.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,46 +25,24 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct HistoryTabs: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-            
-            AllCollectionsView()
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
-            
-            HistoryView()
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
-            
-            Text("Profile")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-            
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+        VStack {
+            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a elit risus. Nullam non tortor ac augue malesuada tempor. Curabitur varius tortor purus, nec condimentum leo vulputate id.")
+                .foregroundColor(.white)
         }
+        .padding()
+        .background(
+            Rectangle()
+                .foregroundColor(Color(uiColor: .systemGray2))
+                .cornerRadius(10)
+        )
+        .padding(.horizontal)
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct HistoryTabs_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            TabBar()
-        }
+        HistoryTabs()
     }
 }
