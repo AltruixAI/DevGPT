@@ -26,6 +26,8 @@
 import SwiftUI
 
 struct AddTokensView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var viewModel = AddTokensViewModel()
     
     var body: some View {
@@ -53,7 +55,7 @@ struct AddTokensView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Cancel")
                 }

@@ -26,6 +26,8 @@
 import SwiftUI
 
 struct AccountView: View {
+    @State private var showAddTokens: Bool = false
+    
     var body: some View {
         VStack {
             Image(systemName: "person.circle")
@@ -55,16 +57,23 @@ struct AccountView: View {
             .padding(.top, 68)
             
             AppPrimaryButton("Add Tokens +") {
-                
+                showAddTokens.toggle()
             }
             
             Spacer()
+        }
+        .sheet(isPresented: $showAddTokens) {
+            NavigationStack {
+                AddTokensView()
+            }
         }
     }
 }
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountView()
+        NavigationStack {
+            AccountView()
+        }
     }
 }
