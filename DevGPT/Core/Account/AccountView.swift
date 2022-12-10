@@ -1,5 +1,5 @@
 //
-//  TabBar.swift
+//  AccountView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,46 +25,46 @@
 
 import SwiftUI
 
-struct TabBar: View {
+struct AccountView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
+        VStack {
+            Image(systemName: "person.circle")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+                .padding(.top, 110)
             
-            AllCollectionsView()
-                .tabItem {
-                    Image(systemName: "folder.fill")
-                    Text("Collections")
-                }
+            Text("Marcus Arnett")
+                .font(.title)
+                .bold()
+                .padding(.top, 24)
             
-            HistoryView()
-                .tabItem {
-                    Image(systemName: "stopwatch.fill")
-                    Text("History")
-                }
+            Text("Marcus.Arnett10@gmail.com")
+                .padding(.top, -8)
             
-            AccountView()
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
+            HStack {
+                Text("100")
+                    .font(.system(size: 60))
+                    .bold()
+                
+                Image(systemName: "bitcoinsign.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50)
+            }
+            .padding(.top, 68)
             
-            Text("Settings")
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+            AppPrimaryButton("Add Tokens +") {
+                
+            }
+            
+            Spacer()
         }
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            TabBar()
-        }
+        AccountView()
     }
 }
