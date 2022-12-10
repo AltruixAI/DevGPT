@@ -41,6 +41,8 @@
 		763750A5294431EF00DA3F39 /* AddTokensViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750A4294431EF00DA3F39 /* AddTokensViewModel.swift */; };
 		763750A8294440F300DA3F39 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750A7294440F300DA3F39 /* LoginView.swift */; };
 		763750AA2944428E00DA3F39 /* CustomField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750A92944428E00DA3F39 /* CustomField.swift */; };
+		763750AC294444CD00DA3F39 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750AB294444CD00DA3F39 /* RegistrationView.swift */; };
+		763750AE2944457600DA3F39 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750AD2944457600DA3F39 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,8 @@
 		763750A4294431EF00DA3F39 /* AddTokensViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokensViewModel.swift; sourceTree = "<group>"; };
 		763750A7294440F300DA3F39 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		763750A92944428E00DA3F39 /* CustomField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomField.swift; sourceTree = "<group>"; };
+		763750AB294444CD00DA3F39 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		763750AD2944457600DA3F39 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 		7637505D2943B97C00DA3F39 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				763750AD2944457600DA3F39 /* ImagePicker.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				763750A7294440F300DA3F39 /* LoginView.swift */,
+				763750AB294444CD00DA3F39 /* RegistrationView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -355,8 +361,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				763750AC294444CD00DA3F39 /* RegistrationView.swift in Sources */,
 				7637506A2943D01400DA3F39 /* AppPrimaryButton.swift in Sources */,
 				763750972944196800DA3F39 /* HistoryView.swift in Sources */,
+				763750AE2944457600DA3F39 /* ImagePicker.swift in Sources */,
 				763750652943C7AC00DA3F39 /* ImageOnboardingView.swift in Sources */,
 				763750742943E4E900DA3F39 /* RecentResponsesView.swift in Sources */,
 				763750612943BAE800DA3F39 /* OnboardingView.swift in Sources */,
