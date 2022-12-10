@@ -56,7 +56,6 @@
 		763750C7294451A900DA3F39 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750C6294451A900DA3F39 /* Feedback.swift */; };
 		763750CB294453C400DA3F39 /* FirebaseDatabases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750CA294453C400DA3F39 /* FirebaseDatabases.swift */; };
 		763750CD2944550300DA3F39 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750CC2944550300DA3F39 /* ImageUploader.swift */; };
-		763750D32944720C00DA3F39 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 763750D22944720C00DA3F39 /* GoogleService-Info.plist */; };
 		763750D62944796900DA3F39 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 763750D52944796900DA3F39 /* Kingfisher */; };
 		763750D82944C25100DA3F39 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750D72944C25000DA3F39 /* AccountViewModel.swift */; };
 		763750DA2944CC4300DA3F39 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750D92944CC4300DA3F39 /* Collection.swift */; };
@@ -110,7 +109,6 @@
 		763750C6294451A900DA3F39 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		763750CA294453C400DA3F39 /* FirebaseDatabases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabases.swift; sourceTree = "<group>"; };
 		763750CC2944550300DA3F39 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
-		763750D22944720C00DA3F39 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		763750D72944C25000DA3F39 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		763750D92944CC4300DA3F39 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		763750DB2944CE2E00DA3F39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 		7637504B2943B69C00DA3F39 /* DevGPT */ = {
 			isa = PBXGroup;
 			children = (
-				763750D22944720C00DA3F39 /* GoogleService-Info.plist */,
 				7637504C2943B69C00DA3F39 /* DevGPTApp.swift */,
 				7637505E2943B98200DA3F39 /* Models */,
 				7637505D2943B97C00DA3F39 /* Utils */,
@@ -421,7 +418,6 @@
 			files = (
 				763750542943B69E00DA3F39 /* Preview Assets.xcassets in Resources */,
 				763750512943B69E00DA3F39 /* Assets.xcassets in Resources */,
-				763750D32944720C00DA3F39 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
