@@ -33,6 +33,7 @@ struct RecentResponsesView: View {
             VStack(alignment: .leading) {
                 Text("Recent")
                     .font(.title)
+                    .foregroundColor(Color.theme.accent)
                     .bold()
                     .padding(.leading)
                     .padding(.top, 48)

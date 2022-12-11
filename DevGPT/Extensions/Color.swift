@@ -34,4 +34,8 @@ struct ColorTheme {
     let background = Color("Background")
     let secondaryText = Color("SecondaryText")
     let statusBar = Color("StatusBar")
+    let tab = Color("Tab")
+    let textField = Color("TextField")
+    let highlight = Color("Highlight")
+    let inputBackground = Color("InputBackground")
 }

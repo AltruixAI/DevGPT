@@ -71,6 +71,7 @@
 		763750F32945344400DA3F39 /* AllCollectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */; };
 		763750F52945369300DA3F39 /* ResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F42945369300DA3F39 /* ResponseViewModel.swift */; };
 		763750F729455A2300DA3F39 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F629455A2300DA3F39 /* UserService.swift */; };
+		763750FA2945707300DA3F39 /* Hi-fiMockup.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 763750F92945707300DA3F39 /* Hi-fiMockup.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCollectionsViewModel.swift; sourceTree = "<group>"; };
 		763750F42945369300DA3F39 /* ResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewModel.swift; sourceTree = "<group>"; };
 		763750F629455A2300DA3F39 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		763750F92945707300DA3F39 /* Hi-fiMockup.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Hi-fiMockup.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			children = (
 				763750E62944F74E00DA3F39 /* GoogleService-Info.plist */,
 				7637504C2943B69C00DA3F39 /* DevGPTApp.swift */,
+				763750F82945706600DA3F39 /* MockUps */,
 				7637505E2943B98200DA3F39 /* Models */,
 				7637505D2943B97C00DA3F39 /* Utils */,
 				7637505C2943B96F00DA3F39 /* Extensions */,
@@ -366,6 +369,14 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		763750F82945706600DA3F39 /* MockUps */ = {
+			isa = PBXGroup;
+			children = (
+				763750F92945707300DA3F39 /* Hi-fiMockup.pdf */,
+			);
+			path = MockUps;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -443,6 +454,7 @@
 				763750542943B69E00DA3F39 /* Preview Assets.xcassets in Resources */,
 				763750512943B69E00DA3F39 /* Assets.xcassets in Resources */,
 				763750E72944F74E00DA3F39 /* GoogleService-Info.plist in Resources */,
+				763750FA2945707300DA3F39 /* Hi-fiMockup.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,23 +26,28 @@
 import SwiftUI
 
 struct HistoryTabs: View {
+    let response: Response
+    
     var body: some View {
-        VStack {
-            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a elit risus. Nullam non tortor ac augue malesuada tempor. Curabitur varius tortor purus, nec condimentum leo vulputate id.")
-                .foregroundColor(.white)
+        VStack() {
+            Text(response.response)
+                .foregroundColor(Color.theme.accent)
+                .lineLimit(3)
         }
         .padding()
         .background(
             Rectangle()
-                .foregroundColor(Color(uiColor: .systemGray2))
+                .foregroundColor(Color.theme.textField)
+                .frame(width: UIScreen.main.bounds.width - 20)
                 .cornerRadius(10)
         )
         .padding(.horizontal)
+        .frame(width: UIScreen.main.bounds.width - 20)
     }
 }
-
-struct HistoryTabs_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryTabs()
-    }
-}
+//
+//struct HistoryTabs_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HistoryTabs()
+//    }
+//}

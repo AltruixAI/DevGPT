@@ -34,14 +34,17 @@ struct SearchBarView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(
-                    searchText.isEmpty ?
-                    Color.theme.secondaryText :
-                    Color.theme.accent
-                )
-            
-            TextField("Enter Coding Idea", text: $searchText)
+            TextField("", text: $searchText)
+                .placeholder(when: searchText.isEmpty) {
+                    Text("Type Your Code Question...")
+                        .foreground(
+                            LinearGradient(
+                                gradient: .init(colors: [Color.theme.accent, Color.theme.highlight]),
+                                startPoint: .topLeading,
+                                endPoint: .bottomLeading
+                            )
+                        )
+                }
                 .foregroundColor(Color.theme.accent)
                 .autocorrectionDisabled()
                 .overlay (
@@ -63,12 +66,7 @@ struct SearchBarView: View {
             Button {
                 isLoading.toggle()
             } label: {
-                Image(systemName: "paperplane.fill")
-                    .foregroundColor(
-                        searchText.isEmpty ?
-                        Color.theme.secondaryText :
-                        Color.theme.accent
-                    )
+                Image("airplane")
             }
             
             NavigationLink(
@@ -82,11 +80,7 @@ struct SearchBarView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 25)
-                .fill(Color.theme.background)
-                .shadow(
-                    color: Color.theme.accent.opacity(0.15),
-                    radius: 10, x: 0, y: 0
-                )
+                .fill(Color.theme.textField)
         )
         .padding()
     }

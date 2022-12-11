@@ -39,9 +39,10 @@ struct FavoriteCollectionsView: View {
         VStack(alignment: .leading) {
             Text("Favorites")
                 .font(.title)
+                .foregroundColor(Color.theme.accent)
                 .bold()
                 .offset(y: -16)
-//                .offset(x: 10)
+                .offset(x: 10)
             
             if let collections = collections, !collections.isEmpty {
                 LazyVGrid(

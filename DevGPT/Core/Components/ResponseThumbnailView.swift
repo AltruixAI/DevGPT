@@ -41,7 +41,7 @@ struct ResponseThumbnailView: View {
                         GeometryReader { geo in
                             ZStack(alignment: .leading) {
                                 Rectangle()
-                                    .foregroundColor(Color(uiColor: .black))
+                                    .foregroundColor(Color.theme.tab)
                                     .frame(width: 170, height: 100)
                                     .cornerRadius(10)
                                     .padding(.top, 70)
@@ -62,33 +62,6 @@ struct ResponseThumbnailView: View {
                                     .frame(width: 150, height: 100)
                                     .cornerRadius(10)
                             )
-                    )
-            }
-        } else {
-            ZStack {
-                Rectangle()
-                    .foregroundColor(Color(uiColor: .systemGray4))
-                    .frame(width: 150, height: 100)
-                    .cornerRadius(10)
-                    .overlay(
-                        GeometryReader { geo in
-                            ZStack(alignment: .leading) {
-                                Rectangle()
-                                    .foregroundColor(Color(uiColor: .black))
-                                    .frame(width: 170, height: 100)
-                                    .cornerRadius(10)
-                                    .padding(.top, 70)
-                                    .offset(x: -10)
-                                    .opacity(0.75)
-                                
-                                Text("Project 1")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.white)
-                                    .padding(.leading)
-                                    .bold()
-                            }
-                        }
-                            .mask(baseThumbnail)
                     )
             }
         }

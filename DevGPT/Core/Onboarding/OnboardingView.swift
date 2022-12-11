@@ -32,31 +32,38 @@ struct OnboardingView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                // Logo
-                Text("Logo")
-                    .font(.headline)
-                    .padding(.vertical, 20)
-                    .offset(y: 15)
+            ZStack {
+                Color.theme.background
+                    .ignoresSafeArea()
                 
-                // Template image
-                imageHeadline
-                
-                // Template text
-                textHeadline
-                
-                // Progression dots
-                onboardProgression
-                Spacer()
-                
-                // Bottom Buttons
-                onboardButtons
+                VStack {
+                    // Logo
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: UIScreen.main.bounds.width - 250)
+                        .padding(.vertical, 20)
+                        .offset(y: 15)
+                    
+                    // Template image
+                    imageHeadline
+                    
+                    // Template text
+                    textHeadline
+                    
+                    // Progression dots
+                    onboardProgression
+                    Spacer()
+                    
+                    // Bottom Buttons
+                    onboardButtons
+                }
+                .background(
+                    NavigationLink(destination: OnboardingRegistrationView(), isActive: $showRegistrationOnboard, label: {
+                        EmptyView()
+                    })
+                )
             }
-            .background(
-                NavigationLink(destination: OnboardingRegistrationView(), isActive: $showRegistrationOnboard, label: {
-                    EmptyView()
-                })
-        )
         }
     }
 }
@@ -65,13 +72,7 @@ extension OnboardingView {
     private var imageHeadline: some View {
         ZStack {
             if pageNumberAnimated == 1 {
-                ImageOnboardingView(imageName: "templateOnboardingImage1")
-                    .transition(.move(edge: .leading))
-            } else if pageNumberAnimated == 2 {
-                ImageOnboardingView(imageName: "templateOnboardingImage2")
-                    .transition(.move(edge: .trailing))
-            } else if pageNumberAnimated == 3 {
-                ImageOnboardingView(imageName: "templateOnboardingImage3")
+                ImageOnboardingView(imageName: "onboard1")
                     .transition(.move(edge: .leading))
             }
         }
@@ -80,23 +81,29 @@ extension OnboardingView {
     private var textHeadline: some View {
         ZStack {
             if pageNumber == 1 {
-                Text("Insert Onboarding text\nMessage #1")
-                    .multilineTextAlignment(.center)
+                Text("DevGPT makes sure you never lose sight of a great feature idea again.")
+                    .multilineTextAlignment(.leading)
                     .font(.system(size: 18))
                     .fontWeight(.medium)
                     .padding(.top, 40)
+                    .padding(.horizontal, 60)
+                    .foregroundColor(Color.theme.accent)
             } else if pageNumber == 2 {
-                Text("Insert Onboarding text\nMessage #2")
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 18))
+                Text("All your feature ideas for all your projects in one place. Share, copy or air drop it wherever you want!")
+                    .multilineTextAlignment(.leading)
+                    .font(.system(size: 35))
                     .fontWeight(.medium)
-                    .padding(.top, 40)
+                    .padding(.top, 180)
+                    .padding(.horizontal, 40)
+                    .foregroundColor(Color.theme.accent)
             } else if pageNumber == 3 {
-                Text("Insert Onboarding text\nMessage #3")
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 18))
+                Text("By saving code answers in collections, you'll be ready for spur-of-the-moment thinking.")
+                    .multilineTextAlignment(.leading)
+                    .font(.system(size: 35))
                     .fontWeight(.medium)
-                    .padding(.top, 40)
+                    .padding(.top, 180)
+                    .padding(.horizontal, 40)
+                    .foregroundColor(Color.theme.accent)
             }
         }
     }
@@ -106,10 +113,10 @@ extension OnboardingView {
             Circle()
                 .frame(width: 15, height: 15)
                 .padding(.top, 40)
-                .foregroundColor(pageNumber == 1 ? Color(.systemGray4) : .white)
+                .foregroundColor(pageNumber == 1 ? Color.theme.accent : Color.theme.background)
                 .background(
                     Circle()
-                        .fill(Color(.systemGray))
+                        .fill(Color.theme.accent)
                         .frame(width: 20, height: 20)
                         .padding(.top, 40)
                 )
@@ -117,10 +124,10 @@ extension OnboardingView {
             Circle()
                 .frame(width: 15, height: 15)
                 .padding(.top, 40)
-                .foregroundColor(pageNumber == 2 ? Color(.systemGray4) : .white)
+                .foregroundColor(pageNumber == 2 ? Color.theme.accent : Color.theme.background)
                 .background(
                     Circle()
-                        .fill(Color(.systemGray))
+                        .fill(Color.theme.accent)
                         .frame(width: 20, height: 20)
                         .padding(.top, 40)
                 )
@@ -129,10 +136,10 @@ extension OnboardingView {
             Circle()
                 .frame(width: 15, height: 15)
                 .padding(.top, 40)
-                .foregroundColor(pageNumber == 3 ? Color(.systemGray4) : .white)
+                .foregroundColor(pageNumber == 3 ? Color.theme.accent : Color.theme.background)
                 .background(
                     Circle()
-                        .fill(Color(.systemGray))
+                        .fill(Color.theme.accent)
                         .frame(width: 20, height: 20)
                         .padding(.top, 40)
                 )
@@ -142,16 +149,27 @@ extension OnboardingView {
     
     private var onboardButtons: some View {
         HStack(spacing: 0) {
-            Button {
-                showRegistrationOnboard.toggle()
-            } label: {
+            Button(action: { showRegistrationOnboard.toggle() }) {
                 Text("Skip")
+                    .font(.headline)
+                    .foregroundColor(Color.theme.accent)
+                    .frame(width: 150, height: 50)
+                    .background(
+                        ZStack {
+                            Color.theme.accent
+                            
+                            Color.theme.background
+                                .frame(width: 145, height: 45)
+                                .cornerRadius(8)
+                        }
+                    )
+                    .cornerRadius(8)
+                    .padding(.leading, 24)
             }
-            .padding(.leading, 40)
             
             Spacer()
             
-            Button {
+            Button(action: {
                 if pageNumber != 3 {
                     pageNumber += 1
                 } else {
@@ -163,10 +181,15 @@ extension OnboardingView {
                         pageNumberAnimated += 1
                     }
                 }
-            } label: {
+            }) {
                 Text("Next")
+                    .font(.headline)
+                    .foregroundColor(Color.theme.background)
+                    .frame(width: 150, height: 50)
+                    .background(Color.theme.accent)
+                    .cornerRadius(8)
+                    .padding(.trailing, 24)
             }
-            .padding(.trailing, 40)
         }
     }
 }

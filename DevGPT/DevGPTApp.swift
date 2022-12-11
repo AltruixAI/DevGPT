@@ -29,6 +29,7 @@ import Firebase
 @main
 struct DevGPTApp: App {
     init() {
+        UINavigationBar.appearance().tintColor = UIColor(Color.theme.accent)
         FirebaseApp.configure()
     }
     
@@ -58,17 +59,17 @@ struct DevGPTSwitcher: View {
             }
             
             ZStack {
-                Color(.white)
-              
-              Image("splash")
-                .resizable()
-                .renderingMode(.original)
-                .aspectRatio(contentMode: animate ? .fill : .fit)
-                .frame(width: animate ? nil : 110, height: animate ? nil : 22)
-              
-                .scaleEffect(animate ? 3 : 1)
-              
-                .frame(width: UIScreen.main.bounds.width)
+                Color.theme.background
+                
+                Image("splash")
+                    .resizable()
+                    .renderingMode(.original)
+                    .aspectRatio(contentMode: animate ? .fill : .fit)
+                    .frame(width: animate ? nil : 110, height: animate ? nil : 22)
+                
+                    .scaleEffect(animate ? 3 : 1)
+                
+                    .frame(width: UIScreen.main.bounds.width)
             }
             .ignoresSafeArea(.all, edges: .all)
             .onAppear(perform: animateSplash)
@@ -83,7 +84,7 @@ struct DevGPTSwitcher: View {
                 animate.toggle()
             }
             
-            withAnimation(Animation.easeOut(duration: 0.75)){
+            withAnimation(Animation.easeOut(duration: 1.5)){
                 endSplash.toggle()
             }
             

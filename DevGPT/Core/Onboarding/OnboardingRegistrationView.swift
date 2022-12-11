@@ -32,44 +32,53 @@ struct OnboardingRegistrationView: View {
     @State private var isLoggingInWithAccount: Bool = false
     
     var body: some View {
-        VStack {
-            // Logo
-            Text("Logo")
-                .font(.headline)
-                .padding(.vertical, 20)
-                .offset(y: 15)
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
             
-            // Tageline
-            tagline
-            
-            Spacer()
-            
-            // Continue with Buttons
-            continueButtons
-            
-            divider
-            
-            registrationButton
-            
-            Spacer()
-            
-            loginButton
+            VStack {
+                // Logo
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: UIScreen.main.bounds.width - 250)
+                    .padding(.vertical, 20)
+                    .offset(y: 15)
+                
+                // Tageline
+                tagline
+                
+                Spacer()
+                
+                // Continue with Buttons
+                continueButtons
+                
+                divider
+                
+                registrationButton
+                
+                Spacer()
+                
+                loginButton
+            }
+            .navigationBarBackButtonHidden(true)
+            .onAppear {
+                isRegisteringAccount = false
+                isLoggingInWithAccount = false
         }
-        .navigationBarBackButtonHidden(true)
-        .onAppear {
-            isRegisteringAccount = false
-            isLoggingInWithAccount = false
         }
     }
 }
 
 extension OnboardingRegistrationView {
     private var tagline: some View {
-        Text("Cool Tagline")
-            .font(.title)
+        Text("Integrate DevGPT into your workflow and shoot your productivity through the roof!")
+            .font(.system(size: 28))
             .bold()
             .padding(.top, 140)
             .padding(.bottom, 80)
+            .padding(.horizontal, 60)
+            .foregroundColor(Color.theme.accent)
     }
     
     private var continueButtons: some View {
@@ -117,12 +126,14 @@ extension OnboardingRegistrationView {
             )
             
             Text("Have an account already?")
+                .foregroundColor(Color.theme.accent)
             
             Button {
                 isLoggingInWithAccount.toggle()
             } label: {
                 Text("Log in").underline().bold()
             }
+            .tint(Color.theme.highlight)
 
         }
         .padding(.bottom, 64)

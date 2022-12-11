@@ -24,16 +24,19 @@
 //  
 
 import SwiftUI
+import Kingfisher
 
 struct InputResultView: View {
     let input: String
+    let imageURL: String
     
     var body: some View {
         HStack() {
-            Image(systemName: "person.circle.fill")
+            KFImage(URL(string: imageURL))
                 .resizable()
                 .scaledToFit()
-                .frame(width: 40, height: 40)
+                .frame(width: 50, height: 50)
+                .clipShape(Circle())
                 .padding(.leading)
             
             Text(input)
@@ -41,15 +44,22 @@ struct InputResultView: View {
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.leading)
                 .padding(.leading, 30)
+                .foregroundColor(Color.theme.accent)
             
             Spacer()
         }
+        .background(
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width)
+                .foregroundColor(Color.theme.inputBackground)
+                .padding(.vertical, -20)
+        )
     }
 }
 
 struct InputResultView_Previews: PreviewProvider {
     static var previews: some View {
-        InputResultView(input: "This is a test")
+        InputResultView(input: "This is a test", imageURL: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a")
             .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 100))
     }
 }

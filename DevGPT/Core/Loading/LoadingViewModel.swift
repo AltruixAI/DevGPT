@@ -50,6 +50,7 @@ import OpenAIKit
         let completionParameters = CompletionParameters(
             model: "text-davinci-003",
             prompt: [input],
+            maxTokens: 1000,
             temperature: 0.01,
             user: user.id
         )

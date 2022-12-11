@@ -26,80 +26,96 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
     var body: some View {
-        VStack(alignment: .center) {
-            Text("Settings")
-                .font(.title)
-                .bold()
-                .padding(.trailing, 288)
-                .padding(.top, 68)
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
             
-            List {
-                Section {
-                    HStack {
-                        Text("Change Avatar")
-                            .padding(.leading)
+            VStack(alignment: .center) {
+                Text("Settings")
+                    .font(.title)
+                    .foregroundColor(Color.theme.accent)
+                    .bold()
+                    .padding(.trailing, 288)
+                    .padding(.top, 68)
+                
+                List {
+                    Section {
+                        HStack {
+                            Text("Change Avatar")
+                                .padding(.leading)
+                                .foregroundColor(Color.theme.accent)
+                            
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.theme.accent)
+                        }
+                    }
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .onTapGesture {
                         
-                        Spacer()
-                        Image(systemName: "chevron.right")
                     }
-                }
-                .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
-                .onTapGesture {
+                    .listRowBackground(Color.clear)
                     
+                    Section {
+                        HStack {
+                            Text("Change Username")
+                                .padding(.leading)
+                                .foregroundColor(Color.theme.accent)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.theme.accent)
+                        }
+                    }
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .onTapGesture {
+                        
+                    }
+                    .listRowBackground(Color.clear)
+                    
+                    Section {
+                        HStack {
+                            Text("Change Email")
+                                .padding(.leading)
+                                .foregroundColor(Color.theme.accent)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.theme.accent)
+                        }
+                    }
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .onTapGesture {
+                        
+                    }
+                    .listRowBackground(Color.clear)
+                    
+                    Section {
+                        HStack {
+                            Text("Change Password")
+                                .padding(.leading)
+                                .foregroundColor(Color.theme.accent)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.theme.accent)
+                        }
+                    }
+                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .onTapGesture {
+                        
+                    }
+                    .listRowBackground(Color.clear)
                 }
-                .listRowBackground(Color.clear)
+                .scrollDisabled(true)
+                .font(.headline)
+                .listStyle(.plain)
                 
-                Section {
-                    HStack {
-                        Text("Change Username")
-                            .padding(.leading)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
+                AppPrimaryButton("Log out") {
+                    authenticationViewModel.signout()
                 }
-                .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
-                .onTapGesture {
-                    
-                }
-                .listRowBackground(Color.clear)
-                
-                Section {
-                    HStack {
-                        Text("Change Email")
-                            .padding(.leading)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                }
-                .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
-                .onTapGesture {
-                    
-                }
-                .listRowBackground(Color.clear)
-                
-                Section {
-                    HStack {
-                        Text("Change Password")
-                            .padding(.leading)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                }
-                .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
-                .onTapGesture {
-                    
-                }
-                .listRowBackground(Color.clear)
+                .padding(.bottom, 86)
             }
-            .scrollDisabled(true)
-            .font(.headline)
-            .listStyle(.plain)
-            
-            AppPrimaryButton("Log out") {
-                
-            }
-            .padding(.bottom, 86)
         }
     }
 }

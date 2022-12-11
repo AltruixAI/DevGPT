@@ -33,56 +33,65 @@ struct AddTokensView: View {
     @Binding var tokens: Int
     
     var body: some View {
-        VStack {
-            HStack {
-                Image(systemName: "bitcoinsign.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 150, height: 150)
-                    .offset(y: -270)
-                
-                Text("\(tokens + (Int(viewModel.value) ?? 0))")
-                    .font(.system(size: 60))
-                    .bold()
-                    .offset(y: -270)
-            }
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
             
-            TextField("0", text: $viewModel.value)
-                .multilineTextAlignment(.center)
-                .lineLimit(1)
-                .font(.title)
-                .textFieldStyle(.plain)
-                .offset(y: -220)
-                .frame(width: 200)
-                .keyboardType(.decimalPad)
-            
-            Text(((Int(viewModel.value) ?? 0) >= 100) ? "Adding \(viewModel.value) Tokens" : "Minimum Amount 100")
-                .offset(y: -210)
-                .foregroundColor(((Int(viewModel.value) ?? 0) >= 100) ? .black : Color(uiColor: .systemGray4))
-        }
-        .offset(y: 110)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Text("Cancel")
-                }
-
-            }
-            
-            ToolbarItem(placement: .principal) {
-                Text("Select Amount")
-                    .bold()
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
+            VStack {
+                HStack {
+                    Image("tokenFull")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .offset(y: -270)
                     
-                } label: {
-                    Text("Add")
+                    Text("\(tokens + (Int(viewModel.value) ?? 0))")
+                        .font(.system(size: 60))
+                        .bold()
+                        .foregroundColor(Color.theme.accent)
+                        .offset(y: -270)
                 }
-
+                
+                TextField("0", text: $viewModel.value)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(1)
+                    .font(.title)
+                    .textFieldStyle(.plain)
+                    .offset(y: -220)
+                    .frame(width: 200)
+                    .keyboardType(.decimalPad)
+                    .foregroundColor(Color.theme.accent)
+                
+                Text(((Int(viewModel.value) ?? 0) >= 100) ? "Adding \(viewModel.value) Tokens" : "Minimum Amount 100")
+                    .offset(y: -210)
+                    .foregroundColor(((Int(viewModel.value) ?? 0) >= 100) ? Color.theme.accent : Color.theme.accent.opacity(0.5))
+            }
+            .offset(y: 110)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                    .tint(Color.theme.accent)
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    Text("Select Amount")
+                        .bold()
+                        .foregroundColor(Color.theme.accent)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Text("Add")
+                    }
+                    .tint(Color.theme.accent)
+                    
+                }
             }
         }
     }

@@ -36,43 +36,58 @@ struct AccountView: View {
     }
     
     var body: some View {
-        VStack {
-            KFImage(URL(string: viewModel.user.profileImageUrl))
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-                .clipShape(Circle())
-                .padding(.top, 110)
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
             
-            Text(viewModel.user.username)
-                .font(.title)
-                .bold()
-                .padding(.top, 24)
-            
-            Text(viewModel.user.email)
-                .padding(.top, -8)
-            
-            HStack {
-                Text("\(viewModel.user.tokens)")
-                    .font(.system(size: 60))
-                    .bold()
+            VStack {
+                HStack {
+                    VStack {
+                        KFImage(URL(string: viewModel.user.profileImageUrl))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                            .clipShape(Circle())
+                            .padding(.top, 110)
+                        
+                        Text(viewModel.user.username)
+                            .font(.title)
+                            .bold()
+                            .padding(.top, 24)
+                            .foregroundColor(Color.theme.accent)
+                        
+                        Text(viewModel.user.email)
+                            .padding(.top, -8)
+                            .foregroundColor(Color.theme.accent)
+                    }
+                    .padding(.trailing, 20)
+                    
+                    HStack {
+                        Text("\(viewModel.user.tokens)")
+                            .font(.system(size: 60))
+                            .bold()
+                            .foregroundColor(Color.theme.accent)
+                        
+                        Image("token")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 25, height: 25)
+                    }
+                    .padding(.top, 68)
+                }
                 
-                Image(systemName: "bitcoinsign.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
+                Spacer()
+                
+                AppPrimaryButton("Add Tokens +") {
+                    showAddTokens.toggle()
+                }
+                
+                Spacer()
             }
-            .padding(.top, 68)
-            
-            AppPrimaryButton("Add Tokens +") {
-                showAddTokens.toggle()
-            }
-            
-            Spacer()
-        }
-        .sheet(isPresented: $showAddTokens) {
-            NavigationStack {
-                AddTokensView(tokens: $viewModel.user.tokens)
+            .sheet(isPresented: $showAddTokens) {
+                NavigationStack {
+                    AddTokensView(tokens: $viewModel.user.tokens)
+                }
             }
         }
     }

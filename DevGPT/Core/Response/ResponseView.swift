@@ -44,24 +44,29 @@ struct ResponseView: View {
     var body: some View {
         if let outputResponse = outputResponse {
             ZStack {
+                Color.theme.background
+                    .ignoresSafeArea()
+                
                 VStack {
-                    Spacer()
                     ScrollView {
-                        InputResultView(input: outputResponse.prompt)
+                        InputResultView(input: outputResponse.prompt, imageURL: user.profileImageUrl)
+                            .padding(.top)
                         
                         ChatResponseView(output: outputResponse.response)
-
+                            .padding(.top, 8)
+                        
                         responseBar
                             .padding(.top)
+                            .background(Color.theme.statusBar.padding(-20))
                     }
                 }
                 
                 SearchBarView(searchText: $text, user: user)
                     .offset(y: 380)
             }
-            .onAppear {
-                self.viewModel.saveResponse()
-            }
+//            .onAppear {
+//                self.viewModel.saveResponse()
+//            }
             .sheet(isPresented: $showSaveResponse, content: {
                 if let outputResponse = outputResponse {
                     AddToCollectionView(response: outputResponse, userId: user.id ?? "")
@@ -70,9 +75,10 @@ struct ResponseView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationLink(destination: TabBar(user: user).navigationBarBackButtonHidden(true)) {
-                        Text("Back")
+                        Image(systemName: "arrow.left")
                             .padding(.bottom)
                     }
+                    .tint(Color.theme.accent)
                 }
             }
         }
@@ -86,7 +92,7 @@ extension ResponseView {
                 
             } label: {
                 Image(systemName: "square.and.arrow.up.fill")
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.accent)
             }
             .padding(.leading, 48)
             
@@ -94,7 +100,7 @@ extension ResponseView {
                 
             } label: {
                 Image(systemName: "doc.on.doc.fill")
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.accent)
             }
             .padding(.leading, 16)
             
@@ -102,7 +108,7 @@ extension ResponseView {
                 showSaveResponse = true
             } label: {
                 Image(systemName: "plus.square")
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.accent)
             }
             .padding(.leading, 16)
             
@@ -112,7 +118,7 @@ extension ResponseView {
                 
             } label: {
                 Image(systemName: "hand.thumbsup.fill")
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.accent)
             }
             .padding(.trailing, 16)
             
@@ -120,25 +126,25 @@ extension ResponseView {
                 
             } label: {
                 Image(systemName: "hand.thumbsdown.fill")
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.theme.accent)
             }
             .padding(.trailing, 48)
         }
     }
 }
 
-//struct ResponseView_Previews: PreviewProvider {
-//    struct helperResponse: View {
-//        let response = Response(prompt: "Say this is a test", response: "Lorem ipsum dolor sit amet")
-//
-//        var body: some View {
-//            ResponseView(userId: "Test", outputResponse: response)
-//        }
-//    }
-//
-//    static var previews: some View {
-//        NavigationStack {
-//            helperResponse()
-//        }
-//    }
-//}
+struct ResponseView_Previews: PreviewProvider {
+    struct helperResponse: View {
+        let response = Response(prompt: "Say this is a test", response: "Lorem ipsum dolor sit amet dfdsdfsffsfsdffdsfdfddfasdfdfdswdffrsdfsddsffffdsdfsdfdsfsdfdsffdfsfdssdfsfdsfsdfdsfsdsdfdsfsdadssddsadasxcsdasdsdsdsdasdsdsadsadsadsdsadsdadsadsadssdaddsa")
+
+        var body: some View {
+            ResponseView(user: User(id: "", tokens: 15, email: "test@test.com", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a", username: "MarcoDotIO", collections: nil, responses: nil), outputResponse: response)
+        }
+    }
+
+    static var previews: some View {
+        NavigationStack {
+            helperResponse()
+        }
+    }
+}

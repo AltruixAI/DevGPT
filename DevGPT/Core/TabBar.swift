@@ -32,36 +32,41 @@ struct TabBar: View {
     var body: some View {
         NavigationStack {
             TabView {
-                HomeView(user: user)
-                    .tabItem {
-                        Image(systemName: "house")
-                        Text("Home")
-                    }
-                
-                AllCollectionsView(user: user)
-                    .tabItem {
-                        Image(systemName: "folder.fill")
-                        Text("Collections")
-                    }
-                
-                HistoryView()
-                    .tabItem {
-                        Image(systemName: "stopwatch.fill")
-                        Text("History")
-                    }
-                
-                AccountView(user: user)
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text("Profile")
-                    }
-                
-                SettingsView()
-                    .tabItem {
-                        Image(systemName: "gear")
-                        Text("Settings")
-                    }
+                Group {
+                    HomeView(user: user)
+                        .tabItem {
+                            Image(systemName: "house")
+                            Text("Home")
+                        }
+                    
+//                    AllCollectionsView(user: user)
+//                        .tabItem {
+//                            Image(systemName: "folder.fill")
+//                            Text("Collections")
+//                        }
+                    
+                    HistoryView(user: user)
+                        .tabItem {
+                            Image(systemName: "stopwatch.fill")
+                            Text("History")
+                        }
+                    
+                    AccountView(user: user)
+                        .tabItem {
+                            Image(systemName: "person.fill")
+                            Text("Profile")
+                        }
+                    
+                    SettingsView()
+                        .tabItem {
+                            Image(systemName: "gear")
+                            Text("Settings")
+                        }
+                }
+                .toolbarBackground(.visible, for: .tabBar)
+                .toolbarBackground(Color.theme.statusBar, for: .tabBar)
             }
+            .accentColor(Color.theme.accent)
         }
         .onAppear {
             authenticationViewModel.fetchUser()

@@ -32,33 +32,40 @@ struct ChatResponseView: View {
         VStack {
             HStack {
                 VStack {
-                    Image(systemName: "person.circle.fill")
+                    Image("chatImage")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40, height: 40)
-                        .padding(.horizontal)
+                        .padding()
+                    
+                    Spacer()
                 }
                 
-                Text(output)
-                    .foregroundColor(.white)
-                    .padding()
+                VStack {
+                    Text(output)
+                        .foregroundColor(.white)
+                        .padding()
+                        .padding(.trailing)
+                    
+                    Spacer()
+                }
                 
                 Spacer()
             }
         }
         .background(
             Rectangle()
-                .frame(width: UIScreen.main.bounds.width - 80)
-                .cornerRadius(10)
-                .padding(.leading, 56)
-                .foregroundColor(Color(uiColor: .systemGray2))
+                .frame(width: UIScreen.main.bounds.width)
+                .foregroundColor(Color.theme.statusBar)
         )
+        .frame(maxHeight: .infinity)
+        .frame(width: UIScreen.main.bounds.width)
     }
 }
 
 struct ChatResponseView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatResponseView(output: "Lorem ipsum")
-            .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 500))
+        ChatResponseView(output: "Lorem ipsumasddfasasdsadsadasddsadadadadasdasdsadsasdassdsdsadasadsdadasdssadsdadsadsadsadadsadadadadaddadsadasdasdsadsadsadasdasdadadsdadsdsadsadsadssadsad")
+            .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 300))
     }
 }

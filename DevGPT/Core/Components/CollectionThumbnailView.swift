@@ -63,7 +63,7 @@ struct CollectionThumbnailView: View {
         GeometryReader { geo in
             ZStack(alignment: .leading) {
                 Rectangle()
-                    .foregroundColor(Color(uiColor: .black))
+                    .foregroundColor(Color.theme.tab)
                     .frame(width: 220, height: 150)
                     .cornerRadius(10)
                     .padding(.top, 110)

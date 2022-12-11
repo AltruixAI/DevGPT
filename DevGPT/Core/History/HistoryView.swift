@@ -26,30 +26,45 @@
 import SwiftUI
 
 struct HistoryView: View {
+    @State private var selectedResponse: Response? = nil
+    @State private var isNavigatingToResponse: Bool = false
+    
+    let user: User
+    
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                Text("History")
-                    .font(.title)
-                    .bold()
-                    .padding(.leading, 18)
-                    .padding(.top, 68)
-                
-                ForEach(0..<8) { _ in
-                    Button {
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
+            
+            if let responses = user.responses {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        Text("History")
+                            .font(.title)
+                            .bold()
+                            .foregroundColor(Color.theme.accent)
+                            .padding(.leading, 18)
+                            .padding(.top, 68)
                         
-                    } label: {
-                        HistoryTabs()
+                        VStack(alignment: .center) {
+                            ForEach(responses) { response in
+                                Button {
+                                    self.selectedResponse = response
+                                    self.isNavigatingToResponse = true
+                                } label: {
+                                    HistoryTabs(response: response)
+                                }
+                            }
+                        }
                     }
-
                 }
             }
         }
     }
 }
 
-struct HistoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryView()
-    }
-}
+//struct HistoryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HistoryView()
+//    }
+//}

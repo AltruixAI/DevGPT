@@ -30,62 +30,71 @@ struct LoadingPageView: View {
     
     @State private var downloadAmount = 0.0
     
-    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     init(input: String, user: User) {
         self.viewModel = LoadingViewModel(input: input, user: user)
     }
     
     var body: some View {
-        VStack {
-            loadingBar
-                .padding(.top, 50)
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
             
-            Text("Tip")
-                .font(.headline)
-                .bold()
-                .padding(.top, 180)
-                .padding(.trailing, 280)
-            
-            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis at velit in efficitur. Praesent nec orci convallis, vehicula ipsum quis, tempus velit. Quisque eget ex nec sapien vestibulum auctor.")
-                .frame(maxWidth: UIScreen.main.bounds.width - 160)
-                .multilineTextAlignment(.leading)
-                .padding(.top, 4)
-                .padding(.trailing, 40)
-            
-            Spacer()
-            
-            NavigationLink(
-                destination: ResponseView(user: viewModel.user, outputResponse: viewModel.response).navigationBarBackButtonHidden(true),
-                isActive: $viewModel.isNotLoading,
-                label: { EmptyView() }
-            )
-        }
-        .task {
-            do {
-                try await self.viewModel.getResponse()
-            } catch {
-                print("Error: \(error)")
+            VStack {
+                loadingBar
+                    .padding(.top, 50)
+                
+                Text("Tip")
+                    .font(.headline)
+                    .bold()
+                    .padding(.top, 180)
+                    .padding(.trailing, 280)
+                    .foregroundColor(Color.theme.accent)
+                
+                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis at velit in efficitur. Praesent nec orci convallis, vehicula ipsum quis, tempus velit. Quisque eget ex nec sapien vestibulum auctor.")
+                    .frame(maxWidth: UIScreen.main.bounds.width - 160)
+                    .multilineTextAlignment(.leading)
+                    .padding(.top, 4)
+                    .padding(.trailing, 40)
+                    .foregroundColor(Color.theme.accent)
+                
+                Spacer()
+                
+                NavigationLink(
+                    destination: ResponseView(user: viewModel.user, outputResponse: viewModel.response).navigationBarBackButtonHidden(true),
+                    isActive: $viewModel.isNotLoading,
+                    label: { EmptyView() }
+                )
             }
+            .task {
+                do {
+                    try await self.viewModel.getResponse()
+                } catch {
+                    print("Error: \(error)")
+                }
+        }
         }
     }
 }
 
 extension LoadingPageView {
     private var loadingBar: some View {
-        ProgressView(value: downloadAmount, total: 150)
+        ProgressView(value: downloadAmount, total: 100)
             .padding()
             .padding(.horizontal, 38)
             .onReceive(timer) { _ in
-                if downloadAmount < 149 {
-                    downloadAmount += 0.1
+                if downloadAmount < 100 {
+                    downloadAmount += 4
                 }
             }
+            .foregroundColor(Color.theme.statusBar)
+            .tint(Color.theme.accent)
     }
 }
 
-//struct LoadingPageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LoadingPageView()
-//    }
-//}
+struct LoadingPageView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoadingPageView(input: "bleh", user: User(id: "", tokens: 15, email: "test@test.com", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a", username: "MarcoDotIO", collections: nil, responses: nil))
+    }
+}

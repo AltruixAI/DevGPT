@@ -35,17 +35,22 @@ struct HomeView: View {
     @State private var text: String = ""
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            ZStack {
-                // Recent Responses
-                RecentResponsesView(responses: self.viewModel.user.responses)
-                
-                FavoriteCollectionsView(collections: viewModel.user.collections)
-                    .frame(maxWidth: UIScreen.main.bounds.width - 10)
-            }
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
             
-            SearchBarView(searchText: $text, user: viewModel.user)
-                .offset(y: -90)
+            ScrollView(showsIndicators: false) {
+                ZStack {
+                    // Recent Responses
+                    RecentResponsesView(responses: self.viewModel.user.responses)
+                    
+                    FavoriteCollectionsView(collections: viewModel.user.collections)
+                        .frame(maxWidth: UIScreen.main.bounds.width - 10)
+                }
+                
+                SearchBarView(searchText: $text, user: viewModel.user)
+                    .offset(y: -90)
+            }
         }
     }
 }

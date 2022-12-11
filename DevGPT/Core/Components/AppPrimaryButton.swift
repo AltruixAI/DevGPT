@@ -40,14 +40,14 @@ struct AppPrimaryButton: View {
         Button(action: self.action) {
             Text(content)
                 .font(.headline)
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.background)
                 .frame(width: 270, height: 50)
                 .background(
                     self.isDisabled ?
-                    Color(.systemGray5) :
-                        Color(uiColor: .systemGray3)
+                    Color.theme.accent.opacity(0.5) :
+                    Color.theme.accent
                 )
-                .clipShape(Capsule())
+                .cornerRadius(8)
                 .padding(.top, 8)
         }
     }
