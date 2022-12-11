@@ -41,7 +41,7 @@ struct FavoriteCollectionsView: View {
                 .font(.title)
                 .bold()
                 .offset(y: -16)
-                .offset(x: 10)
+//                .offset(x: 10)
             
             if let collections = collections, !collections.isEmpty {
                 LazyVGrid(

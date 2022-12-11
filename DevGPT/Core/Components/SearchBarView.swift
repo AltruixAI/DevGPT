@@ -30,7 +30,7 @@ struct SearchBarView: View {
     
     @Binding var searchText: String
     
-    let userId: String
+    let user: User
     
     var body: some View {
         HStack {
@@ -72,7 +72,7 @@ struct SearchBarView: View {
             }
             
             NavigationLink(
-                destination: LoadingPageView(input: searchText, userId: userId)
+                destination: LoadingPageView(input: searchText, user: user)
                     .navigationBarBackButtonHidden(true),
                 isActive: $isLoading,
                 label: { EmptyView() }

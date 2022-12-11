@@ -31,11 +31,11 @@ import OpenAIKit
     @Published var isNotLoading: Bool = false
     
     let input: String
-    let userId: String
+    let user: User
     
-    init(input: String, userId: String) {
+    init(input: String, user: User) {
         self.input = input
-        self.userId = userId
+        self.user = user
     }
     
     func getResponse() async throws {
@@ -51,7 +51,7 @@ import OpenAIKit
             model: "text-davinci-003",
             prompt: [input],
             temperature: 0.01,
-            user: userId
+            user: user.id
         )
         let completionResponse = try await openAI.generateCompletion(parameters: completionParameters)
         let outputText = completionResponse.choices[0].text

@@ -69,6 +69,8 @@
 		763750EF294513DB00DA3F39 /* NameCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750EE294513DB00DA3F39 /* NameCollectionViewModel.swift */; };
 		763750F12945244200DA3F39 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F02945244200DA3F39 /* View.swift */; };
 		763750F32945344400DA3F39 /* AllCollectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */; };
+		763750F52945369300DA3F39 /* ResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F42945369300DA3F39 /* ResponseViewModel.swift */; };
+		763750F729455A2300DA3F39 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F629455A2300DA3F39 /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +128,8 @@
 		763750EE294513DB00DA3F39 /* NameCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCollectionViewModel.swift; sourceTree = "<group>"; };
 		763750F02945244200DA3F39 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCollectionsViewModel.swift; sourceTree = "<group>"; };
+		763750F42945369300DA3F39 /* ResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewModel.swift; sourceTree = "<group>"; };
+		763750F629455A2300DA3F39 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				763750DF2944D31B00DA3F39 /* GPT3Services.swift */,
+				763750F629455A2300DA3F39 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 		763750832944010400DA3F39 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				763750F42945369300DA3F39 /* ResponseViewModel.swift */,
 				763750EA294509E000DA3F39 /* AddToCollectionViewModel.swift */,
 				763750EE294513DB00DA3F39 /* NameCollectionViewModel.swift */,
 				763750842944011A00DA3F39 /* ResponseView.swift */,
@@ -465,6 +471,7 @@
 				763750A5294431EF00DA3F39 /* AddTokensViewModel.swift in Sources */,
 				763750DE2944D10500DA3F39 /* LoadingViewModel.swift in Sources */,
 				7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */,
+				763750F52945369300DA3F39 /* ResponseViewModel.swift in Sources */,
 				763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */,
 				7637504D2943B69C00DA3F39 /* DevGPTApp.swift in Sources */,
 				763750992944198F00DA3F39 /* HistoryTabs.swift in Sources */,
@@ -478,6 +485,7 @@
 				763750782943EACE00DA3F39 /* FavoriteCollectionsView.swift in Sources */,
 				763750852944011A00DA3F39 /* ResponseView.swift in Sources */,
 				7637507B2943EE7200DA3F39 /* CollectionThumbnailView.swift in Sources */,
+				763750F729455A2300DA3F39 /* UserService.swift in Sources */,
 				763750ED2945101C00DA3F39 /* NameCollectionOverlay.swift in Sources */,
 				7637507F2943F09800DA3F39 /* UIApplication.swift in Sources */,
 				763750822943F5C500DA3F39 /* LoadingPageView.swift in Sources */,

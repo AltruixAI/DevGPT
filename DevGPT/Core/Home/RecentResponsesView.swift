@@ -26,32 +26,36 @@
 import SwiftUI
 
 struct RecentResponsesView: View {
+    let responses: [Response]?
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Recent")
-                .font(.title)
-                .bold()
-                .padding(.leading)
-                .padding(.top, 48)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 10) {
-                    ForEach(0..<6) { _ in
-                        ResponseThumbnailView()
-                            .padding(.leading, 28)
-                            .frame(width: 150, height: 100)
+        if let responses = responses {
+            VStack(alignment: .leading) {
+                Text("Recent")
+                    .font(.title)
+                    .bold()
+                    .padding(.leading)
+                    .padding(.top, 48)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 10) {
+                        ForEach(responses) { response in
+                            ResponseThumbnailView(response: response)
+                                .padding(.leading, 28)
+                                .frame(width: 150, height: 100)
+                        }
                     }
+                    .padding(.bottom, 590)
                 }
-                .padding(.bottom, 590)
             }
         }
     }
 }
 
-struct RecentResponsesView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            RecentResponsesView()
-        }
-    }
-}
+//struct RecentResponsesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            RecentResponsesView()
+//        }
+//    }
+//}

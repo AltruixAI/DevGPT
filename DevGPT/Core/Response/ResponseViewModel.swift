@@ -1,5 +1,5 @@
 //
-//  Response.swift
+//  ResponseViewModel.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -24,51 +24,39 @@
 //  
 
 import Foundation
-import FirebaseFirestoreSwift
+import Firebase
+import SwiftUI
 
-struct Response: Identifiable, Codable {
-    @DocumentID var id: String?
-    let prompt: String
-    let response: String
-    var thumbnail: String?
-    var feedback: Feedback?
+class ResponseViewModel: ObservableObject {
+    let user: User
+    var response: Response?
     
-    init(
-        id: String? = nil,
-        prompt: String,
-        response: String,
-        thumbnail: String? = nil,
-        feedback: Feedback? = nil
-    ) {
-        self.id = id
-        self.prompt = prompt
+    init(user: User, response: Response?) {
+        self.user = user
         self.response = response
-        self.thumbnail = thumbnail
-        self.feedback = feedback
     }
     
-    enum CodingKeys: String, CodingKey {
-        case id
-        case prompt
-        case response
-        case thumbnail
-        case feedback
-    }
-    
-    func toAnyObject() -> Any {
-        var result = [
-            "prompt": prompt,
-            "response": response
-        ] as [String: Any]
+    func saveResponse() {
+        guard let uid = self.user.id else { return }
         
-        if let thumbnail = thumbnail {
-            result["thumbnail"] = thumbnail
+        if var response = response {
+            let imageView: UIImage = UIImage(named: "templateResponseThumbnail")!
+            
+            ImageUploader.uploadImage(image: imageView) { imageURL in
+                response.thumbnail = imageURL
+                
+                let data = [
+                    "prompt": response.prompt,
+                    "response": response.response,
+                    "thumbnail": imageURL
+                ] as [String: Any]
+                
+                COLLECTION_USERS
+                    .document(uid)
+                    .collection("responses")
+                    .document(UUID().uuidString)
+                    .setData(data)
+            }
         }
-        
-        if let feedback = feedback {
-            result["feedback"] = feedback.toAnyObject()
-        }
-        
-        return result
     }
 }

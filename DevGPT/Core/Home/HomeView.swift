@@ -38,16 +38,14 @@ struct HomeView: View {
         ScrollView(showsIndicators: false) {
             ZStack {
                 // Recent Responses
-                RecentResponsesView()
+                RecentResponsesView(responses: self.viewModel.user.responses)
                 
                 FavoriteCollectionsView(collections: viewModel.user.collections)
                     .frame(maxWidth: UIScreen.main.bounds.width - 10)
             }
             
-            if let userId = viewModel.user.id {
-                SearchBarView(searchText: $text, userId: userId)
-                    .offset(y: -90)
-            }
+            SearchBarView(searchText: $text, user: viewModel.user)
+                .offset(y: -90)
         }
     }
 }

@@ -26,16 +26,26 @@
 import SwiftUI
 
 struct ResponseView: View {
+    @ObservedObject var viewModel: ResponseViewModel
+    
     @State private var showSaveResponse: Bool = false
     @State private var text: String = ""
     
-    let userId: String
+    let user: User
     let outputResponse: Response?
+    
+    init(user: User, outputResponse: Response?) {
+        self.user = user
+        self.outputResponse = outputResponse
+        
+        self.viewModel = ResponseViewModel(user: user, response: outputResponse)
+    }
     
     var body: some View {
         if let outputResponse = outputResponse {
             ZStack {
                 VStack {
+                    Spacer()
                     ScrollView {
                         InputResultView(input: outputResponse.prompt)
                         
@@ -44,22 +54,22 @@ struct ResponseView: View {
                         responseBar
                             .padding(.top)
                     }
-                    .padding(.bottom, 90)
                 }
                 
-                SearchBarView(searchText: $text, userId: userId)
-                    .offset(y: 390)
+                SearchBarView(searchText: $text, user: user)
+                    .offset(y: 380)
+            }
+            .onAppear {
+                self.viewModel.saveResponse()
             }
             .sheet(isPresented: $showSaveResponse, content: {
                 if let outputResponse = outputResponse {
-                    AddToCollectionView(response: outputResponse, userId: userId)
+                    AddToCollectionView(response: outputResponse, userId: user.id ?? "")
                 }
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        
-                    } label: {
+                    NavigationLink(destination: TabBar(user: user).navigationBarBackButtonHidden(true)) {
                         Text("Back")
                             .padding(.bottom)
                     }
@@ -117,18 +127,18 @@ extension ResponseView {
     }
 }
 
-struct ResponseView_Previews: PreviewProvider {
-    struct helperResponse: View {
-        let response = Response(prompt: "Say this is a test", response: "Lorem ipsum dolor sit amet")
-        
-        var body: some View {
-            ResponseView(userId: "Test", outputResponse: response)
-        }
-    }
-    
-    static var previews: some View {
-        NavigationStack {
-            helperResponse()
-        }
-    }
-}
+//struct ResponseView_Previews: PreviewProvider {
+//    struct helperResponse: View {
+//        let response = Response(prompt: "Say this is a test", response: "Lorem ipsum dolor sit amet")
+//
+//        var body: some View {
+//            ResponseView(userId: "Test", outputResponse: response)
+//        }
+//    }
+//
+//    static var previews: some View {
+//        NavigationStack {
+//            helperResponse()
+//        }
+//    }
+//}

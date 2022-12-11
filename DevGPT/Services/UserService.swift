@@ -1,5 +1,5 @@
 //
-//  Response.swift
+//  UserService.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,52 +23,22 @@
 //  THE SOFTWARE.
 //  
 
-import Foundation
+import Firebase
 import FirebaseFirestoreSwift
 
-struct Response: Identifiable, Codable {
-    @DocumentID var id: String?
-    let prompt: String
-    let response: String
-    var thumbnail: String?
-    var feedback: Feedback?
+struct UserService {
+    static let shared = UserService()
     
-    init(
-        id: String? = nil,
-        prompt: String,
-        response: String,
-        thumbnail: String? = nil,
-        feedback: Feedback? = nil
-    ) {
-        self.id = id
-        self.prompt = prompt
-        self.response = response
-        self.thumbnail = thumbnail
-        self.feedback = feedback
-    }
+    private init() { }
     
-    enum CodingKeys: String, CodingKey {
-        case id
-        case prompt
-        case response
-        case thumbnail
-        case feedback
-    }
-    
-    func toAnyObject() -> Any {
-        var result = [
-            "prompt": prompt,
-            "response": response
-        ] as [String: Any]
-        
-        if let thumbnail = thumbnail {
-            result["thumbnail"] = thumbnail
-        }
-        
-        if let feedback = feedback {
-            result["feedback"] = feedback.toAnyObject()
-        }
-        
-        return result
+    func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
+        COLLECTION_USERS
+            .document(uid)
+            .getDocument { snapshot, _ in
+                guard let snapshot = snapshot else { return }
+                
+                guard let user = try? snapshot.data(as: User.self) else { return }
+                completion(user)
+            }
     }
 }

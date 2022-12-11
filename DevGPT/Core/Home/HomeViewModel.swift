@@ -31,4 +31,10 @@ class HomeViewModel: ObservableObject {
     init(user: User) {
         self.user = user
     }
+    
+    func fetchUser() {
+        UserService.shared.fetchUser(withUid: user.id!) { newUser in
+            self.user = newUser
+        }
+    }
 }

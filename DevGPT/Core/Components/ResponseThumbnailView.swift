@@ -24,31 +24,72 @@
 //  
 
 import SwiftUI
+import Kingfisher
 
 struct ResponseThumbnailView: View {
-    var body: some View {
-        ZStack {
-            baseThumbnail
-                .overlay(overlayView.mask(baseThumbnail))
-        }
-    }
+    let response: Response
     
-    private var overlayView: some View {
-        GeometryReader { geo in
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .foregroundColor(Color(uiColor: .black))
-                    .frame(width: 170, height: 100)
+    var body: some View {
+        if let thumbnail = response.thumbnail {
+            ZStack {
+                KFImage(URL(string: thumbnail))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 150, height: 100)
                     .cornerRadius(10)
-                    .padding(.top, 70)
-                    .offset(x: -10)
-                    .opacity(0.75)
-                
-                Text("Project 1")
-                    .font(.system(size: 16))
-                    .foregroundColor(.white)
-                    .padding(.leading)
-                    .bold()
+                    .overlay(
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                Rectangle()
+                                    .foregroundColor(Color(uiColor: .black))
+                                    .frame(width: 170, height: 100)
+                                    .cornerRadius(10)
+                                    .padding(.top, 70)
+                                    .offset(x: -10)
+                                    .opacity(0.75)
+                                
+                                Text("Project 1")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.white)
+                                    .padding(.leading)
+                                    .bold()
+                            }
+                        }
+                            .mask(
+                                KFImage(URL(string: thumbnail))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 150, height: 100)
+                                    .cornerRadius(10)
+                            )
+                    )
+            }
+        } else {
+            ZStack {
+                Rectangle()
+                    .foregroundColor(Color(uiColor: .systemGray4))
+                    .frame(width: 150, height: 100)
+                    .cornerRadius(10)
+                    .overlay(
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                Rectangle()
+                                    .foregroundColor(Color(uiColor: .black))
+                                    .frame(width: 170, height: 100)
+                                    .cornerRadius(10)
+                                    .padding(.top, 70)
+                                    .offset(x: -10)
+                                    .opacity(0.75)
+                                
+                                Text("Project 1")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.white)
+                                    .padding(.leading)
+                                    .bold()
+                            }
+                        }
+                            .mask(baseThumbnail)
+                    )
             }
         }
     }
@@ -62,8 +103,8 @@ struct ResponseThumbnailView: View {
     }
 }
 
-struct ResponseThumbnailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ResponseThumbnailView()
-    }
-}
+//struct ResponseThumbnailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ResponseThumbnailView()
+//    }
+//}

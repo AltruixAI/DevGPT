@@ -32,8 +32,8 @@ struct LoadingPageView: View {
     
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     
-    init(input: String, userId: String) {
-        self.viewModel = LoadingViewModel(input: input, userId: userId)
+    init(input: String, user: User) {
+        self.viewModel = LoadingViewModel(input: input, user: user)
     }
     
     var body: some View {
@@ -56,7 +56,7 @@ struct LoadingPageView: View {
             Spacer()
             
             NavigationLink(
-                destination: ResponseView(userId: viewModel.userId, outputResponse: viewModel.response).navigationBarBackButtonHidden(true),
+                destination: ResponseView(user: viewModel.user, outputResponse: viewModel.response).navigationBarBackButtonHidden(true),
                 isActive: $viewModel.isNotLoading,
                 label: { EmptyView() }
             )

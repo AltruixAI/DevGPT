@@ -33,7 +33,7 @@ class NameCollectionViewModel: ObservableObject {
     }
     
     func saveNewCollection(response: Response, name: String, userId: String) {
-        let imageView: UIImage = ResponseView(userId: userId, outputResponse: response).asUiImage()
+        let imageView: UIImage = ChatResponseView(output: response.response).asUiImage()
         
         ImageUploader.uploadImage(image: imageView, type: .thumbnail) { imageURL in
             let imageResponse = Response(

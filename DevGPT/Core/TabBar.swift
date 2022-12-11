@@ -63,6 +63,9 @@ struct TabBar: View {
                     }
             }
         }
+        .onAppear {
+            authenticationViewModel.fetchUser()
+        }
     }
 }
 
