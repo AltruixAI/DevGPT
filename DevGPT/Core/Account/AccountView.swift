@@ -43,12 +43,21 @@ struct AccountView: View {
             VStack {
                 HStack {
                     VStack {
-                        KFImage(URL(string: viewModel.user.profileImageUrl))
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
-                            .clipShape(Circle())
-                            .padding(.top, 110)
+                        if let imageURL = viewModel.user.profileImageUrl {
+                            KFImage(URL(string: imageURL))
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 200)
+                                .clipShape(Circle())
+                                .padding(.top, 110)
+                        } else {
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 200)
+                                .clipShape(Circle())
+                                .padding(.top, 110)
+                        }
                         
                         Text(viewModel.user.username)
                             .font(.title)

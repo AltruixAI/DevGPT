@@ -38,4 +38,5 @@ struct ColorTheme {
     let textField = Color("TextField")
     let highlight = Color("Highlight")
     let inputBackground = Color("InputBackground")
+    let error = Color("Error")
 }

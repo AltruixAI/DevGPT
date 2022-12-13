@@ -49,7 +49,7 @@ struct ResponseView: View {
                 
                 VStack {
                     ScrollView {
-                        InputResultView(input: outputResponse.prompt, imageURL: user.profileImageUrl)
+                        InputResultView(input: outputResponse.prompt, imageURL: user.profileImageUrl ?? "")
                             .padding(.top)
                         
                         ChatResponseView(output: outputResponse.response)

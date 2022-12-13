@@ -26,33 +26,43 @@
 import SwiftUI
 
 struct ThirdPageView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
     @Binding var username: String
+    @Binding var email: String
     
     @State private var selectedImage: UIImage?
     @State private var profileImage: Image?
+    @State private var isCancelled: Bool = false
     
     @State var imagePickerPresented = false
     
     var body: some View {
         ZStack {
-            Color.theme.background.ignoresSafeArea()
+            Color.theme.statusBar.ignoresSafeArea()
+            
+            Color.theme.background.ignoresSafeArea(edges: [.bottom])
+            
+            NavigationLink(
+                destination: FirstPageView().navigationBarBackButtonHidden(true),
+                isActive: $isCancelled,
+                label: { EmptyView() }
+            )
             
             VStack {
                 // Logo
                 Image("logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: UIScreen.main.bounds.width - 250)
-                    .padding(.vertical, 20)
-                    .offset(y: 15)
+                    .frame(width: UIScreen.main.bounds.width - 250, height: 50)
+                    .padding(.top, 30)
                 
                 HStack {
                     Button {
-                        
+                        isCancelled.toggle()
                     } label: {
                         Image(systemName: "arrow.left")
                             .font(.system(size: 24))
-                            .padding(.top, 24)
                             .padding(.leading, 24)
                             .tint(Color.theme.accent)
                     }
@@ -63,7 +73,7 @@ struct ThirdPageView: View {
                 VStack {
                     HStack {
                         Text("Add profile picture")
-                            .font(.system(size: 38))
+                            .font(Font.custom("Poppins", size: 38))
                             .foregroundColor(Color.theme.accent)
                             .padding(.top, 34)
                             .padding(.leading, 24)
@@ -73,10 +83,10 @@ struct ThirdPageView: View {
                     
                     HStack {
                         Text("Choose a profile picture that represents you!")
-                            .font(.system(size: 16))
+                            .font(Font.custom("Poppins", size: 16))
                             .foregroundColor(Color.theme.accent)
-                            .padding(.leading, 28)
-                            .padding(.top, -12)
+                            .padding(.leading, 24)
+                            .padding(.top, -6)
                         
                         Spacer()
                     }
@@ -121,10 +131,10 @@ struct ThirdPageView: View {
                     
                     HStack {
                         Text("or choose a DevGPT avatar")
-                            .font(.system(size: 16))
+                            .font(Font.custom("Poppins", size: 16))
                             .foregroundColor(Color.theme.accent)
                             .padding(.leading, 28)
-                            .padding(.top, 12)
+                            .padding(.top, 18)
                         
                         Spacer()
                     }
@@ -132,6 +142,7 @@ struct ThirdPageView: View {
                     HStack(spacing: 46) {
                         Button {
                             profileImage = Image("Group 77")
+                            selectedImage = UIImage(named: "Group 77")
                         } label: {
                             Image("Group 77")
                                 .resizable()
@@ -142,6 +153,7 @@ struct ThirdPageView: View {
                         
                         Button {
                             profileImage = Image("Group 81")
+                            selectedImage = UIImage(named: "Group 81")
                         } label: {
                             Image("Group 81")
                                 .resizable()
@@ -151,6 +163,7 @@ struct ThirdPageView: View {
                         
                         Button {
                             profileImage = Image("Group 79")
+                            selectedImage = UIImage(named: "Group 79")
                         } label: {
                             Image("Group 79")
                                 .resizable()
@@ -160,6 +173,7 @@ struct ThirdPageView: View {
                         
                         Button {
                             profileImage = Image("Group 84")
+                            selectedImage = UIImage(named: "Group 84")
                         } label: {
                             Image("Group 84")
                                 .resizable()
@@ -172,6 +186,7 @@ struct ThirdPageView: View {
                     HStack(spacing: 46) {
                         Button {
                             profileImage = Image("Group 80")
+                            selectedImage = UIImage(named: "Group 80")
                         } label: {
                             Image("Group 80")
                                 .resizable()
@@ -181,6 +196,7 @@ struct ThirdPageView: View {
                         
                         Button {
                             profileImage = Image("Group 82")
+                            selectedImage = UIImage(named: "Group 82")
                         } label: {
                             Image("Group 82")
                                 .resizable()
@@ -190,6 +206,7 @@ struct ThirdPageView: View {
                         
                         Button {
                             profileImage = Image("Group 86")
+                            selectedImage = UIImage(named: "Group 86")
                         } label: {
                             Image("Group 86")
                                 .resizable()
@@ -199,6 +216,7 @@ struct ThirdPageView: View {
                         
                         Button {
                             profileImage = Image("Group 87")
+                            selectedImage = UIImage(named: "Group 87")
                         } label: {
                             Image("Group 87")
                                 .resizable()
@@ -212,9 +230,14 @@ struct ThirdPageView: View {
                 Spacer()
                 
                 HStack {
-                    Button(action: {  }) {
+                    Button(action: {
+                        authenticationViewModel.registerPartTwoWithoutImage(
+                            username: username,
+                            email: email
+                        ) { _ in }
+                    }) {
                         Text("Skip")
-                            .font(.headline)
+                            .font(Font.custom("Poppins", size: 18))
                             .foregroundColor(Color.theme.accent)
                             .frame(width: 150, height: 50)
                             .background(
@@ -227,24 +250,28 @@ struct ThirdPageView: View {
                                 }
                             )
                             .cornerRadius(8)
-                            .padding(.leading, 24)
+                            .padding(.leading, 28)
                     }
                     
                     Spacer()
                     
                     Button(action: {
-                        withAnimation(.linear) {
-                        }
+                        authenticationViewModel.registerPartTwo(
+                            profileImage: selectedImage!,
+                            username: username,
+                            email: email
+                        ) { _ in }
                     }) {
                         Text("Next")
-                            .font(.headline)
+                            .font(Font.custom("Poppins", size: 18))
                             .foregroundColor(Color.theme.background)
                             .frame(width: 150, height: 50)
-                            .background(Color.theme.accent)
+                            .background(selectedImage != nil ? Color.theme.accent : Color.theme.accent.opacity(0.5))
                             .cornerRadius(8)
-                            .padding(.trailing, 24)
+                            .padding(.trailing, 28)
                     }
                 }
+                .padding(.bottom)
             }
         }
     }
@@ -260,9 +287,10 @@ extension ThirdPageView {
 struct ThirdPageView_Previews: PreviewProvider {
     struct previewHandler: View {
         @State private var username: String = "MarcoDotIO"
+        @State private var email: String = "Marcus.arnett10@gmail.com"
         
         var body: some View {
-            ThirdPageView(username: $username)
+            ThirdPageView(username: $username, email: $email)
         }
     }
     

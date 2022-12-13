@@ -75,6 +75,7 @@
 		763750F729455A2300DA3F39 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F629455A2300DA3F39 /* UserService.swift */; };
 		763750FA2945707300DA3F39 /* Hi-fiMockup.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 763750F92945707300DA3F39 /* Hi-fiMockup.pdf */; };
 		76F70D092947A4BC0016DD44 /* ThirdPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F70D082947A4BC0016DD44 /* ThirdPageView.swift */; };
+		76F70D0B2948DAFE0016DD44 /* Poppins600.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76F70D0A2948DAB70016DD44 /* Poppins600.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,8 @@
 		763750F629455A2300DA3F39 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		763750F92945707300DA3F39 /* Hi-fiMockup.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Hi-fiMockup.pdf"; sourceTree = "<group>"; };
 		76F70D082947A4BC0016DD44 /* ThirdPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageView.swift; sourceTree = "<group>"; };
+		76F70D0A2948DAB70016DD44 /* Poppins600.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Poppins600.ttf; sourceTree = "<group>"; };
+		76F70D0C2948DB240016DD44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +201,8 @@
 		7637504B2943B69C00DA3F39 /* DevGPT */ = {
 			isa = PBXGroup;
 			children = (
+				76F70D0C2948DB240016DD44 /* Info.plist */,
+				76F70D0A2948DAB70016DD44 /* Poppins600.ttf */,
 				763750E62944F74E00DA3F39 /* GoogleService-Info.plist */,
 				7637504C2943B69C00DA3F39 /* DevGPTApp.swift */,
 				763750F82945706600DA3F39 /* MockUps */,
@@ -477,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				763750542943B69E00DA3F39 /* Preview Assets.xcassets in Resources */,
+				76F70D0B2948DAFE0016DD44 /* Poppins600.ttf in Resources */,
 				763750512943B69E00DA3F39 /* Assets.xcassets in Resources */,
 				763750E72944F74E00DA3F39 /* GoogleService-Info.plist in Resources */,
 				763750FA2945707300DA3F39 /* Hi-fiMockup.pdf in Resources */,
@@ -676,6 +682,7 @@
 				DEVELOPMENT_TEAM = 8GNE6ML5WX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DevGPT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -705,6 +712,7 @@
 				DEVELOPMENT_TEAM = 8GNE6ML5WX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DevGPT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

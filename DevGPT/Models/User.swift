@@ -30,7 +30,7 @@ struct User: Identifiable, Codable, Equatable {
     @DocumentID var id: String?
     var tokens: Int
     var email: String
-    var profileImageUrl: String
+    var profileImageUrl: String?
     var username: String
     var collections: [Collection]?
     var responses: [Response]?

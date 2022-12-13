@@ -29,6 +29,7 @@ import Firebase
 class AuthenticationViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var isEmailVerified: Bool?
     
     static let shared = AuthenticationViewModel()
     
@@ -90,6 +91,97 @@ class AuthenticationViewModel: ObservableObject {
                     self.fetchUser()
                 }
             }
+        }
+    }
+    
+    func registerPartOne(
+        withEmail email: String,
+        password: String,
+        username: String,
+        completion: @escaping(String)-> Void)
+    {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                let logResult = "\(error.localizedDescription)"
+                completion(logResult)
+            }
+            
+            guard let user = result?.user else { return }
+            
+            self.userSession = user
+            
+            Auth.auth().currentUser?.sendEmailVerification() { error in
+                if let error = error {
+                    let logResult = "\(error.localizedDescription)"
+                    completion(logResult)
+                }
+            }
+        }
+    }
+    
+    func registerPartTwoWithoutImage(
+        username: String,
+        email: String,
+        completion: @escaping(String)-> Void) {
+            if let uid = self.userSession?.uid {
+                let data: [String: Any] = [
+                    "email": email,
+                    "username": username,
+                    "uid": uid,
+                    "tokens": 15
+                ]
+                
+                COLLECTION_USERS.document(uid).setData(data) { error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        completion(error.localizedDescription)
+                    }
+                    
+                    self.fetchUser()
+                }
+            }
+        }
+    
+    func registerPartTwo(
+        profileImage: UIImage,
+        username: String,
+        email: String,
+        completion: @escaping(String)-> Void
+    ) {
+        ImageUploader.uploadImage(image: profileImage, type: .profile) { profileImageURL in
+            if let uid = self.userSession?.uid {
+                let data: [String: Any] = [
+                    "email": email,
+                    "username": username,
+                    "profileImageUrl": profileImageURL,
+                    "uid": uid,
+                    "tokens": 15
+                ]
+                
+                COLLECTION_USERS.document(uid).setData(data) { error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        completion(error.localizedDescription)
+                    }
+                    
+                    self.fetchUser()
+                }
+            }
+        }
+    }
+    
+    func isVerified() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            user.reload() { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    self.isEmailVerified = user.isEmailVerified
+                }
+            }
+        } else {
+            self.isEmailVerified = false
         }
     }
     

@@ -33,17 +33,18 @@ struct OnboardingRegistrationView: View {
     
     var body: some View {
         ZStack {
-            Color.theme.background
-                .ignoresSafeArea()
+            Color.theme.statusBar.ignoresSafeArea()
+            
+            Color.theme.background.ignoresSafeArea(edges: [.bottom])
+                .offset(y: 10)
             
             VStack {
                 // Logo
                 Image("logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: UIScreen.main.bounds.width - 250)
-                    .padding(.vertical, 20)
-                    .offset(y: 15)
+                    .frame(width: UIScreen.main.bounds.width - 250, height: 50)
+                    .padding(.top, 60)
                 
                 // Tageline
                 tagline
@@ -74,6 +75,8 @@ extension OnboardingRegistrationView {
     private var tagline: some View {
         Text("Integrate DevGPT into your workflow and shoot your productivity through the roof!")
             .font(.system(size: 28))
+            .minimumScaleFactor(1.75)
+            .fixedSize(horizontal: false, vertical: true)
             .bold()
             .padding(.top, 140)
             .padding(.bottom, 80)
@@ -99,13 +102,13 @@ extension OnboardingRegistrationView {
             .frame(height: 1)
             .overlay(.gray)
             .frame(width: UIScreen.main.bounds.width - 70, height: 10)
-            .padding(.bottom, 5)
+            .padding(.bottom, 14)
     }
     
     private var registrationButton: some View {
         ZStack {
             NavigationLink(
-                destination: RegistrationView().navigationBarBackButtonHidden(true),
+                destination: FirstPageView().navigationBarBackButtonHidden(true),
                 isActive: $isRegisteringAccount,
                 label: { EmptyView() }
             )

@@ -43,15 +43,17 @@ struct CustomField: View {
                 if isSecure {
                     SecureField("", text: $text)
                         .foregroundColor(Color.theme.accent)
+                        .font(Font.custom("Poppins", size: 20))
                         .placeholder(when: text.isEmpty) {
                             Text(placeholder)
-                                .foreground(Color.theme.accent)
+                                .font(Font.custom("Poppins", size: 20))
+                                .foreground(Color.theme.accent.opacity(0.5))
                         }
                         .placeholder(when: !text.isEmpty) {
-                            withAnimation(.easeInOut) {
+                            withAnimation(.linear) {
                                 Text(placeholder)
-                                    .foreground(Color.theme.accent)
-                                    .font(.system(size: 10))
+                                    .foreground(Color.theme.accent.opacity(0.5))
+                                    .font(Font.custom("Poppins", size: 8))
                                     .offset(y: -10)
                                     .padding(.bottom)
                             }
@@ -59,15 +61,17 @@ struct CustomField: View {
                 } else {
                     TextField("", text: $text)
                         .foregroundColor(Color.theme.accent)
+                        .font(Font.custom("Poppins", size: 20))
                         .placeholder(when: text.isEmpty) {
                             Text(placeholder)
-                                .foreground(Color.theme.accent)
+                                .font(Font.custom("Poppins", size: 20))
+                                .foreground(Color.theme.accent.opacity(0.5))
                         }
                         .placeholder(when: !text.isEmpty) {
                             withAnimation(.linear) {
                                 Text(placeholder)
-                                    .foreground(Color.theme.accent)
-                                    .font(.system(size: 10))
+                                    .foreground(Color.theme.accent.opacity(0.5))
+                                    .font(Font.custom("Poppins", size: 8))
                                     .offset(y: -10)
                                     .padding(.bottom)
                             }
@@ -77,7 +81,8 @@ struct CustomField: View {
             
             Divider()
                 .frame(height: 3)
-                .overlay(Color.white)
+                .overlay(Color.white.opacity(0.5))
+                .offset(y: -15)
         }
     }
 }
