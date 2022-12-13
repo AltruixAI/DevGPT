@@ -105,7 +105,7 @@ extension OnboardingRegistrationView {
     private var registrationButton: some View {
         ZStack {
             NavigationLink(
-                destination: RegistrationView(),
+                destination: RegistrationView().navigationBarBackButtonHidden(true),
                 isActive: $isRegisteringAccount,
                 label: { EmptyView() }
             )

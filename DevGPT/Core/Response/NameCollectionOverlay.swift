@@ -45,6 +45,7 @@ struct NameCollectionOverlay: View {
                 Text("Create New Collection With Name")
                     .font(.headline)
                     .bold()
+                    .foregroundColor(Color.theme.accent)
                 
                 TextField("Enter Name...", text: $feedbackText, axis: .vertical)
                     .textFieldStyle(.roundedBorder)
@@ -62,7 +63,7 @@ struct NameCollectionOverlay: View {
             }
             .background(
                 Rectangle()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.theme.statusBar)
                     .cornerRadius(10)
                     .padding(.vertical, -16)
             )

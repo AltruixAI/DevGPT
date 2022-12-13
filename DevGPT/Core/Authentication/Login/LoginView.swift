@@ -32,45 +32,52 @@ struct LoginView: View {
     @State private var password = ""
     
     var body: some View {
-        VStack {
-            Image(systemName: "graduationcap.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 220, height: 220)
-                .padding(.bottom, 20)
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
             
-            VStack(spacing: 20) {
-                CustomField(
-                    text: $email,
-                    placeholder: Text("Email"),
-                    imageName: "envelope.fill",
-                    isSecure: false
-                )
+            VStack {
+                Image("splash")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 220, height: 220)
+                    .padding(.bottom, 20)
                 
-                CustomField(
-                    text: $password,
-                    placeholder: Text("Password"),
-                    imageName: nil,
-                    isSecure: true
-                )
+                VStack(spacing: 20) {
+                    CustomField(
+                        text: $email,
+                        placeholder: "Email",
+                        imageName: "envelope.fill",
+                        isSecure: false
+                    )
+                    .padding(.horizontal)
+                    
+                    CustomField(
+                        text: $password,
+                        placeholder: "Password",
+                        imageName: nil,
+                        isSecure: true
+                    )
+                    .padding(.horizontal)
+                }
+                
+                Button(action: {
+                    authenticationViewModel.login(
+                        withEmail: email,
+                        password: password
+                    ) { logMessage in print(logMessage) }
+                }, label: {
+                  Text("Sign In")
+                    .font(.headline)
+                    .foregroundColor(Color.theme.background)
+                    .frame(width: 360, height: 50)
+                    .background(Color.theme.accent)
+                    .clipShape(Capsule())
+                    .padding()
+                })
+                
+                Spacer()
             }
-            
-            Button(action: {
-                authenticationViewModel.login(
-                    withEmail: email,
-                    password: password
-                ) { logMessage in print(logMessage) }
-            }, label: {
-              Text("Sign In")
-                .font(.headline)
-                .foregroundColor(.white)
-                .frame(width: 360, height: 50)
-                .background(Color(.black))
-                .clipShape(Capsule())
-                .padding()
-            })
-            
-            Spacer()
         }
     }
 }

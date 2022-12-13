@@ -47,52 +47,58 @@ struct AddToCollectionView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                Text("Choose Collection")
-                    .font(.title)
-                    .bold()
-                    .padding(.leading, 6)
-                    .padding(.top, 68)
-                
-                LazyVGrid(
-                    columns: columns,
-                    alignment: .leading,
-                    spacing: spacing,
-                    pinnedViews: []) {
-                        ForEach(self.viewModel.collections) { collection in
-                            CollectionThumbnailView(collection: collection)
-                                .padding(.leading, 4)
+        ZStack {
+            Color.theme.background
+                .ignoresSafeArea()
+            
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Choose Collection")
+                        .font(.title)
+                        .bold()
+                        .padding(.leading, 6)
+                        .padding(.top, 68)
+                        .foregroundColor(Color.theme.accent)
+                    
+                    LazyVGrid(
+                        columns: columns,
+                        alignment: .leading,
+                        spacing: spacing,
+                        pinnedViews: []) {
+                            ForEach(self.viewModel.collections) { collection in
+                                CollectionThumbnailView(collection: collection)
+                                    .padding(.leading, 4)
+                            }
+                            
+                            Button {
+                                showNamingScreen = true
+                            } label: {
+                                Rectangle()
+                                    .foregroundColor(Color.theme.statusBar)
+                                    .frame(width: 200, height: 150)
+                                    .cornerRadius(10)
+                                    .padding(.leading, 4)
+                                    .overlay(
+                                        Image(systemName: "plus.square")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 30, height: 30)
+                                    )
+                            }
+                            .tint(Color.theme.accent)
                         }
-                        
-                        Button {
-                            showNamingScreen = true
-                        } label: {
-                            Rectangle()
-                                .foregroundColor(Color(uiColor: .systemGray2))
-                                .frame(width: 200, height: 150)
-                                .cornerRadius(10)
-                                .padding(.leading, 4)
-                                .overlay(
-                                    Image(systemName: "plus.square")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 30, height: 30)
-                                )
-                        }
-                        .tint(Color.theme.accent)
-                    }
+                }
             }
-        }
-        .overlay(
-            showNamingScreen ?
-            NameCollectionOverlay(
-                isShowing: $showNamingScreen,
-                response: response,
-                userId: userId
-            ) :
-            nil
+            .overlay(
+                showNamingScreen ?
+                NameCollectionOverlay(
+                    isShowing: $showNamingScreen,
+                    response: response,
+                    userId: userId
+                ) :
+                nil
         )
+        }
     }
 }
 

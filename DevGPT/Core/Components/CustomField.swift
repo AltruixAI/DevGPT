@@ -26,46 +26,60 @@
 import SwiftUI
 
 struct CustomField: View {
-  // Text the user has typed
-  @Binding var text: String
-  // Placeholder text
-  let placeholder: Text
-  // the name of the icon on the left side of the TextField
-  let imageName: String?
-  // Determines if the CustomField uses a SecureField or TextField
-  let isSecure: Bool
-  // Main Body View for the custom field
-  var body: some View {
-    // Main ZStack: (if the text is empty / "") placeholder -> HStack: Icon -> (if isSecure is true) SecureField, else TextField
-    ZStack(alignment: .leading) {
-      if text.isEmpty {
-        placeholder
-              .foregroundColor(Color(.black))
-          .padding(.leading, 30)
-      }
-      HStack {
-        // Icon
-        Image(systemName: imageName ?? "lock")
-          .resizable()
-          .scaledToFit()
-          .frame(width: 20, height: 20)
-          .foregroundColor(Color(.black))
-        if isSecure {
-          // Secure Field (isSecure is true)
-          SecureField("", text: $text)
-                .foregroundColor(Color(.black))
-        } else {
-          // Text Field (isSecure is false)
-          TextField("", text: $text)
-                .foregroundColor(Color(.black))
+    // Text the user has typed
+    @Binding var text: String
+    @State private var isTapped: Bool = false
+    
+    // Placeholder text
+    let placeholder: String
+    // the name of the icon on the left side of the TextField
+    let imageName: String?
+    // Determines if the CustomField uses a SecureField or TextField
+    let isSecure: Bool
+    // Main Body View for the custom field
+    var body: some View {
+        VStack {
+            HStack {
+                if isSecure {
+                    SecureField("", text: $text)
+                        .foregroundColor(Color.theme.accent)
+                        .placeholder(when: text.isEmpty) {
+                            Text(placeholder)
+                                .foreground(Color.theme.accent)
+                        }
+                        .placeholder(when: !text.isEmpty) {
+                            withAnimation(.easeInOut) {
+                                Text(placeholder)
+                                    .foreground(Color.theme.accent)
+                                    .font(.system(size: 10))
+                                    .offset(y: -10)
+                                    .padding(.bottom)
+                            }
+                        }
+                } else {
+                    TextField("", text: $text)
+                        .foregroundColor(Color.theme.accent)
+                        .placeholder(when: text.isEmpty) {
+                            Text(placeholder)
+                                .foreground(Color.theme.accent)
+                        }
+                        .placeholder(when: !text.isEmpty) {
+                            withAnimation(.linear) {
+                                Text(placeholder)
+                                    .foreground(Color.theme.accent)
+                                    .font(.system(size: 10))
+                                    .offset(y: -10)
+                                    .padding(.bottom)
+                            }
+                        }
+                }
+            }
+            
+            Divider()
+                .frame(height: 3)
+                .overlay(Color.white)
         }
-      }
     }
-      .padding()
-      .background(Color(.black).opacity(0.15))
-      .cornerRadius(10)
-      .padding(.horizontal, 32)
-  }
 }
 
 
@@ -74,7 +88,11 @@ struct CustomField_Previews: PreviewProvider {
         @State private var text: String = ""
         
         var body: some View {
-            CustomField(text: $text, placeholder: Text("Text"), imageName: "person.fill", isSecure: false)
+            ZStack {
+                Color.theme.background.ignoresSafeArea()
+                
+                CustomField(text: $text, placeholder: "Text", imageName: "person.fill", isSecure: false)
+            }
         }
     }
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7603D4F729478269000D55E8 /* FirstPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603D4F629478269000D55E8 /* FirstPageView.swift */; };
+		7603D4F929479A70000D55E8 /* SecondPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7603D4F829479A70000D55E8 /* SecondPageView.swift */; };
 		7637504D2943B69C00DA3F39 /* DevGPTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7637504C2943B69C00DA3F39 /* DevGPTApp.swift */; };
 		763750512943B69E00DA3F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 763750502943B69E00DA3F39 /* Assets.xcassets */; };
 		763750542943B69E00DA3F39 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 763750532943B69E00DA3F39 /* Preview Assets.xcassets */; };
@@ -72,9 +74,12 @@
 		763750F52945369300DA3F39 /* ResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F42945369300DA3F39 /* ResponseViewModel.swift */; };
 		763750F729455A2300DA3F39 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763750F629455A2300DA3F39 /* UserService.swift */; };
 		763750FA2945707300DA3F39 /* Hi-fiMockup.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 763750F92945707300DA3F39 /* Hi-fiMockup.pdf */; };
+		76F70D092947A4BC0016DD44 /* ThirdPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F70D082947A4BC0016DD44 /* ThirdPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7603D4F629478269000D55E8 /* FirstPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageView.swift; sourceTree = "<group>"; };
+		7603D4F829479A70000D55E8 /* SecondPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPageView.swift; sourceTree = "<group>"; };
 		763750492943B69C00DA3F39 /* DevGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7637504C2943B69C00DA3F39 /* DevGPTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevGPTApp.swift; sourceTree = "<group>"; };
 		763750502943B69E00DA3F39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,6 +137,7 @@
 		763750F42945369300DA3F39 /* ResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseViewModel.swift; sourceTree = "<group>"; };
 		763750F629455A2300DA3F39 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		763750F92945707300DA3F39 /* Hi-fiMockup.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Hi-fiMockup.pdf"; sourceTree = "<group>"; };
+		76F70D082947A4BC0016DD44 /* ThirdPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +160,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7603D4F429477FAC000D55E8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				763750A7294440F300DA3F39 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7603D4F529477FB4000D55E8 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				763750AB294444CD00DA3F39 /* RegistrationView.swift */,
+				7603D4F629478269000D55E8 /* FirstPageView.swift */,
+				7603D4F829479A70000D55E8 /* SecondPageView.swift */,
+				76F70D082947A4BC0016DD44 /* ThirdPageView.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
 		763750402943B69C00DA3F39 = {
 			isa = PBXGroup;
 			children = (
@@ -363,8 +388,8 @@
 		763750A6294440DB00DA3F39 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				763750A7294440F300DA3F39 /* LoginView.swift */,
-				763750AB294444CD00DA3F39 /* RegistrationView.swift */,
+				7603D4F529477FB4000D55E8 /* Registration */,
+				7603D4F429477FAC000D55E8 /* Login */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -470,6 +495,7 @@
 				763750EF294513DB00DA3F39 /* NameCollectionViewModel.swift in Sources */,
 				763750E02944D31B00DA3F39 /* GPT3Services.swift in Sources */,
 				7637506A2943D01400DA3F39 /* AppPrimaryButton.swift in Sources */,
+				76F70D092947A4BC0016DD44 /* ThirdPageView.swift in Sources */,
 				763750972944196800DA3F39 /* HistoryView.swift in Sources */,
 				763750DC2944CE2E00DA3F39 /* HomeViewModel.swift in Sources */,
 				763750AE2944457600DA3F39 /* ImagePicker.swift in Sources */,
@@ -482,6 +508,7 @@
 				763750EB294509E000DA3F39 /* AddToCollectionViewModel.swift in Sources */,
 				763750A5294431EF00DA3F39 /* AddTokensViewModel.swift in Sources */,
 				763750DE2944D10500DA3F39 /* LoadingViewModel.swift in Sources */,
+				7603D4F729478269000D55E8 /* FirstPageView.swift in Sources */,
 				7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */,
 				763750F52945369300DA3F39 /* ResponseViewModel.swift in Sources */,
 				763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */,
@@ -505,6 +532,7 @@
 				76375089294404AC00DA3F39 /* ChatResponseView.swift in Sources */,
 				763750CB294453C400DA3F39 /* FirebaseDatabases.swift in Sources */,
 				763750672943CC4200DA3F39 /* OnboardingRegistrationView.swift in Sources */,
+				7603D4F929479A70000D55E8 /* SecondPageView.swift in Sources */,
 				763750A8294440F300DA3F39 /* LoginView.swift in Sources */,
 				7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */,
 				7637509F2944258500DA3F39 /* SettingsView.swift in Sources */,
@@ -657,7 +685,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MarcoDotIO.DevGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -686,7 +714,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MarcoDotIO.DevGPT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
