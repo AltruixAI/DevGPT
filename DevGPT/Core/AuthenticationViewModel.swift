@@ -180,7 +180,6 @@ class AuthenticationViewModel: ObservableObject {
                 COLLECTION_USERS.document(uid).collection("responses").getDocuments { snapshot, _ in
                     guard let documents = snapshot?.documents else { return }
                     let responses = documents.compactMap { try? $0.data(as: Response.self) }
-                    print("\(responses.count)")
                     user.responses = responses
                     self.currentUser = user
                 }

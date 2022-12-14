@@ -75,7 +75,7 @@ struct NameCollectionOverlay: View {
 struct NameCollectionOverlay_Previews: PreviewProvider {
     struct NameHandler: View {
         @State private var isShowing: Bool = true
-        let response = Response(prompt: "Hello", response: "World")
+        let response = Response(prompt: "Hello", response: "World", language: "Swift")
         
         var body: some View {
             NameCollectionOverlay(isShowing: $isShowing, response: response, userId: "Test")

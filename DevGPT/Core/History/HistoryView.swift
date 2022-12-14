@@ -26,6 +26,8 @@
 import SwiftUI
 
 struct HistoryView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
     @State private var selectedResponse: Response? = nil
     @State private var isNavigatingToResponse: Bool = false
     
@@ -33,19 +35,30 @@ struct HistoryView: View {
     
     var body: some View {
         ZStack {
-            Color.theme.background
-                .ignoresSafeArea()
+            Color.theme.statusBar.ignoresSafeArea()
+            
+            Color.theme.background.ignoresSafeArea(edges: [.bottom])
+                .padding(.top, 5)
+            
+            if
+                let user = authenticationViewModel.currentUser,
+                let response = selectedResponse {
+                NavigationLink(destination: ResponseView(user: user, outputResponse: response), isActive: $isNavigatingToResponse, label: { EmptyView() })
+            }
             
             if let responses = user.responses {
-                ScrollView {
-                    VStack(alignment: .leading) {
+                VStack {
+                    HStack {
                         Text("History")
-                            .font(.title)
-                            .bold()
+                            .font(Font.custom("Poppins", size: 28))
                             .foregroundColor(Color.theme.accent)
-                            .padding(.leading, 18)
-                            .padding(.top, 68)
+                            .padding(.top, 40)
+                            .padding(.leading, 14)
                         
+                        Spacer()
+                    }
+                    
+                    ScrollView {
                         VStack(alignment: .center) {
                             ForEach(responses) { response in
                                 Button {
@@ -63,8 +76,9 @@ struct HistoryView: View {
     }
 }
 
-//struct HistoryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HistoryView()
-//    }
-//}
+struct HistoryView_Previews: PreviewProvider {
+    static var previews: some View {
+        HistoryView(user: User(id: "", tokens: 15, email: "test@test.com", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a", username: "MarcoDotIO", collections: nil, responses: [Response(id: "1v", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "2q", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "3s", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "4rq", prompt: "This is a test", response: "This is a test", language: "Swift")]))
+            .environmentObject(AuthenticationViewModel.shared)
+    }
+}

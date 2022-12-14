@@ -27,41 +27,62 @@ import SwiftUI
 
 struct TabBar: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
+    @State private var selectedTab = 1
+    
     let user: User
     
     var body: some View {
         NavigationStack {
-            TabView {
+            TabView(selection: $selectedTab) {
                 Group {
                     HomeView(user: user)
                         .tabItem {
-                            Image(systemName: "house")
-                            Text("Home")
+                            Image(selectedTab == 1 ? "homeSelected" : "home")
+                            
+                            if selectedTab == 1 {
+                                Text("Home")
+                                    .font(Font.custom("Poppins", size: 8))
+                                    .foregroundColor(Color.theme.accent)
+                            }
                         }
+                        .tag(1)
                     
-//                    AllCollectionsView(user: user)
-//                        .tabItem {
-//                            Image(systemName: "folder.fill")
-//                            Text("Collections")
-//                        }
+                    AllCollectionsView(user: user)
+                        .tabItem {
+                            Image("collections")
+                            
+                            if selectedTab == 2 {
+                                Text("Collections")
+                                    .font(Font.custom("Poppins", size: 8))
+                                    .foregroundColor(Color.theme.accent)
+                            }
+                        }
+                        .tag(2)
                     
                     HistoryView(user: user)
                         .tabItem {
-                            Image(systemName: "stopwatch.fill")
-                            Text("History")
+                            Image("history")
+                            
+                            if selectedTab == 3 {
+                                Text("History")
+                                    .font(Font.custom("Poppins", size: 8))
+                                    .foregroundColor(Color.theme.accent)
+                            }
                         }
-                    
-                    AccountView(user: user)
-                        .tabItem {
-                            Image(systemName: "person.fill")
-                            Text("Profile")
-                        }
+                        .tag(3)
                     
                     SettingsView()
                         .tabItem {
-                            Image(systemName: "gear")
-                            Text("Settings")
+                            Image("settings")
+                            
+                            if selectedTab == 4 {
+                                Text("Settings")
+                                    .font(Font.custom("Poppins", size: 8))
+                                    .foregroundColor(Color.theme.accent)
+                            }
                         }
+                        .tag(4)
                 }
                 .toolbarBackground(.visible, for: .tabBar)
                 .toolbarBackground(Color.theme.statusBar, for: .tabBar)
@@ -73,11 +94,3 @@ struct TabBar: View {
         }
     }
 }
-
-//struct TabBar_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack {
-//            TabBar()
-//        }
-//    }
-//}

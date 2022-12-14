@@ -24,17 +24,48 @@
 //  
 
 import SwiftUI
+import Combine
+
+struct AdaptsToKeyboard: ViewModifier {
+    @State var currentHeight: CGFloat = 0
+    
+    func body(content: Content) -> some View {
+        GeometryReader { geometry in
+            content
+                .padding(.bottom, self.currentHeight)
+                .onAppear(perform: {
+                    NotificationCenter.Publisher(center: NotificationCenter.default, name: UIResponder.keyboardWillShowNotification)
+                        .merge(with: NotificationCenter.Publisher(center: NotificationCenter.default, name: UIResponder.keyboardWillChangeFrameNotification))
+                        .compactMap { notification in
+                            withAnimation(.easeOut(duration: 0.16)) {
+                                notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+                            }
+                        }
+                        .map { rect in
+                            rect.height - geometry.safeAreaInsets.bottom
+                        }
+                        .subscribe(Subscribers.Assign(object: self, keyPath: \.currentHeight))
+                    
+                    NotificationCenter.Publisher(center: NotificationCenter.default, name: UIResponder.keyboardWillHideNotification)
+                        .compactMap { notification in
+                            CGFloat.zero
+                        }
+                        .subscribe(Subscribers.Assign(object: self, keyPath: \.currentHeight))
+                })
+        }
+    }
+}
 
 extension View {
     func asUiImage() -> UIImage {
         var uiImage = UIImage(systemName: "exclamationmark.triangle.fill")!
         let controller = UIHostingController(rootView: self)
-       
+        
         if let view = controller.view {
             let contentSize = view.intrinsicContentSize
             view.bounds = CGRect(origin: .zero, size: contentSize)
             view.backgroundColor = .clear
-
+            
             let renderer = UIGraphicsImageRenderer(size: contentSize)
             uiImage = renderer.image { _ in
                 view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
@@ -44,10 +75,10 @@ extension View {
     }
     
     func placeholder<Content: View>(
-            when shouldShow: Bool,
-            alignment: Alignment = .leading,
-            @ViewBuilder placeholder: () -> Content) -> some View {
-
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+            
             ZStack(alignment: alignment) {
                 placeholder().opacity(shouldShow ? 1 : 0)
                 self
@@ -55,6 +86,10 @@ extension View {
         }
     
     public func foreground<Overlay: View>(_ overlay: Overlay) -> some View {
-            self.overlay(overlay).mask(self)
-        }
+        self.overlay(overlay).mask(self)
+    }
+    
+    func adaptsToKeyboard() -> some View {
+        return modifier(AdaptsToKeyboard())
+    }
 }

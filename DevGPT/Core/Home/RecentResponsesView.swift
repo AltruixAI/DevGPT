@@ -24,39 +24,44 @@
 //  
 
 import SwiftUI
+import Kingfisher
 
 struct RecentResponsesView: View {
     let responses: [Response]?
     
     var body: some View {
-        if let responses = responses {
-            VStack(alignment: .leading) {
+        VStack {
+            HStack {
                 Text("Recent")
-                    .font(.title)
+                    .font(Font.custom("Poppins", size: 28))
                     .foregroundColor(Color.theme.accent)
-                    .bold()
                     .padding(.leading)
-                    .padding(.top, 48)
                 
+                Spacer()
+            }
+            if let responses = responses, !responses.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 10) {
+                    HStack {
                         ForEach(responses) { response in
                             ResponseThumbnailView(response: response)
-                                .padding(.leading, 28)
-                                .frame(width: 150, height: 100)
                         }
                     }
-                    .padding(.bottom, 590)
                 }
+            } else {
+                Text("Your have not asked anything yet.\nStart adding some by generating a code idea.")
+                    .font(Font.custom("Poppins", size: 14))
+                    .foregroundColor(Color.theme.accent)
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal, 50)
             }
         }
     }
 }
 
-//struct RecentResponsesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack {
-//            RecentResponsesView()
-//        }
-//    }
-//}
+struct RecentResponsesView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            RecentResponsesView(responses: [Response(id: "1v", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "2q", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "3s", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "4rq", prompt: "This is a test", response: "This is a test", language: "Swift")])
+        }
+    }
+}

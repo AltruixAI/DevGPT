@@ -29,10 +29,26 @@ struct HistoryTabs: View {
     let response: Response
     
     var body: some View {
-        VStack() {
-            Text(response.response)
-                .foregroundColor(Color.theme.accent)
-                .lineLimit(3)
+        VStack {
+            HStack {
+                Text(response.response)
+                    .font(Font.custom("Poppins", size: 18))
+                    .foregroundColor(Color.theme.accent)
+                    .lineLimit(3)
+                
+                Spacer()
+            }
+            
+            HStack {
+                Text("A few minutes ago")
+                    .font(Font.custom("Poppins", size: 12))
+                    .foregroundColor(Color.theme.accent.opacity(0.5))
+                    .padding(.top, 4)
+                
+                Spacer()
+                
+                Image("swift")
+            }
         }
         .padding()
         .background(
@@ -45,9 +61,9 @@ struct HistoryTabs: View {
         .frame(width: UIScreen.main.bounds.width - 20)
     }
 }
-//
-//struct HistoryTabs_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HistoryTabs()
-//    }
-//}
+
+struct HistoryTabs_Previews: PreviewProvider {
+    static var previews: some View {
+        HistoryTabs(response: Response(id: "1", prompt: "This is a test", response: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo consequat.", language: "Swift"))
+    }
+}

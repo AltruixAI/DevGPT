@@ -30,7 +30,7 @@ struct LoadingPageView: View {
     
     @State private var downloadAmount = 0.0
     
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     
     init(input: String, user: User) {
         self.viewModel = LoadingViewModel(input: input, user: user)
@@ -85,7 +85,7 @@ extension LoadingPageView {
             .padding(.horizontal, 38)
             .onReceive(timer) { _ in
                 if downloadAmount < 100 {
-                    downloadAmount += 4
+                    downloadAmount += 0.09
                 }
             }
             .foregroundColor(Color.theme.statusBar)

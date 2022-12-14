@@ -26,46 +26,34 @@
 import SwiftUI
 
 struct FavoriteCollectionsView: View {
-    private let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
-    private let spacing: CGFloat = 25
-    
     let collections: [Collection]?
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Favorites")
-                .font(.title)
-                .foregroundColor(Color.theme.accent)
-                .bold()
-                .offset(y: -16)
-                .offset(x: 10)
+        VStack {
+            HStack {
+                Text("Favorites")
+                    .font(Font.custom("Poppins", size: 28))
+                    .foregroundColor(Color.theme.accent)
+                    .padding(.leading)
+                
+                Spacer()
+            }
             
             if let collections = collections, !collections.isEmpty {
-                LazyVGrid(
-                    columns: columns,
-                    alignment: .leading,
-                    spacing: spacing,
-                    pinnedViews: []) {
-                        ForEach(collections) { collection in
-                            CollectionThumbnailView(collection: collection)
-                                .padding(.leading, 4)
-                        }
-                }
+                CollectionsGridView(title: "", collections: collections)
+                    .padding(.leading, 14)
             } else {
-                Text("Your have no collections.\n Start adding some by generating a code idea.")
-                    .font(.callout)
-                    .multilineTextAlignment(.center)
+                Text("Your have no collections.\nStart adding some by generating a code idea.")
+                    .font(Font.custom("Poppins", size: 14))
+                    .foregroundColor(Color.theme.accent)
+                    .multilineTextAlignment(.leading)
             }
         }
     }
 }
 
-//struct FavoriteCollectionsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FavoriteCollectionsView()
-//    }
-//}
+struct FavoriteCollectionsView_Previews: PreviewProvider {
+    static var previews: some View {
+        FavoriteCollectionsView(collections: [Collection(name: "Swift Stuff", responses: [Response(prompt: "This is a test", response: "This is a test", language: "Swift")])])
+    }
+}

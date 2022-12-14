@@ -57,10 +57,20 @@ import OpenAIKit
         let completionResponse = try await openAI.generateCompletion(parameters: completionParameters)
         let outputText = completionResponse.choices[0].text
         
-        self.response = Response(prompt: input, response: outputText)
+        let programmingLanguages = getProgrammingLanguages(from: input)
         
-        print(outputText)
+        self.response = Response(prompt: input, response: outputText, language: programmingLanguages[0])
         
         self.isNotLoading = true
+    }
+    
+    func getProgrammingLanguages(from string: String) -> [String] {
+        let regexString =
+            "/\\b(Java|C\\+\\+|Python|Ruby|Go|JavaScript|TypeScript|PHP|C#|C|Rust|Shell|Kotlin|Haskell|R|Elixir|Elm|Erlang|F#|Julia|Objective-C|Perl|Swift|Elixir)\\b/gi"
+        let regex = try! NSRegularExpression(pattern: regexString)
+        let matches = regex.matches(in: string, range: NSRange(string.startIndex..., in: string))
+        return matches.map {
+            String(string[Range($0.range, in: string)!])
+        }
     }
 }

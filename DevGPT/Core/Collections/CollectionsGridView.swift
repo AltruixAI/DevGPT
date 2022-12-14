@@ -29,8 +29,8 @@ struct CollectionsGridView: View {
     let title: String
     
     private let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.flexible(), spacing: 35),
+        GridItem(.flexible(), spacing: 30)
     ]
     
     private let spacing: CGFloat = 20
@@ -41,32 +41,29 @@ struct CollectionsGridView: View {
         ScrollView {
             if let collections = collections {
                 VStack(alignment: .leading) {
-                    Text(title)
-                        .font(.title)
-                        .bold()
-                        .padding(.leading, 6)
-                        .padding(.top, 68)
-                    
                     LazyVGrid(
                         columns: columns,
                         alignment: .leading,
                         spacing: spacing,
                         pinnedViews: []) {
                             ForEach(collections) { collection in
-                                CollectionThumbnailView(collection: collection)
-                                    .padding(.leading, 4)
+                                HStack {
+                                    CollectionThumbnailView(collection: collection)
+                                }
                             }
                         }
+                        .padding(.trailing, 23)
+                        .padding(.leading, 6)
                 }
             }
         }
     }
 }
 
-//struct CollectionsGridView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationStack {
-//            CollectionsGridView(title: "Collections")
-//        }
-//    }
-//}
+struct CollectionsGridView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            CollectionsGridView(title: "Test collection", collections: [Collection(id: "12", name: "Swift Stuff", responses: [Response(prompt: "This is a test", response: "This is a test", language: "Swift")]), Collection(id: "433", name: "Swift Stuff 2", responses: [Response(prompt: "This is a test 2", response: "This is a test 2", language: "Swift")])])
+        }
+    }
+}

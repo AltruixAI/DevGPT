@@ -36,23 +36,25 @@ struct CollectionThumbnailView: View {
                     .resizable()
                     .scaledToFill()
                     .frame(width: 200, height: 150)
-                    .cornerRadius(10)
+                    .cornerRadius(20)
                     .overlay(overlayView.mask(
                         KFImage(URL(string: thumbnail))
                             .resizable()
                             .scaledToFill()
                             .frame(width: 200, height: 150)
-                            .cornerRadius(10)
+                            .cornerRadius(20)
                     ))
             } else {
                 Rectangle()
                     .frame(width: 200, height: 150)
-                    .cornerRadius(10)
+                    .cornerRadius(20)
+                    .foregroundColor(Color.theme.textField)
                     .overlay(
                         overlayView.mask(
                             Rectangle()
                                 .frame(width: 200, height: 150)
-                                .cornerRadius(10)
+                                .cornerRadius(20)
+                                .foregroundColor(Color.theme.accent)
                         )
                     )
             }
@@ -61,27 +63,33 @@ struct CollectionThumbnailView: View {
     
     private var overlayView: some View {
         GeometryReader { geo in
-            ZStack(alignment: .leading) {
+            ZStack {
                 Rectangle()
                     .foregroundColor(Color.theme.tab)
                     .frame(width: 220, height: 150)
-                    .cornerRadius(10)
                     .padding(.top, 110)
                     .offset(x: -10)
                     .opacity(0.75)
                 
-                Text(collection.name)
-                    .font(.system(size: 16))
-                    .foregroundColor(.white)
-                    .padding(.leading)
-                    .bold()
+                HStack {
+                    Text(collection.name)
+                        .padding(.leading, 20)
+                        .multilineTextAlignment(.trailing)
+                        .font(Font.custom("Poppins", size: 16))
+                        .foregroundColor(Color.theme.accent.opacity(0.75))
+                        .frame(width: 168, height: 150, alignment: .leading)
+                        .lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: true)
+                    
+                    Spacer()
+                }
             }
         }
     }
 }
 
-//struct CollectionThumbnailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CollectionThumbnailView()
-//    }
-//}
+struct CollectionThumbnailView_Previews: PreviewProvider {
+    static var previews: some View {
+        CollectionThumbnailView(collection: Collection(name: "Swift Stuff", responses: [Response(prompt: "This is a test", response: "This is a test", language: "Swift")]))
+    }
+}

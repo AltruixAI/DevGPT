@@ -30,54 +30,67 @@ struct ResponseThumbnailView: View {
     let response: Response
     
     var body: some View {
-        if let thumbnail = response.thumbnail {
-            ZStack {
+        ZStack {
+            if let thumbnail = response.thumbnail {
                 KFImage(URL(string: thumbnail))
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 150, height: 100)
-                    .cornerRadius(10)
+                    .frame(width: 175, height: 125)
+                    .cornerRadius(20)
+                    .overlay(overlayView.mask(
+                        KFImage(URL(string: thumbnail))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 200, height: 150)
+                            .cornerRadius(20)
+                    ))
+            } else {
+                Rectangle()
+                    .frame(width: 175, height: 125)
+                    .cornerRadius(20)
+                    .foregroundColor(Color.theme.textField)
                     .overlay(
-                        GeometryReader { geo in
-                            ZStack(alignment: .leading) {
-                                Rectangle()
-                                    .foregroundColor(Color.theme.tab)
-                                    .frame(width: 170, height: 100)
-                                    .cornerRadius(10)
-                                    .padding(.top, 70)
-                                    .offset(x: -10)
-                                    .opacity(0.75)
-                                
-                                Text("Project 1")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.white)
-                                    .padding(.leading)
-                                    .bold()
-                            }
-                        }
-                            .mask(
-                                KFImage(URL(string: thumbnail))
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 150, height: 100)
-                                    .cornerRadius(10)
-                            )
+                        overlayView.mask(
+                            Rectangle()
+                                .frame(width: 175, height: 125)
+                                .cornerRadius(20)
+                                .foregroundColor(Color.theme.accent)
+                        )
                     )
             }
         }
     }
     
-    private var baseThumbnail: some View {
-        Image("templateResponseThumbnail")
-            .resizable()
-            .scaledToFill()
-            .frame(width: 150, height: 100)
-            .cornerRadius(10)
+    private var overlayView: some View {
+        GeometryReader { geo in
+            ZStack {
+                Rectangle()
+                    .foregroundColor(Color.theme.tab)
+                    .frame(width: 195, height: 145)
+                    .padding(.top, 90)
+                    .offset(x: -10)
+                    .opacity(0.75)
+                
+                HStack {
+                    Text(response.prompt)
+                        .padding(.leading, 10)
+                        .padding(.bottom)
+                        .multilineTextAlignment(.trailing)
+                        .font(Font.custom("Poppins", size: 16))
+                        .foregroundColor(Color.theme.accent.opacity(0.75))
+                        .frame(width: 168, height: 150, alignment: .leading)
+                        .lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: true)
+                    
+                    Spacer()
+                }
+            }
+        }
     }
 }
 
-//struct ResponseThumbnailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ResponseThumbnailView()
-//    }
-//}
+struct ResponseThumbnailView_Previews: PreviewProvider {
+    static var previews: some View {
+        ResponseThumbnailView(response: Response(id: "1v", prompt: "This is a test", response: "This is a test", language: "Swift"))
+    }
+}

@@ -104,7 +104,7 @@ struct AddToCollectionView: View {
 
 struct AddToCollectionView_Previews: PreviewProvider {
     struct handlerCollection: View {
-        let response = Response(prompt: "Hello", response: "World")
+        let response = Response(prompt: "Hello", response: "World", language: "Swift")
         
         var body: some View {
             AddToCollectionView(response: response, userId: "Test")

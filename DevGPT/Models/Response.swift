@@ -30,6 +30,7 @@ struct Response: Identifiable, Codable {
     @DocumentID var id: String?
     let prompt: String
     let response: String
+    let language: String
     var thumbnail: String?
     var feedback: Feedback?
     
@@ -38,13 +39,15 @@ struct Response: Identifiable, Codable {
         prompt: String,
         response: String,
         thumbnail: String? = nil,
-        feedback: Feedback? = nil
+        feedback: Feedback? = nil,
+        language: String
     ) {
         self.id = id
         self.prompt = prompt
         self.response = response
         self.thumbnail = thumbnail
         self.feedback = feedback
+        self.language = language
     }
     
     enum CodingKeys: String, CodingKey {
@@ -53,6 +56,7 @@ struct Response: Identifiable, Codable {
         case response
         case thumbnail
         case feedback
+        case language
     }
     
     func toAnyObject() -> Any {

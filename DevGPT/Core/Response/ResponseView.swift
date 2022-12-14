@@ -135,7 +135,7 @@ extension ResponseView {
 
 struct ResponseView_Previews: PreviewProvider {
     struct helperResponse: View {
-        let response = Response(prompt: "Say this is a test", response: "Lorem ipsum dolor sit amet dfdsdfsffsfsdffdsfdfddfasdfdfdswdffrsdfsddsffffdsdfsdfdsfsdfdsffdfsfdssdfsfdsfsdfdsfsdsdfdsfsdadssddsadasxcsdasdsdsdsdasdsdsadsadsadsdsadsdadsadsadssdaddsa")
+        let response = Response(prompt: "Say this is a test", response: "Lorem ipsum dolor sit amet dfdsdfsffsfsdffdsfdfddfasdfdfdswdffrsdfsddsffffdsdfsdfdsfsdfdsffdfsfdssdfsfdsfsdfdsfsdsdfdsfsdadssddsadasxcsdasdsdsdsdasdsdsadsadsadsdsadsdadsadsadssdaddsa", language: "Swift")
 
         var body: some View {
             ResponseView(user: User(id: "", tokens: 15, email: "test@test.com", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a", username: "MarcoDotIO", collections: nil, responses: nil), outputResponse: response)

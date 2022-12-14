@@ -30,6 +30,7 @@ import Firebase
 struct DevGPTApp: App {
     init() {
         UINavigationBar.appearance().tintColor = UIColor(Color.theme.accent)
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Poppins", size: 28)!]
         FirebaseApp.configure()
     }
     

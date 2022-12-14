@@ -39,7 +39,8 @@ class NameCollectionViewModel: ObservableObject {
             let imageResponse = Response(
                 prompt: response.prompt,
                 response: response.response,
-                thumbnail: imageURL
+                thumbnail: imageURL,
+                language: response.language
             )
             
             let data = [
