@@ -42,6 +42,7 @@ struct ThirdPageView: View {
             Color.theme.statusBar.ignoresSafeArea()
             
             Color.theme.background.ignoresSafeArea(edges: [.bottom])
+                .padding(.top, 5)
             
             NavigationLink(
                 destination: FirstPageView().navigationBarBackButtonHidden(true),
@@ -55,7 +56,7 @@ struct ThirdPageView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: UIScreen.main.bounds.width - 250, height: 50)
-                    .padding(.top, 30)
+                    .padding(.top, 23)
                 
                 HStack {
                     Button {

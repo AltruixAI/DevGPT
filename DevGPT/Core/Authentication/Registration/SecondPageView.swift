@@ -44,6 +44,7 @@ struct SecondPageView: View {
             Color.theme.statusBar.ignoresSafeArea()
             
             Color.theme.background.ignoresSafeArea(edges: [.bottom])
+                .padding(.top, 5)
             
             NavigationLink(
                 destination: FirstPageView().navigationBarBackButtonHidden(true),
@@ -64,7 +65,7 @@ struct SecondPageView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: UIScreen.main.bounds.width - 250, height: 50)
-                        .padding(.top, 30)
+                        .padding(.top, 23)
                     
                     HStack {
                         Button {
@@ -105,7 +106,6 @@ struct SecondPageView: View {
                     Spacer()
                 }
                 .onReceive(timer) { _ in
-                    self.isVerified = true
                     authenticationViewModel.isVerified()
 
                     if let verified = authenticationViewModel.isEmailVerified, verified {

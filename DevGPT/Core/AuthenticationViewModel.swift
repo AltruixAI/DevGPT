@@ -45,52 +45,16 @@ class AuthenticationViewModel: ObservableObject {
     ) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
-                print(error.localizedDescription)
                 completion(error.localizedDescription)
+                return
             }
             
-            guard let user = result?.user else { return }
+            guard let user = result?.user else {
+                completion("User couldn't be found, please try another email.")
+                return
+            }
             self.userSession = user
             self.fetchUser()
-        }
-    }
-    
-    func register(
-        withEmail email: String,
-        password: String,
-        username: String,
-        image: UIImage?,
-        completion: @escaping(String)-> Void
-    ) {
-        let defaultImage = UIImage(named: "unfilledProfile")
-        
-        ImageUploader.uploadImage(image: image ?? (defaultImage!)) { imageURL in
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                if let error = error {
-                    let logResult = "\(error.localizedDescription)"
-                    completion(logResult)
-                }
-                
-                guard let user = result?.user else { return }
-                
-                let data: [String: Any] = [
-                    "email": email,
-                    "username": username,
-                    "profileImageUrl": imageURL,
-                    "uid": user.uid,
-                    "tokens": 15
-                ]
-                
-                COLLECTION_USERS.document(user.uid).setData(data) { error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        return
-                    }
-                    
-                    self.userSession = user
-                    self.fetchUser()
-                }
-            }
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  FirstPageView.swift
+//  EnterPasswordView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -25,16 +25,17 @@
 
 import SwiftUI
 
-struct FirstPageView: View {
+struct EnterPasswordView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
-    @State private var username: String = ""
-    @State private var email: String = ""
     @State private var password: String = ""
-    @State private var isVerifying: Bool = false
+    @State private var isContiuing: Bool = false
     @State private var isCancelled: Bool = false
     @State private var error: String? = nil
     @State private var isShowingPassword: Bool = false
+    @State private var isResettingPassword: Bool = false
+    
+    let email: String
     
     var body: some View {
         ZStack {
@@ -45,7 +46,7 @@ struct FirstPageView: View {
             
             NavigationLink(destination: OnboardingRegistrationView(), isActive: $isCancelled, label: { EmptyView() })
             
-            NavigationLink(destination: SecondPageView(email: $email, username: $username).navigationBarBackButtonHidden(true), isActive: $isVerifying, label: { EmptyView() })
+            NavigationLink(destination: ForgetPasswordView().navigationBarBackButtonHidden(true), isActive: $isResettingPassword, label: { EmptyView() })
             
             VStack {
                 // Logo
@@ -71,7 +72,7 @@ struct FirstPageView: View {
                 
                 VStack {
                     HStack {
-                        Text("Create your account")
+                        Text("Enter your password")
                             .font(Font.custom("Poppins", size: 30))
                             .foregroundColor(Color.theme.accent)
                             .padding(.top, 16)
@@ -79,24 +80,6 @@ struct FirstPageView: View {
                         
                         Spacer()
                     }
-                    
-                    CustomField(
-                        text: $username,
-                        placeholder: "Username",
-                        imageName: "person.fill",
-                        isSecure: false
-                    )
-                    .padding(.top, 16)
-                    .padding(.horizontal, 26)
-                    
-                    CustomField(
-                        text: $email,
-                        placeholder: "Email",
-                        imageName: "person.fill",
-                        isSecure: false
-                    )
-                    .padding(.top, 15)
-                    .padding(.horizontal, 26)
                     
                     ZStack {
                         CustomField(
@@ -126,7 +109,6 @@ struct FirstPageView: View {
                         HStack {
                             Text(error)
                                 .padding(.horizontal, 30)
-                                .padding(.top, 14)
                                 .foregroundColor(Color.theme.error)
                             
                             Spacer()
@@ -136,72 +118,55 @@ struct FirstPageView: View {
                 
                 Spacer()
                 
-                HStack {
-                    Spacer()
+                VStack {
+                    Button(action: {
+                        self.error = nil
+                        authenticationViewModel.login(
+                            withEmail: email,
+                            password: password
+                        ) { error in
+                            self.error = error
+                        }
+                    }) {
+                        Text("Log In")
+                            .font(.headline)
+                            .foregroundColor(Color.theme.background)
+                            .frame(width: 270, height: 50)
+                            .background(Color.theme.accent)
+                            .clipShape(Capsule())
+                            .padding()
+                    }
                     
                     Button(action: {
                         self.error = nil
-                        if areFieldsValid() {
-                            authenticationViewModel.registerPartOne(
-                                withEmail: email,
-                                password: password,
-                                username: username
-                            ) { error in
-                                self.error = error
-                            }
-                            isVerifying.toggle()
-                        } else {
-                            self.error = "Please fill in all the fields to continue."
-                        }
+                        isResettingPassword.toggle()
                     }) {
-                        Text("Next")
+                        Text("Forgot password?")
                             .font(.headline)
-                            .foregroundColor(Color.theme.background)
-                            .frame(width: 150, height: 50)
-                            .background(Color.theme.accent)
+                            .foregroundColor(Color.theme.accent)
+                            .frame(width: 270, height: 50)
+                            .background(
+                                ZStack {
+                                    Capsule()
+                                        .foregroundColor(Color.theme.accent)
+                                    
+                                    Capsule()
+                                        .foregroundColor(Color.theme.background)
+                                        .frame(width: 265, height: 45)
+                                }
+                            )
                             .cornerRadius(8)
-                            .padding(.trailing, 28)
                     }
                 }
-                .padding(.bottom)
             }
         }
     }
 }
 
-extension FirstPageView {
-    func areFieldsValid() -> Bool {
-        if !password.isEmpty, !username.isEmpty,
-           !email.isEmpty {
-            if isValidEmail(email: email) {
-                if isValidPassword(password: password) {
-                    return true
-                }
-            }
-        }
-        
-        return false
-    }
-    
-    func isValidEmail(email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailTest.evaluate(with: email)
-    }
-    
-    func isValidPassword(password: String) -> Bool {
-        // Check that the password is at least 8 characters long
-        if password.count < 8 {
-            return false
-        }
-        return true
-    }
-}
-
-struct FirstPageView_Previews: PreviewProvider {
+struct EnterPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            FirstPageView()
+            EnterPasswordView(email: "test@test.com")
         }
     }
 }

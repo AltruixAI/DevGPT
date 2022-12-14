@@ -36,7 +36,7 @@ struct OnboardingRegistrationView: View {
             Color.theme.statusBar.ignoresSafeArea()
             
             Color.theme.background.ignoresSafeArea(edges: [.bottom])
-                .offset(y: 10)
+                .offset(y: 70)
             
             VStack {
                 // Logo
@@ -44,7 +44,7 @@ struct OnboardingRegistrationView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: UIScreen.main.bounds.width - 250, height: 50)
-                    .padding(.top, 60)
+                    .padding(.top, 88)
                 
                 // Tageline
                 tagline
@@ -73,14 +73,14 @@ struct OnboardingRegistrationView: View {
 
 extension OnboardingRegistrationView {
     private var tagline: some View {
-        Text("Integrate DevGPT into your workflow and shoot your productivity through the roof!")
-            .font(.system(size: 28))
+        Text("Integrate DevGPT\ninto your workflow and\nshoot your\nproductivity\nthrough the roof!")
+            .font(Font.custom("Poppins", size: 28))
             .minimumScaleFactor(1.75)
             .fixedSize(horizontal: false, vertical: true)
             .bold()
-            .padding(.top, 140)
+            .padding(.top, 90)
             .padding(.bottom, 80)
-            .padding(.horizontal, 60)
+            .padding(.horizontal, 40)
             .foregroundColor(Color.theme.accent)
     }
     
@@ -94,15 +94,31 @@ extension OnboardingRegistrationView {
                 
             }
         }
-        .padding(.bottom, 15)
+        .padding(.bottom, 8)
     }
     
     private var divider: some View {
-        Divider()
-            .frame(height: 1)
-            .overlay(.gray)
-            .frame(width: UIScreen.main.bounds.width - 70, height: 10)
-            .padding(.bottom, 14)
+        HStack {
+            RoundedRectangle(cornerRadius: 10)
+                .frame(height: 1)
+                .overlay(.gray.opacity(0.8))
+                .frame(width: UIScreen.main.bounds.width - 260, height: 10)
+                .offset(x: -20)
+            
+            Text("or")
+                .foregroundColor(.gray.opacity(0.8))
+                .font(Font.custom("Poppins", size: 16))
+                .bold()
+                .offset(x: -20)
+            
+            RoundedRectangle(cornerRadius: 10)
+                .frame(height: 1)
+                .overlay(.gray.opacity(0.8))
+                .frame(width: UIScreen.main.bounds.width - 260, height: 10)
+                .offset(x: -20)
+        }
+        .padding(.leading, 40)
+        .padding(.bottom, 8)
     }
     
     private var registrationButton: some View {
@@ -123,7 +139,7 @@ extension OnboardingRegistrationView {
     private var loginButton: some View {
         HStack {
             NavigationLink(
-                destination: LoginView(),
+                destination: EnterEmailView().navigationBarBackButtonHidden(true),
                 isActive: $isLoggingInWithAccount,
                 label: { EmptyView() }
             )
@@ -140,6 +156,7 @@ extension OnboardingRegistrationView {
 
         }
         .padding(.bottom, 64)
+        .padding(.top, 70)
     }
 }
 

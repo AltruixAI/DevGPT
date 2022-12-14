@@ -33,8 +33,10 @@ struct OnboardingView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.theme.background
-                    .ignoresSafeArea()
+                Color.theme.statusBar.ignoresSafeArea()
+                
+                Color.theme.background.ignoresSafeArea(edges: [.bottom])
+                    .padding(.top, 5)
                 
                 VStack {
                     // Logo
@@ -42,7 +44,7 @@ struct OnboardingView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: UIScreen.main.bounds.width - 250)
-                        .padding(.vertical, 20)
+                        .padding(.vertical, 15)
                         .offset(y: 15)
                     
                     // Template image
@@ -83,7 +85,7 @@ extension OnboardingView {
             if pageNumber == 1 {
                 Text("DevGPT makes sure you never lose sight of a great feature idea again.")
                     .multilineTextAlignment(.leading)
-                    .font(.system(size: 18))
+                    .font(Font.custom("Poppins", size: 18))
                     .fontWeight(.medium)
                     .padding(.top, 40)
                     .padding(.horizontal, 60)
@@ -91,7 +93,7 @@ extension OnboardingView {
             } else if pageNumber == 2 {
                 Text("All your feature ideas for all your projects in one place. Share, copy or air drop it wherever you want!")
                     .multilineTextAlignment(.leading)
-                    .font(.system(size: 35))
+                    .font(Font.custom("Poppins", size: 18))
                     .fontWeight(.medium)
                     .padding(.top, 180)
                     .padding(.horizontal, 40)
@@ -99,7 +101,7 @@ extension OnboardingView {
             } else if pageNumber == 3 {
                 Text("By saving code answers in collections, you'll be ready for spur-of-the-moment thinking.")
                     .multilineTextAlignment(.leading)
-                    .font(.system(size: 35))
+                    .font(Font.custom("Poppins", size: 18))
                     .fontWeight(.medium)
                     .padding(.top, 180)
                     .padding(.horizontal, 40)
@@ -151,7 +153,7 @@ extension OnboardingView {
         HStack(spacing: 0) {
             Button(action: { showRegistrationOnboard.toggle() }) {
                 Text("Skip")
-                    .font(.headline)
+                    .font(Font.custom("Poppins", size: 18))
                     .foregroundColor(Color.theme.accent)
                     .frame(width: 150, height: 50)
                     .background(
@@ -183,7 +185,7 @@ extension OnboardingView {
                 }
             }) {
                 Text("Next")
-                    .font(.headline)
+                    .font(Font.custom("Poppins", size: 18))
                     .foregroundColor(Color.theme.background)
                     .frame(width: 150, height: 50)
                     .background(Color.theme.accent)
