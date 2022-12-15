@@ -35,15 +35,16 @@ struct InputResultView: View {
             KFImage(URL(string: imageURL))
                 .resizable()
                 .scaledToFit()
-                .frame(width: 50, height: 50)
+                .frame(width: 40, height: 40)
                 .clipShape(Circle())
                 .padding(.leading)
             
             Text(input)
-                .lineLimit(4)
-                .minimumScaleFactor(0.5)
+                .font(Font.custom("Poppins", size: 16))
+                .lineLimit(3)
+                .minimumScaleFactor(0.85)
                 .multilineTextAlignment(.leading)
-                .padding(.leading, 30)
+                .padding(.leading, 28)
                 .foregroundColor(Color.theme.accent)
             
             Spacer()
@@ -59,7 +60,7 @@ struct InputResultView: View {
 
 struct InputResultView_Previews: PreviewProvider {
     static var previews: some View {
-        InputResultView(input: "This is a test", imageURL: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a")
+        InputResultView(input: "This is a test.", imageURL: "https://yt3.ggpht.com/ygrMbZl0OZSesSJY6cJfcRoQAwKU7WcodAvS1HAHhhQftBLKG9x5su5uFXXlhaLaUqCbywspZyg=s48-c-k-c0x00ffffff-no-rj")
             .previewLayout(PreviewLayout.fixed(width: UIScreen.main.bounds.width, height: 100))
     }
 }

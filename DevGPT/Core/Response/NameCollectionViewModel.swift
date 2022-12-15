@@ -45,7 +45,8 @@ class NameCollectionViewModel: ObservableObject {
             
             let data = [
                 "name": name,
-                "responses": [imageResponse.toAnyObject()]
+                "responses": [imageResponse.toAnyObject()],
+                "favorited": false
             ] as [String: Any]
             
             COLLECTION_USERS

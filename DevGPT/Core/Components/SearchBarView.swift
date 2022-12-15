@@ -86,8 +86,17 @@ struct SearchBarView: View {
     }
 }
 
-//struct SearchBarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchBarView(searchText: .constant(""))
-//    }
-//}
+struct SearchBarView_Previews: PreviewProvider {
+    struct previewHandler: View {
+        @State private var text: String = ""
+        let user: User
+        
+        var body: some View {
+            SearchBarView(searchText: $text, user: user)
+        }
+    }
+    
+    static var previews: some View {
+        previewHandler(user: dev.user)
+    }
+}

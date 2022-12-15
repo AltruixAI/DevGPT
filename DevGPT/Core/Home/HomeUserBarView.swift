@@ -1,5 +1,5 @@
 //
-//  FavoriteCollectionsView.swift
+//  HomeUserBarView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -24,36 +24,56 @@
 //  
 
 import SwiftUI
+import Kingfisher
 
-struct FavoriteCollectionsView: View {
-    let collections: [Collection]?
+struct HomeUserBarView: View {
+    let user: User
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Favorites")
-                    .font(Font.custom("Poppins", size: 28))
+        HStack {
+            if let profileImage = user.profileImageUrl {
+                KFImage(URL(string: profileImage))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 50, height: 50)
+                    .clipShape(Circle())
+                    .padding(.leading, 18)
+            } else {
+                Circle()
                     .foregroundColor(Color.theme.accent)
-                    .padding(.leading)
-                
-                Spacer()
+                    .frame(width: 50, height: 50)
+                    .padding(.leading, 18)
             }
             
-            if let collections = collections, !collections.isEmpty {
-                CollectionsGridView(collections: collections)
-                    .padding(.leading, 14)
-            } else {
-                Text("Your have no collections.\nStart adding some by generating a code idea.")
-                    .font(Font.custom("Poppins", size: 14))
+            VStack(alignment: .leading) {
+                Text(user.username)
+                    .font(Font.custom("Poppins", size: 18))
                     .foregroundColor(Color.theme.accent)
-                    .multilineTextAlignment(.leading)
+                
+                Text(user.email)
+                    .font(Font.custom("Poppins", size: 12))
+                    .foregroundColor(Color.theme.accent)
+                    .tint(Color.theme.accent)
             }
+            .padding(.leading, 2)
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "ellipsis")
+                    .foregroundColor(Color.theme.accent)
+                    .rotationEffect(Angle(degrees: 90.0))
+                    .padding(.trailing, 18)
+            }
+
         }
     }
 }
 
-struct FavoriteCollectionsView_Previews: PreviewProvider {
+struct HomeUserBarView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteCollectionsView(collections: [dev.collection])
+        HomeUserBarView(user: dev.user)
     }
 }

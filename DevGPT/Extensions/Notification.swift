@@ -1,5 +1,5 @@
 //
-//  Collection.swift
+//  Notification.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,12 +23,10 @@
 //  THE SOFTWARE.
 //  
 
-import Foundation
-import FirebaseFirestoreSwift
+import SwiftUI
 
-struct Collection: Identifiable, Codable {
-    @DocumentID var id: String?
-    var name: String
-    var responses: [Response]
-    var favorited: Bool
+extension Notification {
+    var keyboardHeight: CGFloat {
+        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
+    }
 }

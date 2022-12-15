@@ -48,7 +48,7 @@ import OpenAIKit
         
         let openAI = OpenAI(Configuration(organization: "MarcoDotIO", apiKey: apiKey))
         let completionParameters = CompletionParameters(
-            model: "text-davinci-003",
+            model: "code-davinci-002",
             prompt: [input],
             maxTokens: 1000,
             temperature: 0.01,
@@ -59,8 +59,19 @@ import OpenAIKit
         
         let programmingLanguages = getProgrammingLanguages(from: input)
         
-        self.response = Response(prompt: input, response: outputText, language: programmingLanguages[0])
+        if programmingLanguages[0].lowercased() == "javascript" {
+            self.response = Response(prompt: "\\* Command: \(input)*\\", response: outputText, language: programmingLanguages[0])
+            self.isNotLoading = true
+            return
+        }
         
+        if programmingLanguages[0].lowercased() == "python" {
+            self.response = Response(prompt: "# Command: \(input)", response: outputText, language: programmingLanguages[0])
+            self.isNotLoading = true
+            return
+        }
+        
+        self.response = Response(prompt: "// Command: \(input)", response: outputText, language: programmingLanguages[0])
         self.isNotLoading = true
     }
     

@@ -45,9 +45,12 @@ struct HomeView: View {
             
             ZStack {
                 VStack {
-                    // Recent Responses
+                    HomeUserBarView(user: viewModel.user)
+                        .padding(.top, 30)
+                    
                     RecentResponsesView(responses: self.viewModel.user.responses)
-                        .padding(.top, 50)
+                        .padding(.top, 40)
+                        .padding(.leading)
                     
                     FavoriteCollectionsView(collections: viewModel.user.collections)
                         .padding(.top, 20)
@@ -66,30 +69,8 @@ struct HomeView: View {
     }
 }
 
-extension Publishers {
-    // 1.
-    static var keyboardHeight: AnyPublisher<CGFloat, Never> {
-        // 2.
-        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)
-            .map { $0.keyboardHeight }
-        
-        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)
-            .map { _ in CGFloat(0) }
-        
-        // 3.
-        return MergeMany(willShow, willHide)
-            .eraseToAnyPublisher()
-    }
-}
-
-extension Notification {
-    var keyboardHeight: CGFloat {
-        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
-    }
-}
-
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: User(id: "", tokens: 15, email: "test@test.com", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a", username: "MarcoDotIO", collections: nil, responses: [Response(id: "1v", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "2q", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "3s", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "4rq", prompt: "This is a test", response: "This is a test", language: "Swift")]))
+        HomeView(user: dev.user)
     }
 }

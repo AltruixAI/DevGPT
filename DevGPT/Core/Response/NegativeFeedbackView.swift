@@ -31,6 +31,10 @@ struct NegativeFeedbackView: View {
     @State private var trueChecked: Bool = false
     @State private var helpfulChecked: Bool = false
     
+    @Binding var isShowingPrompt: Bool
+    
+    let response: Response
+    
     var body: some View {
         ZStack {
             Rectangle()
@@ -39,6 +43,8 @@ struct NegativeFeedbackView: View {
             
             VStack(alignment: .leading) {
                 Text("Provide additional feedback")
+                    .font(Font.custom("Poppins", size: 16))
+                    .foregroundColor(Color.theme.accent)
                     .font(.headline)
                     .bold()
                     .padding(.leading)
@@ -51,6 +57,8 @@ struct NegativeFeedbackView: View {
                 HStack {
                     CheckBoxView(checked: $harmfulChecked)
                     Text("This is harmful or unsafe.")
+                        .font(Font.custom("Poppins", size: 16))
+                        .foregroundColor(Color.theme.accent)
                 }
                 .padding(.leading)
                 .padding(.top)
@@ -58,6 +66,8 @@ struct NegativeFeedbackView: View {
                 HStack {
                     CheckBoxView(checked: $trueChecked)
                     Text("This isn't true.")
+                        .font(Font.custom("Poppins", size: 16))
+                        .foregroundColor(Color.theme.accent)
                 }
                 .padding(.leading)
                 .padding(.top, 2)
@@ -65,18 +75,20 @@ struct NegativeFeedbackView: View {
                 HStack {
                     CheckBoxView(checked: $helpfulChecked)
                     Text("This isn't helpful.")
+                        .font(Font.custom("Poppins", size: 16))
+                        .foregroundColor(Color.theme.accent)
                 }
                 .padding(.leading)
                 .padding(.top, 2)
                 
                 AppPrimaryButton("Submit Feedback") {
-                    
+                    isShowingPrompt.toggle()
                 }
                 .padding(.leading)
             }
             .background(
                 Rectangle()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.theme.background)
                     .cornerRadius(10)
                     .padding(.vertical, -16)
             )
@@ -86,7 +98,19 @@ struct NegativeFeedbackView: View {
 }
 
 struct NegativeFeedbackView_Previews: PreviewProvider {
+    struct previewHandler: View {
+        @State private var isShowing: Bool = true
+        let response: Response
+        
+        var body: some View {
+            NegativeFeedbackView(
+                isShowingPrompt: $isShowing,
+                response: response
+            )
+        }
+    }
+    
     static var previews: some View {
-        NegativeFeedbackView()
+        previewHandler(response: dev.response1)
     }
 }

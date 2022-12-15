@@ -90,6 +90,6 @@ struct CollectionThumbnailView: View {
 
 struct CollectionThumbnailView_Previews: PreviewProvider {
     static var previews: some View {
-        CollectionThumbnailView(collection: Collection(name: "Swift Stuff", responses: [Response(prompt: "This is a test", response: "This is a test", language: "Swift")]))
+        CollectionThumbnailView(collection: dev.collection)
     }
 }

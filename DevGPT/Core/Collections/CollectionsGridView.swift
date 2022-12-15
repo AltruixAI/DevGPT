@@ -26,8 +26,6 @@
 import SwiftUI
 
 struct CollectionsGridView: View {
-    let title: String
-    
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 35),
         GridItem(.flexible(), spacing: 30)
@@ -63,7 +61,7 @@ struct CollectionsGridView: View {
 struct CollectionsGridView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            CollectionsGridView(title: "Test collection", collections: [Collection(id: "12", name: "Swift Stuff", responses: [Response(prompt: "This is a test", response: "This is a test", language: "Swift")]), Collection(id: "433", name: "Swift Stuff 2", responses: [Response(prompt: "This is a test 2", response: "This is a test 2", language: "Swift")])])
+            CollectionsGridView(collections: [dev.collection])
         }
     }
 }

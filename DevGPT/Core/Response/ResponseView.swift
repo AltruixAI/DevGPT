@@ -24,12 +24,17 @@
 //  
 
 import SwiftUI
+import Combine
+import UniformTypeIdentifiers
 
 struct ResponseView: View {
     @ObservedObject var viewModel: ResponseViewModel
     
     @State private var showSaveResponse: Bool = false
     @State private var text: String = ""
+    @State private var keyboardHeight: CGFloat = 0
+    @State private var showPositiveFeedback: Bool = false
+    @State private var showNegativeFeedback: Bool = false
     
     let user: User
     let outputResponse: Response?
@@ -44,8 +49,10 @@ struct ResponseView: View {
     var body: some View {
         if let outputResponse = outputResponse {
             ZStack {
-                Color.theme.background
-                    .ignoresSafeArea()
+                Color.theme.statusBar.ignoresSafeArea()
+                
+                Color.theme.background.ignoresSafeArea(edges: [.bottom])
+                    .padding(.top, 5)
                 
                 VStack {
                     ScrollView {
@@ -53,7 +60,6 @@ struct ResponseView: View {
                             .padding(.top)
                         
                         ChatResponseView(output: outputResponse.response)
-                            .padding(.top, 8)
                         
                         responseBar
                             .padding(.top)
@@ -61,15 +67,19 @@ struct ResponseView: View {
                     }
                 }
                 
-                SearchBarView(searchText: $text, user: user)
-                    .offset(y: 380)
+                VStack {
+                    SearchBarView(searchText: $text, user: user)
+                        .offset(y: 360)
+                }
+                .padding(.bottom, keyboardHeight - 40)
+                .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
             }
-//            .onAppear {
-//                self.viewModel.saveResponse()
-//            }
+            .onAppear {
+                self.viewModel.saveResponse()
+            }
             .sheet(isPresented: $showSaveResponse, content: {
-                if let outputResponse = outputResponse {
-                    AddToCollectionView(response: outputResponse, userId: user.id ?? "")
+                if let outputResponse = outputResponse, let id = user.id {
+                    AddToCollectionView(response: outputResponse, userId: id)
                 }
             })
             .toolbar {
@@ -81,6 +91,16 @@ struct ResponseView: View {
                     .tint(Color.theme.accent)
                 }
             }
+            .overlay(
+                showPositiveFeedback ?
+                PositiveFeedbackView(response: outputResponse, isShowingPrompt: $showPositiveFeedback) :
+                nil
+            )
+            .overlay(
+                showNegativeFeedback ?
+                NegativeFeedbackView(isShowingPrompt: $showNegativeFeedback, response: outputResponse) :
+                nil
+            )
         }
     }
 }
@@ -89,7 +109,8 @@ extension ResponseView {
     private var responseBar: some View {
         HStack {
             Button {
-                
+                let activityVC = UIActivityViewController(activityItems: [outputResponse?.response ?? ""], applicationActivities: nil)
+                UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
             } label: {
                 Image(systemName: "square.and.arrow.up.fill")
                     .foregroundColor(Color.theme.accent)
@@ -97,7 +118,7 @@ extension ResponseView {
             .padding(.leading, 48)
             
             Button {
-                
+                UIPasteboard.general.setValue(outputResponse?.response ?? "", forPasteboardType: UTType.plainText.identifier)
             } label: {
                 Image(systemName: "doc.on.doc.fill")
                     .foregroundColor(Color.theme.accent)
@@ -115,7 +136,7 @@ extension ResponseView {
             Spacer()
             
             Button {
-                
+                showPositiveFeedback.toggle()
             } label: {
                 Image(systemName: "hand.thumbsup.fill")
                     .foregroundColor(Color.theme.accent)
@@ -123,7 +144,7 @@ extension ResponseView {
             .padding(.trailing, 16)
             
             Button {
-                
+                showNegativeFeedback.toggle()
             } label: {
                 Image(systemName: "hand.thumbsdown.fill")
                     .foregroundColor(Color.theme.accent)
@@ -134,17 +155,9 @@ extension ResponseView {
 }
 
 struct ResponseView_Previews: PreviewProvider {
-    struct helperResponse: View {
-        let response = Response(prompt: "Say this is a test", response: "Lorem ipsum dolor sit amet dfdsdfsffsfsdffdsfdfddfasdfdfdswdffrsdfsddsffffdsdfsdfdsfsdfdsffdfsfdssdfsfdsfsdfdsfsdsdfdsfsdadssddsadasxcsdasdsdsdsdasdsdsadsadsadsdsadsdadsadsadssdaddsa", language: "Swift")
-
-        var body: some View {
-            ResponseView(user: User(id: "", tokens: 15, email: "test@test.com", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a", username: "MarcoDotIO", collections: nil, responses: nil), outputResponse: response)
-        }
-    }
-
     static var previews: some View {
         NavigationStack {
-            helperResponse()
+            ResponseView(user: dev.user, outputResponse: dev.response1)
         }
     }
 }

@@ -43,9 +43,10 @@ struct ChatResponseView: View {
                 
                 VStack {
                     Text(output)
+                        .font(Font.custom("Poppins", size: 16))
                         .foregroundColor(.white)
                         .padding()
-                        .padding(.trailing)
+                        .padding(.trailing, 22)
                     
                     Spacer()
                 }

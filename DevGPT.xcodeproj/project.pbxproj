@@ -76,6 +76,10 @@
 		765EF22C294976C30051FD6F /* EnterPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF22B294976C30051FD6F /* EnterPasswordView.swift */; };
 		765EF22E29497FF90051FD6F /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF22D29497FF80051FD6F /* ForgetPasswordView.swift */; };
 		765EF230294981370051FD6F /* ForgetPasswordConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF22F294981360051FD6F /* ForgetPasswordConfirmView.swift */; };
+		765EF232294A806E0051FD6F /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF231294A806E0051FD6F /* PreviewProvider.swift */; };
+		765EF234294A83200051FD6F /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF233294A83200051FD6F /* Publisher.swift */; };
+		765EF236294A83430051FD6F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF235294A83430051FD6F /* Notification.swift */; };
+		765EF238294A84340051FD6F /* HomeUserBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF237294A84340051FD6F /* HomeUserBarView.swift */; };
 		76F70D092947A4BC0016DD44 /* ThirdPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F70D082947A4BC0016DD44 /* ThirdPageView.swift */; };
 		76F70D0B2948DAFE0016DD44 /* Poppins600.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76F70D0A2948DAB70016DD44 /* Poppins600.ttf */; };
 /* End PBXBuildFile section */
@@ -142,6 +146,10 @@
 		765EF22B294976C30051FD6F /* EnterPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPasswordView.swift; sourceTree = "<group>"; };
 		765EF22D29497FF80051FD6F /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		765EF22F294981360051FD6F /* ForgetPasswordConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordConfirmView.swift; sourceTree = "<group>"; };
+		765EF231294A806E0051FD6F /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
+		765EF233294A83200051FD6F /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
+		765EF235294A83430051FD6F /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		765EF237294A84340051FD6F /* HomeUserBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserBarView.swift; sourceTree = "<group>"; };
 		76F70D082947A4BC0016DD44 /* ThirdPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageView.swift; sourceTree = "<group>"; };
 		76F70D0A2948DAB70016DD44 /* Poppins600.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Poppins600.ttf; sourceTree = "<group>"; };
 		76F70D0C2948DB240016DD44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -265,6 +273,9 @@
 				763750622943BF0300DA3F39 /* Color.swift */,
 				7637507E2943F09800DA3F39 /* UIApplication.swift */,
 				763750F02945244200DA3F39 /* View.swift */,
+				765EF231294A806E0051FD6F /* PreviewProvider.swift */,
+				765EF233294A83200051FD6F /* Publisher.swift */,
+				765EF235294A83430051FD6F /* Notification.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +331,7 @@
 				7637506F2943DC6300DA3F39 /* HomeView.swift */,
 				763750732943E4E900DA3F39 /* RecentResponsesView.swift */,
 				763750772943EACE00DA3F39 /* FavoriteCollectionsView.swift */,
+				765EF237294A84340051FD6F /* HomeUserBarView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -507,6 +519,8 @@
 				763750742943E4E900DA3F39 /* RecentResponsesView.swift in Sources */,
 				763750612943BAE800DA3F39 /* OnboardingView.swift in Sources */,
 				763750A329442D4F00DA3F39 /* AddTokensView.swift in Sources */,
+				765EF232294A806E0051FD6F /* PreviewProvider.swift in Sources */,
+				765EF238294A84340051FD6F /* HomeUserBarView.swift in Sources */,
 				763750F12945244200DA3F39 /* View.swift in Sources */,
 				763750EB294509E000DA3F39 /* AddToCollectionViewModel.swift in Sources */,
 				763750A5294431EF00DA3F39 /* AddTokensViewModel.swift in Sources */,
@@ -524,6 +538,7 @@
 				763750AA2944428E00DA3F39 /* CustomField.swift in Sources */,
 				76375094294416CB00DA3F39 /* AllCollectionsView.swift in Sources */,
 				763750C7294451A900DA3F39 /* Feedback.swift in Sources */,
+				765EF234294A83200051FD6F /* Publisher.swift in Sources */,
 				7637508F2944121900DA3F39 /* CheckBoxView.swift in Sources */,
 				763750C129444F4F00DA3F39 /* AuthenticationViewModel.swift in Sources */,
 				76375092294415DB00DA3F39 /* CollectionsGridView.swift in Sources */,
@@ -548,6 +563,7 @@
 				763750632943BF0300DA3F39 /* Color.swift in Sources */,
 				763750C3294450DD00DA3F39 /* User.swift in Sources */,
 				7637509C2944226E00DA3F39 /* AccountView.swift in Sources */,
+				765EF236294A83430051FD6F /* Notification.swift in Sources */,
 				763750CD2944550300DA3F39 /* ImageUploader.swift in Sources */,
 				7637506D2943DA0F00DA3F39 /* TabBar.swift in Sources */,
 				763750A129442A1C00DA3F39 /* AddToCollectionView.swift in Sources */,

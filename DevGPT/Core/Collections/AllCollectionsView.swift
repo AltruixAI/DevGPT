@@ -50,7 +50,7 @@ struct AllCollectionsView: View {
                     Spacer()
                 }
                 
-                CollectionsGridView(title: "All Collections", collections: viewModel.user.collections)
+                CollectionsGridView(collections: viewModel.user.collections)
                     .frame(maxWidth: UIScreen.main.bounds.width - 10)
             }
         }
@@ -60,7 +60,7 @@ struct AllCollectionsView: View {
 struct AllCollectionsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AllCollectionsView(user: User(id: "", tokens: 15, email: "test@test.com", profileImageUrl: "https://firebasestorage.googleapis.com/v0/b/kiyomimvp.appspot.com/o/profile_image%2F82C4568D-A1F7-4F83-A892-61F913126CBB?alt=media&token=13e98590-202d-4e3f-b92a-6900e8797b0a", username: "MarcoDotIO", collections: [Collection(name: "Swift Stuff", responses: [Response(prompt: "This is a test", response: "This is a test", language: "Swift")])], responses: [Response(id: "1v", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "2q", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "3s", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "4rq", prompt: "This is a test", response: "This is a test", language: "Swift")]))
+            AllCollectionsView(user: dev.user)
         }
     }
 }

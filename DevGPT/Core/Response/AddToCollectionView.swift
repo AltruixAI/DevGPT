@@ -31,7 +31,7 @@ struct AddToCollectionView: View {
     
     private let columns: [GridItem] = [
         GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.flexible(), spacing: 20)
     ]
     
     private let spacing: CGFloat = 20
@@ -54,7 +54,7 @@ struct AddToCollectionView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("Choose Collection")
-                        .font(.title)
+                        .font(Font.custom("Poppins", size: 28))
                         .bold()
                         .padding(.leading, 6)
                         .padding(.top, 68)
@@ -77,7 +77,6 @@ struct AddToCollectionView: View {
                                     .foregroundColor(Color.theme.statusBar)
                                     .frame(width: 200, height: 150)
                                     .cornerRadius(10)
-                                    .padding(.leading, 4)
                                     .overlay(
                                         Image(systemName: "plus.square")
                                             .resizable()
@@ -87,6 +86,7 @@ struct AddToCollectionView: View {
                             }
                             .tint(Color.theme.accent)
                         }
+                        .padding(.horizontal)
                 }
             }
             .overlay(
@@ -104,7 +104,7 @@ struct AddToCollectionView: View {
 
 struct AddToCollectionView_Previews: PreviewProvider {
     struct handlerCollection: View {
-        let response = Response(prompt: "Hello", response: "World", language: "Swift")
+        let response: Response
         
         var body: some View {
             AddToCollectionView(response: response, userId: "Test")
@@ -112,6 +112,6 @@ struct AddToCollectionView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        handlerCollection()
+        handlerCollection(response: dev.response1)
     }
 }

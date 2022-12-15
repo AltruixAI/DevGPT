@@ -26,7 +26,11 @@
 import SwiftUI
 
 struct PositiveFeedbackView: View {
+    let response: Response
+    
     @State private var feedbackText: String = ""
+    
+    @Binding var isShowingPrompt: Bool
     
     var body: some View {
         ZStack {
@@ -36,7 +40,8 @@ struct PositiveFeedbackView: View {
             
             VStack(alignment: .leading) {
                 Text("Provide additional feedback")
-                    .font(.headline)
+                    .font(Font.custom("Poppins", size: 16))
+                    .foregroundColor(Color.theme.accent)
                     .bold()
                     .padding(.leading)
                 
@@ -46,13 +51,13 @@ struct PositiveFeedbackView: View {
                     .padding(.top, 4)
                 
                 AppPrimaryButton("Submit Feedback") {
-                    
+                    isShowingPrompt.toggle()
                 }
                 .padding(.leading)
             }
             .background(
                 Rectangle()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.theme.background)
                     .cornerRadius(10)
                     .padding(.vertical, -16)
             )
@@ -62,7 +67,19 @@ struct PositiveFeedbackView: View {
 }
 
 struct PositiveFeedbackView_Previews: PreviewProvider {
+    struct previewHandler: View {
+        @State private var isShowing: Bool = true
+        let response: Response
+        
+        var body: some View {
+            PositiveFeedbackView(
+                response: response,
+                isShowingPrompt: $isShowing
+            )
+        }
+    }
+    
     static var previews: some View {
-        PositiveFeedbackView()
+        previewHandler(response: dev.response1)
     }
 }
