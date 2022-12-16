@@ -41,8 +41,9 @@ struct ResponseThumbnailView: View {
                         KFImage(URL(string: thumbnail))
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 200, height: 150)
+                            .frame(width: 175, height: 125)
                             .cornerRadius(20)
+                            .foregroundColor(Color.theme.accent)
                     ))
             } else {
                 Rectangle()

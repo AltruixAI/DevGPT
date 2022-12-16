@@ -47,6 +47,7 @@ struct ChatResponseView: View {
                         .foregroundColor(.white)
                         .padding()
                         .padding(.trailing, 22)
+                        .padding(.top, 8)
                     
                     Spacer()
                 }

@@ -73,7 +73,7 @@ struct LoadingPageView: View {
                 } catch {
                     print("Error: \(error)")
                 }
-        }
+            }
         }
     }
 }
@@ -84,7 +84,7 @@ extension LoadingPageView {
             .padding()
             .padding(.horizontal, 38)
             .onReceive(timer) { _ in
-                if downloadAmount < 100 {
+                if downloadAmount <= 99.9 {
                     downloadAmount += 0.09
                 }
             }

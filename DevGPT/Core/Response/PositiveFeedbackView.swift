@@ -26,11 +26,16 @@
 import SwiftUI
 
 struct PositiveFeedbackView: View {
-    let response: Response
-    
+    @ObservedObject var viewModel: PositiveResponseViewModel
+
     @State private var feedbackText: String = ""
     
     @Binding var isShowingPrompt: Bool
+    
+    init(response: Response, isShowingPrompt: Binding<Bool>, user: User) {
+        self._isShowingPrompt = isShowingPrompt
+        self.viewModel = PositiveResponseViewModel(response: response, user: user)
+    }
     
     var body: some View {
         ZStack {
@@ -51,6 +56,7 @@ struct PositiveFeedbackView: View {
                     .padding(.top, 4)
                 
                 AppPrimaryButton("Submit Feedback") {
+                    viewModel.sendFeedback(feedback: feedbackText)
                     isShowingPrompt.toggle()
                 }
                 .padding(.leading)
@@ -70,16 +76,18 @@ struct PositiveFeedbackView_Previews: PreviewProvider {
     struct previewHandler: View {
         @State private var isShowing: Bool = true
         let response: Response
+        let user: User
         
         var body: some View {
             PositiveFeedbackView(
                 response: response,
-                isShowingPrompt: $isShowing
+                isShowingPrompt: $isShowing,
+                user: user
             )
         }
     }
     
     static var previews: some View {
-        previewHandler(response: dev.response1)
+        previewHandler(response: dev.response1, user: dev.user)
     }
 }

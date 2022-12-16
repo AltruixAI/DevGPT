@@ -80,6 +80,9 @@
 		765EF234294A83200051FD6F /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF233294A83200051FD6F /* Publisher.swift */; };
 		765EF236294A83430051FD6F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF235294A83430051FD6F /* Notification.swift */; };
 		765EF238294A84340051FD6F /* HomeUserBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF237294A84340051FD6F /* HomeUserBarView.swift */; };
+		76D01E63294AC01B00B81357 /* PositiveResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D01E62294AC01B00B81357 /* PositiveResponseViewModel.swift */; };
+		76D01E65294AEB3D00B81357 /* ResponseRelayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D01E64294AEB3D00B81357 /* ResponseRelayView.swift */; };
+		76D01E67294BFF4400B81357 /* ResponseGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D01E66294BFF4400B81357 /* ResponseGridView.swift */; };
 		76F70D092947A4BC0016DD44 /* ThirdPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F70D082947A4BC0016DD44 /* ThirdPageView.swift */; };
 		76F70D0B2948DAFE0016DD44 /* Poppins600.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76F70D0A2948DAB70016DD44 /* Poppins600.ttf */; };
 /* End PBXBuildFile section */
@@ -150,6 +153,9 @@
 		765EF233294A83200051FD6F /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		765EF235294A83430051FD6F /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		765EF237294A84340051FD6F /* HomeUserBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserBarView.swift; sourceTree = "<group>"; };
+		76D01E62294AC01B00B81357 /* PositiveResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveResponseViewModel.swift; sourceTree = "<group>"; };
+		76D01E64294AEB3D00B81357 /* ResponseRelayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseRelayView.swift; sourceTree = "<group>"; };
+		76D01E66294BFF4400B81357 /* ResponseGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGridView.swift; sourceTree = "<group>"; };
 		76F70D082947A4BC0016DD44 /* ThirdPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageView.swift; sourceTree = "<group>"; };
 		76F70D0A2948DAB70016DD44 /* Poppins600.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Poppins600.ttf; sourceTree = "<group>"; };
 		76F70D0C2948DB240016DD44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -351,7 +357,9 @@
 				763750F42945369300DA3F39 /* ResponseViewModel.swift */,
 				763750EA294509E000DA3F39 /* AddToCollectionViewModel.swift */,
 				763750EE294513DB00DA3F39 /* NameCollectionViewModel.swift */,
+				76D01E62294AC01B00B81357 /* PositiveResponseViewModel.swift */,
 				763750842944011A00DA3F39 /* ResponseView.swift */,
+				76D01E64294AEB3D00B81357 /* ResponseRelayView.swift */,
 				76375086294402EA00DA3F39 /* InputResultView.swift */,
 				76375088294404AC00DA3F39 /* ChatResponseView.swift */,
 				7637508A29440E2F00DA3F39 /* PositiveFeedbackView.swift */,
@@ -368,6 +376,7 @@
 				76375093294416CB00DA3F39 /* AllCollectionsView.swift */,
 				76375091294415DB00DA3F39 /* CollectionsGridView.swift */,
 				763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */,
+				76D01E66294BFF4400B81357 /* ResponseGridView.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -528,6 +537,7 @@
 				7603D4F729478269000D55E8 /* FirstPageView.swift in Sources */,
 				7637508D294411B900DA3F39 /* NegativeFeedbackView.swift in Sources */,
 				765EF22A294910840051FD6F /* EnterEmailView.swift in Sources */,
+				76D01E63294AC01B00B81357 /* PositiveResponseViewModel.swift in Sources */,
 				763750F52945369300DA3F39 /* ResponseViewModel.swift in Sources */,
 				765EF230294981370051FD6F /* ForgetPasswordConfirmView.swift in Sources */,
 				763750762943E5BF00DA3F39 /* ResponseThumbnailView.swift in Sources */,
@@ -538,6 +548,8 @@
 				763750AA2944428E00DA3F39 /* CustomField.swift in Sources */,
 				76375094294416CB00DA3F39 /* AllCollectionsView.swift in Sources */,
 				763750C7294451A900DA3F39 /* Feedback.swift in Sources */,
+				76D01E67294BFF4400B81357 /* ResponseGridView.swift in Sources */,
+				76D01E65294AEB3D00B81357 /* ResponseRelayView.swift in Sources */,
 				765EF234294A83200051FD6F /* Publisher.swift in Sources */,
 				7637508F2944121900DA3F39 /* CheckBoxView.swift in Sources */,
 				763750C129444F4F00DA3F39 /* AuthenticationViewModel.swift in Sources */,

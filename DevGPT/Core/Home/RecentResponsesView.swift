@@ -28,6 +28,7 @@ import Kingfisher
 
 struct RecentResponsesView: View {
     let responses: [Response]?
+    let user: User
     
     var body: some View {
         VStack {
@@ -43,7 +44,12 @@ struct RecentResponsesView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(responses) { response in
-                            ResponseThumbnailView(response: response)
+                            NavigationLink {
+                                ResponseRelayView(user: user, outputResponse: response).navigationBarBackButtonHidden(true)
+                            } label: {
+                                ResponseThumbnailView(response: response)
+                            }
+
                         }
                     }
                 }
@@ -61,7 +67,7 @@ struct RecentResponsesView: View {
 struct RecentResponsesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            RecentResponsesView(responses: [Response(id: "1v", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "2q", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "3s", prompt: "This is a test", response: "This is a test", language: "Swift"), Response(id: "4rq", prompt: "This is a test", response: "This is a test", language: "Swift")])
+            RecentResponsesView(responses: [dev.response1], user: dev.user)
         }
     }
 }

@@ -31,6 +31,9 @@ class AuthenticationViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var isEmailVerified: Bool?
     
+    @Published var snapshotCollections: [QueryDocumentSnapshot] = []
+    @Published var collections: [Collection] = []
+    
     static let shared = AuthenticationViewModel()
     
     init() {
@@ -172,9 +175,9 @@ class AuthenticationViewModel: ObservableObject {
             guard let snapshot = snapshot else { return }
             guard var user = try? snapshot.data(as: User.self) else { return }
             
-            COLLECTION_USERS.document(uid).collection("collections").getDocuments { snapshot, _ in
-                guard let documents = snapshot?.documents else { return }
-                let collections = documents.compactMap { try? $0.data(as: Collection.self) }
+            COLLECTION_USERS.document(uid).collection("collections").getDocuments { snapshotCollection, _ in
+                guard let snapshotCollection = snapshotCollection?.documents else { return }
+                let collections = snapshotCollection.compactMap { try? $0.data(as: Collection.self) }
                 user.collections = collections
                 
                 COLLECTION_USERS.document(uid).collection("responses").getDocuments { snapshot, _ in

@@ -35,25 +35,43 @@ struct CollectionsGridView: View {
     
     let collections: [Collection]?
     
+    @State private var selectedResponses: [Response]? = nil
+    @State private var isClicked: Bool = false
+    
+    let user: User
+    
     var body: some View {
-        ScrollView {
-            if let collections = collections {
-                VStack(alignment: .leading) {
-                    LazyVGrid(
-                        columns: columns,
-                        alignment: .leading,
-                        spacing: spacing,
-                        pinnedViews: []) {
-                            ForEach(collections) { collection in
-                                HStack {
-                                    CollectionThumbnailView(collection: collection)
+        ZStack {
+            NavigationLink(destination: ResponseGridView(responses: selectedResponses, user: user).navigationBarBackButtonHidden(true), isActive: $isClicked, label: { EmptyView() })
+            
+            ScrollView {
+                if let collections = collections {
+                    VStack(alignment: .leading) {
+                        LazyVGrid(
+                            columns: columns,
+                            alignment: .leading,
+                            spacing: spacing,
+                            pinnedViews: []) {
+                                ForEach(collections) { collection in
+                                    Button {
+                                        selectedResponses = collection.responses
+                                        isClicked.toggle()
+                                    } label: {
+                                        HStack {
+                                            CollectionThumbnailView(collection: collection)
+                                        }
+                                    }
+
                                 }
                             }
-                        }
-                        .padding(.trailing, 23)
-                        .padding(.leading, 6)
+                            .padding(.trailing, 23)
+                            .padding(.leading, 6)
+                    }
                 }
             }
+        }
+        .onAppear {
+            isClicked = false
         }
     }
 }
@@ -61,7 +79,7 @@ struct CollectionsGridView: View {
 struct CollectionsGridView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            CollectionsGridView(collections: [dev.collection])
+            CollectionsGridView(collections: [dev.collection], user: dev.user)
         }
     }
 }

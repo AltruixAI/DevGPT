@@ -33,6 +33,7 @@ struct Response: Identifiable, Codable {
     let language: String
     var thumbnail: String?
     var feedback: Feedback?
+    var rootId: String
     
     init(
         id: String? = nil,
@@ -40,7 +41,8 @@ struct Response: Identifiable, Codable {
         response: String,
         thumbnail: String? = nil,
         feedback: Feedback? = nil,
-        language: String
+        language: String,
+        rootId: String = ""
     ) {
         self.id = id
         self.prompt = prompt
@@ -48,6 +50,7 @@ struct Response: Identifiable, Codable {
         self.thumbnail = thumbnail
         self.feedback = feedback
         self.language = language
+        self.rootId = rootId
     }
     
     enum CodingKeys: String, CodingKey {
@@ -57,12 +60,15 @@ struct Response: Identifiable, Codable {
         case thumbnail
         case feedback
         case language
+        case rootId
     }
     
-    func toAnyObject() -> Any {
+    func toAnyObject() -> [String: Any] {
         var result = [
             "prompt": prompt,
-            "response": response
+            "response": response,
+            "language": language,
+            "rootId": rootId
         ] as [String: Any]
         
         if let thumbnail = thumbnail {

@@ -30,14 +30,19 @@ struct Feedback: Identifiable, Codable {
     @DocumentID var id: String?
     let isSatisfied: Bool
     let feedbackComment: String
-    let category: Category
+    let category: Category?
     
     func toAnyObject() -> Any {
-        return [
+        var result = [
             "isSatisfied": isSatisfied,
-            "feedbackComment": feedbackComment,
-            "category": category.rawValue
-        ]
+            "feedbackComment": feedbackComment
+        ] as [String: Any]
+        
+        if let category = category {
+            result["category"] = category.rawValue
+        }
+        
+        return result
     }
 }
 

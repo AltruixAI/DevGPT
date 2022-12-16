@@ -27,6 +27,7 @@ import SwiftUI
 
 struct FavoriteCollectionsView: View {
     let collections: [Collection]?
+    let user: User
     
     var body: some View {
         VStack {
@@ -40,7 +41,7 @@ struct FavoriteCollectionsView: View {
             }
             
             if let collections = collections, !collections.isEmpty {
-                CollectionsGridView(collections: collections)
+                CollectionsGridView(collections: collections.filter { $0.favorited }, user: user)
                     .padding(.leading, 14)
             } else {
                 Text("Your have no collections.\nStart adding some by generating a code idea.")
@@ -54,6 +55,8 @@ struct FavoriteCollectionsView: View {
 
 struct FavoriteCollectionsView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteCollectionsView(collections: [dev.collection])
+        NavigationStack {
+            FavoriteCollectionsView(collections: [dev.collection], user: dev.user)
+        }
     }
 }

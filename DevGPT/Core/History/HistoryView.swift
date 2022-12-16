@@ -40,9 +40,7 @@ struct HistoryView: View {
             Color.theme.background.ignoresSafeArea(edges: [.bottom])
                 .padding(.top, 5)
             
-            if let response = selectedResponse {
-                NavigationLink(destination: ResponseView(user: user, outputResponse: response).navigationBarBackButtonHidden(true), isActive: $isNavigatingToResponse, label: { EmptyView() })
-            }
+            NavigationLink(destination: ResponseRelayView(user: user, outputResponse: selectedResponse).navigationBarBackButtonHidden(true), isActive: $isNavigatingToResponse, label: { EmptyView() })
             
             if let responses = user.responses {
                 VStack {
@@ -70,6 +68,9 @@ struct HistoryView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            isNavigatingToResponse = false
         }
     }
 }

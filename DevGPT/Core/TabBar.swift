@@ -89,8 +89,5 @@ struct TabBar: View {
             }
             .accentColor(Color.theme.accent)
         }
-        .onAppear {
-            authenticationViewModel.fetchUser()
-        }
     }
 }

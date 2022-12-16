@@ -41,16 +41,16 @@ struct NameCollectionOverlay: View {
                 .ignoresSafeArea()
                 .opacity(0.25)
             
-            VStack(alignment: .center) {
+            VStack(alignment: .leading) {
                 Text("Create New Collection With Name")
-                    .font(.headline)
+                    .font(Font.custom("Poppins", size: 16))
                     .bold()
                     .foregroundColor(Color.theme.accent)
+                    .padding(.leading)
                 
                 TextField("Enter Name...", text: $feedbackText, axis: .vertical)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
-                    .padding(.top, 4)
                 
                 AppPrimaryButton("Save") {
                     self.viewModel.saveNewCollection(
@@ -60,6 +60,7 @@ struct NameCollectionOverlay: View {
                     )
                     isShowing = false
                 }
+                .padding(.leading)
             }
             .background(
                 Rectangle()

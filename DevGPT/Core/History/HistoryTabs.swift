@@ -31,7 +31,7 @@ struct HistoryTabs: View {
     var body: some View {
         VStack {
             HStack {
-                Text(response.response)
+                Text(response.response.trimmingCharacters(in: .whitespacesAndNewlines))
                     .font(Font.custom("Poppins", size: 18))
                     .foregroundColor(Color.theme.accent)
                     .lineLimit(3)

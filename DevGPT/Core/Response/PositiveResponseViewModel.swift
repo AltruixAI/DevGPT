@@ -1,5 +1,5 @@
 //
-//  Collection.swift
+//  PositiveResponseViewModel.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -24,12 +24,20 @@
 //  
 
 import Foundation
-import FirebaseFirestoreSwift
 
-struct Collection: Identifiable, Codable {
-    @DocumentID var id: String?
-    var name: String
-    var responses: [Response]?
-    var favorited: Bool
-    var rootId: String
+class PositiveResponseViewModel: ObservableObject {
+    @Published var response: Response
+    
+    let user: User
+    
+    init(response: Response, user: User) {
+        self.response = response
+        self.user = user
+    }
+    
+    func sendFeedback(feedback: String) {
+        guard let uid = user.id else { return }
+        
+        // COLLECTION_USERS.document(uid).collection("responses").document(res)
+    }
 }

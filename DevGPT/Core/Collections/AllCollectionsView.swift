@@ -50,7 +50,7 @@ struct AllCollectionsView: View {
                     Spacer()
                 }
                 
-                CollectionsGridView(collections: viewModel.user.collections)
+                CollectionsGridView(collections: viewModel.user.collections, user: viewModel.user)
                     .frame(maxWidth: UIScreen.main.bounds.width - 10)
             }
         }

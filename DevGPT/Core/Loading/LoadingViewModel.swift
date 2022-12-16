@@ -48,7 +48,7 @@ import OpenAIKit
         
         let openAI = OpenAI(Configuration(organization: "MarcoDotIO", apiKey: apiKey))
         let completionParameters = CompletionParameters(
-            model: "code-davinci-002",
+            model: "text-davinci-003",
             prompt: [input],
             maxTokens: 1000,
             temperature: 0.01,
@@ -56,32 +56,37 @@ import OpenAIKit
         )
         let completionResponse = try await openAI.generateCompletion(parameters: completionParameters)
         let outputText = completionResponse.choices[0].text
-        
         let programmingLanguages = getProgrammingLanguages(from: input)
         
-        if programmingLanguages[0].lowercased() == "javascript" {
-            self.response = Response(prompt: "\\* Command: \(input)*\\", response: outputText, language: programmingLanguages[0])
+        let rid = UUID().uuidString
+        
+        if !programmingLanguages.isEmpty {
+            self.response = Response(
+                prompt: input.trimmingCharacters(in: .whitespacesAndNewlines),
+                response: outputText,
+                language: programmingLanguages[0],
+                rootId: rid
+            )
             self.isNotLoading = true
             return
         }
         
-        if programmingLanguages[0].lowercased() == "python" {
-            self.response = Response(prompt: "# Command: \(input)", response: outputText, language: programmingLanguages[0])
-            self.isNotLoading = true
-            return
-        }
-        
-        self.response = Response(prompt: "// Command: \(input)", response: outputText, language: programmingLanguages[0])
+        self.response = Response(
+            prompt: input.trimmingCharacters(in: .whitespacesAndNewlines),
+            response: outputText,
+            language: "Unknown",
+            rootId: rid
+        )
         self.isNotLoading = true
     }
     
     func getProgrammingLanguages(from string: String) -> [String] {
-        let regexString =
-            "/\\b(Java|C\\+\\+|Python|Ruby|Go|JavaScript|TypeScript|PHP|C#|C|Rust|Shell|Kotlin|Haskell|R|Elixir|Elm|Erlang|F#|Julia|Objective-C|Perl|Swift|Elixir)\\b/gi"
-        let regex = try! NSRegularExpression(pattern: regexString)
-        let matches = regex.matches(in: string, range: NSRange(string.startIndex..., in: string))
-        return matches.map {
-            String(string[Range($0.range, in: string)!])
+            let regexString =
+                "/\\b(Java|C\\+\\+|Python|Ruby|Go|JavaScript|TypeScript|PHP|C#|C|Rust|Shell|Kotlin|Haskell|R|Elixir|Elm|Erlang|F#|Julia|Objective-C|Perl|Swift|Elixir)\\b/g"
+            let regex = try! NSRegularExpression(pattern: regexString)
+            let matches = regex.matches(in: string, range: NSRange(string.startIndex..., in: string))
+            return matches.map {
+                String(string[Range($0.range, in: string)!])
+            }
         }
-    }
 }

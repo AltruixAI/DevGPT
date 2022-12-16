@@ -66,8 +66,12 @@ struct AddToCollectionView: View {
                         spacing: spacing,
                         pinnedViews: []) {
                             ForEach(self.viewModel.collections) { collection in
-                                CollectionThumbnailView(collection: collection)
-                                    .padding(.leading, 4)
+                                Button {
+                                    self.viewModel.saveInCollection(response: response, id: collection.rootId)
+                                } label: {
+                                    CollectionThumbnailView(collection: collection)
+                                        .padding(.leading, 4)
+                                }
                             }
                             
                             Button {

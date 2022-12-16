@@ -36,23 +36,27 @@ class NameCollectionViewModel: ObservableObject {
         let imageView: UIImage = ChatResponseView(output: response.response).asUiImage()
         
         ImageUploader.uploadImage(image: imageView, type: .thumbnail) { imageURL in
+            let cid = UUID().uuidString
+            
             let imageResponse = Response(
                 prompt: response.prompt,
                 response: response.response,
                 thumbnail: imageURL,
-                language: response.language
+                language: response.language,
+                rootId: response.rootId
             )
             
             let data = [
                 "name": name,
-                "responses": [imageResponse.toAnyObject()],
-                "favorited": false
+                "favorited": false,
+                "rootId": cid,
+                "responses": [imageResponse.toAnyObject()]
             ] as [String: Any]
             
             COLLECTION_USERS
                 .document(userId)
                 .collection("collections")
-                .document(UUID().uuidString)
+                .document(cid)
                 .setData(data)
         }
     }

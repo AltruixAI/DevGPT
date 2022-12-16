@@ -40,21 +40,23 @@ class ResponseViewModel: ObservableObject {
         guard let uid = self.user.id else { return }
         
         if var response = response {
-            let imageView: UIImage = UIImage(named: "templateResponseThumbnail")!
+            let imageView: UIImage = ChatResponseView(output: response.response).asUiImage()
             
-            ImageUploader.uploadImage(image: imageView) { imageURL in
+            ImageUploader.uploadImage(image: imageView, type: .thumbnail) { imageURL in
                 response.thumbnail = imageURL
                 
                 let data = [
                     "prompt": response.prompt,
                     "response": response.response,
-                    "thumbnail": imageURL
+                    "thumbnail": imageURL,
+                    "language": response.language,
+                    "rootId": response.rootId
                 ] as [String: Any]
                 
                 COLLECTION_USERS
                     .document(uid)
                     .collection("responses")
-                    .document(UUID().uuidString)
+                    .document(response.rootId)
                     .setData(data)
             }
         }

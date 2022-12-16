@@ -1,5 +1,5 @@
 //
-//  ResponseView.swift
+//  ResponseRelayView.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -24,9 +24,12 @@
 //  
 
 import SwiftUI
+import Combine
 import UniformTypeIdentifiers
 
-struct ResponseView: View {
+struct ResponseRelayView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var viewModel: ResponseViewModel
     
     @State private var showSaveResponse: Bool = false
@@ -69,9 +72,6 @@ struct ResponseView: View {
                     }
                 }
             }
-            .onAppear {
-                self.viewModel.saveResponse()
-            }
             .sheet(isPresented: $showSaveResponse, content: {
                 if let outputResponse = outputResponse, let id = user.id {
                     AddToCollectionView(response: outputResponse, userId: id)
@@ -79,9 +79,12 @@ struct ResponseView: View {
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    NavigationLink(destination: TabBar(user: user).navigationBarBackButtonHidden(true)) {
+                    Button { self.presentationMode.wrappedValue.dismiss() } label: {
                         Image(systemName: "arrow.left")
-                            .padding(.bottom)
+                            .font(.system(size: 26))
+                            .bold()
+                            .foregroundColor(Color.theme.accent)
+                            .padding(.bottom, 40)
                     }
                     .tint(Color.theme.accent)
                 }
@@ -100,7 +103,7 @@ struct ResponseView: View {
     }
 }
 
-extension ResponseView {
+extension ResponseRelayView {
     private var responseBar: some View {
         HStack {
             Button {
@@ -149,10 +152,10 @@ extension ResponseView {
     }
 }
 
-struct ResponseView_Previews: PreviewProvider {
+struct ResponseRelayView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ResponseView(user: dev.user, outputResponse: dev.response1)
+            ResponseRelayView(user: dev.user, outputResponse: dev.response1)
         }
     }
 }

@@ -31,7 +31,7 @@ struct CollectionThumbnailView: View {
     
     var body: some View {
         ZStack {
-            if let thumbnail = collection.responses[0].thumbnail {
+            if let thumbnail = collection.responses?[0].thumbnail {
                 KFImage(URL(string: thumbnail))
                     .resizable()
                     .scaledToFill()

@@ -48,22 +48,18 @@ struct HomeView: View {
                     HomeUserBarView(user: viewModel.user)
                         .padding(.top, 30)
                     
-                    RecentResponsesView(responses: self.viewModel.user.responses)
+                    RecentResponsesView(responses: self.viewModel.user.responses, user: viewModel.user)
                         .padding(.top, 40)
                         .padding(.leading)
                     
-                    FavoriteCollectionsView(collections: viewModel.user.collections)
+                    FavoriteCollectionsView(collections: viewModel.user.collections, user: viewModel.user)
                         .padding(.top, 20)
+                    
+                    SearchBarView(searchText: $text, user: viewModel.user)
+                        .padding(.bottom, 60)
                     
                     Spacer()
                 }
-                
-                VStack {
-                    SearchBarView(searchText: $text, user: viewModel.user)
-                        .offset(y: 330)
-                }
-                .padding(.bottom, keyboardHeight - 40)
-                .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
             }
         }
     }
@@ -71,6 +67,8 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: dev.user)
+        NavigationStack {
+            HomeView(user: dev.user)
+        }
     }
 }

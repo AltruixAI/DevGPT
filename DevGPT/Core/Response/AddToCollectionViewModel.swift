@@ -39,6 +39,18 @@ class AddToCollectionViewModel: ObservableObject {
         self.getCollections()
     }
     
+    func saveInCollection(response: Response, id: String) {
+        COLLECTION_USERS.document(self.userId).collection("collections").document(id).updateData(
+            [
+                "responses": FieldValue.arrayUnion(
+                    [
+                        response.toAnyObject()
+                    ]
+                )
+            ]
+        )
+    }
+    
     func getCollections() {
         COLLECTION_USERS.document(userId).collection("collections").getDocuments { snapshot, error in
             if let error = error {
