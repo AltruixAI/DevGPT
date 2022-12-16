@@ -27,8 +27,21 @@ import Foundation
 
 class AllCollectionsViewModel: ObservableObject {
     @Published var user: User
+    @Published var collections: [Collection] = []
     
     init(user: User) {
         self.user = user
+        self.getCollections()
+    }
+    
+    func getCollections() {
+        guard let uid = self.user.id else { return }
+        
+        COLLECTION_USERS.document(uid).collection("collections").getDocuments { snapshotCollection, _ in
+            guard let snapshotCollection = snapshotCollection?.documents else { return }
+            let collections = snapshotCollection.compactMap { try? $0.data(as: Collection.self) }
+            
+            self.collections = collections
+        }
     }
 }

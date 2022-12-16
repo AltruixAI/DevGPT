@@ -25,6 +25,7 @@
 
 import Foundation
 import FirebaseFirestoreSwift
+import Firebase
 
 struct Collection: Identifiable, Codable {
     @DocumentID var id: String?
@@ -32,4 +33,5 @@ struct Collection: Identifiable, Codable {
     var responses: [Response]?
     var favorited: Bool
     var rootId: String
+    var timestamp: Timestamp
 }

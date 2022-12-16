@@ -26,6 +26,8 @@
 import SwiftUI
 
 struct NameCollectionOverlay: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var viewModel = NameCollectionViewModel()
     
     @State private var feedbackText: String = ""
@@ -52,13 +54,15 @@ struct NameCollectionOverlay: View {
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
                 
-                AppPrimaryButton("Save") {
-                    self.viewModel.saveNewCollection(
-                        response: response,
-                        name: feedbackText,
-                        userId: userId
-                    )
-                    isShowing = false
+                AppPrimaryButton("Save", isDisabled: feedbackText.isEmpty) {
+                    if !feedbackText.isEmpty {
+                        self.viewModel.saveNewCollection(
+                            response: response,
+                            name: feedbackText,
+                            userId: userId
+                        )
+                        isShowing = false
+                    }
                 }
                 .padding(.leading)
             }

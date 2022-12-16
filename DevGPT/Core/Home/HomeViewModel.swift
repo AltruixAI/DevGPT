@@ -27,14 +27,41 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var user: User
+    @Published var favoritedCollections: [Collection] = []
+    @Published var recentResponses: [Response] = []
     
     init(user: User) {
         self.user = user
+        self.fetchUser()
+        self.fetchFavoriteCollections()
+        self.fetchRecentResponses()
     }
     
     func fetchUser() {
         UserService.shared.fetchUser(withUid: user.id!) { newUser in
             self.user = newUser
+        }
+    }
+    
+    func fetchFavoriteCollections() {
+        guard let uid = self.user.id else { return }
+        
+        COLLECTION_USERS.document(uid).collection("collections").getDocuments { snapshotCollection, _ in
+            guard let snapshotCollection = snapshotCollection?.documents else { return }
+            let collections = snapshotCollection.compactMap { try? $0.data(as: Collection.self) }.filter { $0.favorited }
+            
+            self.favoritedCollections = collections
+        }
+    }
+    
+    func fetchRecentResponses() {
+        guard let uid = self.user.id else { return }
+        
+        COLLECTION_USERS.document(uid).collection("responses").order(by: "timestamp", descending: true).getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            let responses = documents.compactMap { try? $0.data(as: Response.self) }
+            
+            self.recentResponses = responses
         }
     }
 }

@@ -25,6 +25,7 @@
 
 import Foundation
 import FirebaseFirestoreSwift
+import Firebase
 
 struct Response: Identifiable, Codable {
     @DocumentID var id: String?
@@ -34,6 +35,7 @@ struct Response: Identifiable, Codable {
     var thumbnail: String?
     var feedback: Feedback?
     var rootId: String
+    let timestamp: Timestamp
     
     init(
         id: String? = nil,
@@ -51,6 +53,7 @@ struct Response: Identifiable, Codable {
         self.feedback = feedback
         self.language = language
         self.rootId = rootId
+        self.timestamp = Timestamp(date: Date())
     }
     
     enum CodingKeys: String, CodingKey {
@@ -61,6 +64,7 @@ struct Response: Identifiable, Codable {
         case feedback
         case language
         case rootId
+        case timestamp
     }
     
     func toAnyObject() -> [String: Any] {
@@ -68,11 +72,14 @@ struct Response: Identifiable, Codable {
             "prompt": prompt,
             "response": response,
             "language": language,
-            "rootId": rootId
+            "rootId": rootId,
+            "timestamp": timestamp
         ] as [String: Any]
         
         if let thumbnail = thumbnail {
             result["thumbnail"] = thumbnail
+        } else {
+            result["thumbnail"] = ""
         }
         
         if let feedback = feedback {

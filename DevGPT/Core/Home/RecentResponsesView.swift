@@ -49,7 +49,6 @@ struct RecentResponsesView: View {
                             } label: {
                                 ResponseThumbnailView(response: response)
                             }
-
                         }
                     }
                 }

@@ -32,15 +32,18 @@ class AddToCollectionViewModel: ObservableObject {
     
     @Published var collections: [Collection] = []
     
+    let response: Response
     let userId: String
     
-    init(userId: String) {
+    init(userId: String, response: Response) {
         self.userId = userId
+        self.response = response
+        
         self.getCollections()
     }
     
-    func saveInCollection(response: Response, id: String) {
-        COLLECTION_USERS.document(self.userId).collection("collections").document(id).updateData(
+    func saveInCollection(collection: Collection) {
+        COLLECTION_USERS.document(self.userId).collection("collections").document(collection.rootId).updateData(
             [
                 "responses": FieldValue.arrayUnion(
                     [

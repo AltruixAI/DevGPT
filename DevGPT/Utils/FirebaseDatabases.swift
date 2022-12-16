@@ -26,4 +26,4 @@
 import Firebase
 
 let COLLECTION_USERS = Firestore.firestore().collection("users")
-let COLLECTION_RESPONSES = Firestore.firestore().collection("responses")
+let COLLECTION_RESPONSES = Firestore.firestore().collection("Secrets")

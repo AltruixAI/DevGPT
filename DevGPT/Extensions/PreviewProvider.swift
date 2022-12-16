@@ -24,6 +24,7 @@
 //  
 
 import SwiftUI
+import Firebase
 
 extension PreviewProvider {
     static var dev: DeveloperPreview {
@@ -45,7 +46,7 @@ class DeveloperPreview {
         id: "789c",
         name: "Arithmatics",
         responses: [Response(id: "123b", prompt: "What is 2+2 in Python?", response: "result = 2 + 2", thumbnail: nil, feedback: nil, language: "Python"), Response(id: "456a", prompt: "What is 4+4 in Swift?", response: "let result = 4 + 4", thumbnail: nil, feedback: nil, language: "Swift")],
-        favorited: true, rootId: "abd145"
+        favorited: true, rootId: "abd145", timestamp: Timestamp(date: Date())
     )
     
     let user = User(
@@ -54,7 +55,7 @@ class DeveloperPreview {
         email: "test@test.com",
         profileImageUrl: "https://yt3.ggpht.com/ygrMbZl0OZSesSJY6cJfcRoQAwKU7WcodAvS1HAHhhQftBLKG9x5su5uFXXlhaLaUqCbywspZyg=s48-c-k-c0x00ffffff-no-rj",
         username: "TestAccount",
-        collections: [Collection(id: "789c", name: "Arithmatics", responses: [Response(id: "123b", prompt: "What is 2+2 in Python?", response: "result = 2 + 2", thumbnail: nil, feedback: nil, language: "Python"), Response(id: "456a", prompt: "What is 4+4 in Swift?", response: "let result = 4 + 4", thumbnail: nil, feedback: nil, language: "Swift")], favorited: true, rootId: "1865tq")],
+        collections: [Collection(id: "789c", name: "Arithmatics", responses: [Response(id: "123b", prompt: "What is 2+2 in Python?", response: "result = 2 + 2", thumbnail: nil, feedback: nil, language: "Python"), Response(id: "456a", prompt: "What is 4+4 in Swift?", response: "let result = 4 + 4", thumbnail: nil, feedback: nil, language: "Swift")], favorited: true, rootId: "1865tq", timestamp: Timestamp(date: Date()))],
         responses: [Response(id: "123b", prompt: "What is 2+2 in Python?", response: "result = 2 + 2", thumbnail: nil, feedback: nil, language: "Python"), Response(id: "456a", prompt: "What is 4+4 in Swift?", response: "let result = 4 + 4", thumbnail: nil, feedback: nil, language: "Swift")]
     )
 }

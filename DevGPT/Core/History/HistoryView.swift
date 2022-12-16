@@ -31,7 +31,14 @@ struct HistoryView: View {
     @State private var selectedResponse: Response? = nil
     @State private var isNavigatingToResponse: Bool = false
     
+    @ObservedObject var viewModel: HistoryViewModel
+    
     let user: User
+    
+    init(user: User) {
+        self.user = user
+        self.viewModel = HistoryViewModel(user: user)
+    }
     
     var body: some View {
         ZStack {
@@ -42,27 +49,25 @@ struct HistoryView: View {
             
             NavigationLink(destination: ResponseRelayView(user: user, outputResponse: selectedResponse).navigationBarBackButtonHidden(true), isActive: $isNavigatingToResponse, label: { EmptyView() })
             
-            if let responses = user.responses {
-                VStack {
-                    HStack {
-                        Text("History")
-                            .font(Font.custom("Poppins", size: 28))
-                            .foregroundColor(Color.theme.accent)
-                            .padding(.top, 40)
-                            .padding(.leading, 14)
-                        
-                        Spacer()
-                    }
+            VStack {
+                HStack {
+                    Text("History")
+                        .font(Font.custom("Poppins", size: 28))
+                        .foregroundColor(Color.theme.accent)
+                        .padding(.top, 40)
+                        .padding(.leading, 14)
                     
-                    ScrollView {
-                        VStack(alignment: .center) {
-                            ForEach(responses) { response in
-                                Button {
-                                    self.selectedResponse = response
-                                    self.isNavigatingToResponse.toggle()
-                                } label: {
-                                    HistoryTabs(response: response)
-                                }
+                    Spacer()
+                }
+                
+                ScrollView {
+                    VStack(alignment: .center) {
+                        ForEach(self.viewModel.responses) { response in
+                            Button {
+                                self.selectedResponse = response
+                                self.isNavigatingToResponse.toggle()
+                            } label: {
+                                HistoryTabs(response: response)
                             }
                         }
                     }

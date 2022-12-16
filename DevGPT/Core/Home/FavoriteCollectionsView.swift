@@ -40,7 +40,10 @@ struct FavoriteCollectionsView: View {
                 Spacer()
             }
             
-            if let collections = collections, !collections.isEmpty {
+            if
+                let collections = collections,
+                    !collections.isEmpty,
+                    !collections.filter { $0.favorited }.isEmpty {
                 CollectionsGridView(collections: collections.filter { $0.favorited }, user: user)
                     .padding(.leading, 14)
             } else {

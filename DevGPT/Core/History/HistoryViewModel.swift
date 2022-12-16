@@ -1,5 +1,5 @@
 //
-//  AllCollectionsView.swift
+//  HistoryViewModel.swift
 //  DevGPT
 //
 //  Copyright (c) 2022 MarcoDotIO
@@ -23,44 +23,26 @@
 //  THE SOFTWARE.
 //  
 
-import SwiftUI
+import Foundation
 
-struct AllCollectionsView: View {
-    @ObservedObject var viewModel: AllCollectionsViewModel
+class HistoryViewModel: ObservableObject {
+    @Published var responses: [Response] = []
+    
+    let user: User
     
     init(user: User) {
-        self.viewModel = AllCollectionsViewModel(user: user)
+        self.user = user
+        self.getResponses()
     }
     
-    var body: some View {
-        ZStack {
-            Color.theme.statusBar.ignoresSafeArea()
+    func getResponses() {
+        guard let uid = self.user.id else { return }
+        
+        COLLECTION_USERS.document(uid).collection("responses").order(by: "timestamp", descending: true).getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            let responses = documents.compactMap { try? $0.data(as: Response.self) }
             
-            Color.theme.background.ignoresSafeArea(edges: [.bottom])
-                .padding(.top, 5)
-            
-            VStack {
-                HStack {
-                    Text("All Collections")
-                        .font(Font.custom("Poppins", size: 28))
-                        .foregroundColor(Color.theme.accent)
-                        .padding(.top, 40)
-                        .padding(.leading, 14)
-                    
-                    Spacer()
-                }
-                
-                CollectionsGridView(collections: viewModel.collections, user: viewModel.user)
-                    .frame(maxWidth: UIScreen.main.bounds.width - 10)
-            }
-        }
-    }
-}
-
-struct AllCollectionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            AllCollectionsView(user: dev.user)
+            self.responses = responses
         }
     }
 }

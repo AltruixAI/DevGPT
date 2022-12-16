@@ -50,7 +50,8 @@ class NameCollectionViewModel: ObservableObject {
                 "name": name,
                 "favorited": false,
                 "rootId": cid,
-                "responses": [imageResponse.toAnyObject()]
+                "responses": [imageResponse.toAnyObject()],
+                "timestamp": Timestamp(date: Date())
             ] as [String: Any]
             
             COLLECTION_USERS

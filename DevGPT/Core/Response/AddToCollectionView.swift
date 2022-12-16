@@ -27,23 +27,20 @@ import SwiftUI
 
 struct AddToCollectionView: View {
     @ObservedObject var viewModel: AddToCollectionViewModel
+    
     @State private var showNamingScreen: Bool = false
+    
+    @Environment(\.presentationMode) var presentationMode
     
     private let columns: [GridItem] = [
         GridItem(.flexible()),
-        GridItem(.flexible(), spacing: 20)
+        GridItem(.flexible())
     ]
     
     private let spacing: CGFloat = 20
     
-    let response: Response
-    let userId: String
-    
     init(response: Response, userId: String) {
-        self.response = response
-        self.userId = userId
-        
-        self.viewModel = AddToCollectionViewModel(userId: userId)
+        self.viewModel = AddToCollectionViewModel(userId: userId, response: response)
     }
     
     var body: some View {
@@ -67,7 +64,8 @@ struct AddToCollectionView: View {
                         pinnedViews: []) {
                             ForEach(self.viewModel.collections) { collection in
                                 Button {
-                                    self.viewModel.saveInCollection(response: response, id: collection.rootId)
+                                    self.viewModel.saveInCollection(collection: collection)
+                                    self.presentationMode.wrappedValue.dismiss()
                                 } label: {
                                     CollectionThumbnailView(collection: collection)
                                         .padding(.leading, 4)
@@ -80,7 +78,7 @@ struct AddToCollectionView: View {
                                 Rectangle()
                                     .foregroundColor(Color.theme.statusBar)
                                     .frame(width: 200, height: 150)
-                                    .cornerRadius(10)
+                                    .cornerRadius(20)
                                     .overlay(
                                         Image(systemName: "plus.square")
                                             .resizable()
@@ -90,18 +88,23 @@ struct AddToCollectionView: View {
                             }
                             .tint(Color.theme.accent)
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 6)
                 }
             }
             .overlay(
                 showNamingScreen ?
                 NameCollectionOverlay(
                     isShowing: $showNamingScreen,
-                    response: response,
-                    userId: userId
+                    response: viewModel.response,
+                    userId: viewModel.userId
                 ) :
                 nil
-        )
+            )
+            .onChange(of: showNamingScreen) { newValue in
+                if !newValue {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
         }
     }
 }

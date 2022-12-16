@@ -50,7 +50,8 @@ class ResponseViewModel: ObservableObject {
                     "response": response.response,
                     "thumbnail": imageURL,
                     "language": response.language,
-                    "rootId": response.rootId
+                    "rootId": response.rootId,
+                    "timestamp": response.timestamp
                 ] as [String: Any]
                 
                 COLLECTION_USERS

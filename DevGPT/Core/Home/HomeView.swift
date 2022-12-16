@@ -48,11 +48,11 @@ struct HomeView: View {
                     HomeUserBarView(user: viewModel.user)
                         .padding(.top, 30)
                     
-                    RecentResponsesView(responses: self.viewModel.user.responses, user: viewModel.user)
+                    RecentResponsesView(responses: self.viewModel.recentResponses, user: viewModel.user)
                         .padding(.top, 40)
                         .padding(.leading)
                     
-                    FavoriteCollectionsView(collections: viewModel.user.collections, user: viewModel.user)
+                    FavoriteCollectionsView(collections: viewModel.favoritedCollections, user: viewModel.user)
                         .padding(.top, 20)
                     
                     SearchBarView(searchText: $text, user: viewModel.user)

@@ -83,6 +83,7 @@
 		76D01E63294AC01B00B81357 /* PositiveResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D01E62294AC01B00B81357 /* PositiveResponseViewModel.swift */; };
 		76D01E65294AEB3D00B81357 /* ResponseRelayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D01E64294AEB3D00B81357 /* ResponseRelayView.swift */; };
 		76D01E67294BFF4400B81357 /* ResponseGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D01E66294BFF4400B81357 /* ResponseGridView.swift */; };
+		76D467E7294CCCD500D7F80F /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D467E6294CCCD500D7F80F /* HistoryViewModel.swift */; };
 		76F70D092947A4BC0016DD44 /* ThirdPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F70D082947A4BC0016DD44 /* ThirdPageView.swift */; };
 		76F70D0B2948DAFE0016DD44 /* Poppins600.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76F70D0A2948DAB70016DD44 /* Poppins600.ttf */; };
 /* End PBXBuildFile section */
@@ -156,6 +157,7 @@
 		76D01E62294AC01B00B81357 /* PositiveResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveResponseViewModel.swift; sourceTree = "<group>"; };
 		76D01E64294AEB3D00B81357 /* ResponseRelayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseRelayView.swift; sourceTree = "<group>"; };
 		76D01E66294BFF4400B81357 /* ResponseGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGridView.swift; sourceTree = "<group>"; };
+		76D467E6294CCCD500D7F80F /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		76F70D082947A4BC0016DD44 /* ThirdPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageView.swift; sourceTree = "<group>"; };
 		76F70D0A2948DAB70016DD44 /* Poppins600.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Poppins600.ttf; sourceTree = "<group>"; };
 		76F70D0C2948DB240016DD44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -373,9 +375,9 @@
 		763750902944158600DA3F39 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */,
 				76375093294416CB00DA3F39 /* AllCollectionsView.swift */,
 				76375091294415DB00DA3F39 /* CollectionsGridView.swift */,
-				763750F22945344400DA3F39 /* AllCollectionsViewModel.swift */,
 				76D01E66294BFF4400B81357 /* ResponseGridView.swift */,
 			);
 			path = Collections;
@@ -384,6 +386,7 @@
 		763750952944194C00DA3F39 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				76D467E6294CCCD500D7F80F /* HistoryViewModel.swift */,
 				763750962944196800DA3F39 /* HistoryView.swift */,
 				763750982944198F00DA3F39 /* HistoryTabs.swift */,
 			);
@@ -565,6 +568,7 @@
 				7637508B29440E2F00DA3F39 /* PositiveFeedbackView.swift in Sources */,
 				76375089294404AC00DA3F39 /* ChatResponseView.swift in Sources */,
 				763750CB294453C400DA3F39 /* FirebaseDatabases.swift in Sources */,
+				76D467E7294CCCD500D7F80F /* HistoryViewModel.swift in Sources */,
 				763750672943CC4200DA3F39 /* OnboardingRegistrationView.swift in Sources */,
 				7603D4F929479A70000D55E8 /* SecondPageView.swift in Sources */,
 				7637507D2943F08300DA3F39 /* SearchBarView.swift in Sources */,
@@ -705,7 +709,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"DevGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = 8GNE6ML5WX;
 				ENABLE_PREVIEWS = YES;
@@ -735,7 +739,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"DevGPT/Preview Content\"";
 				DEVELOPMENT_TEAM = 8GNE6ML5WX;
 				ENABLE_PREVIEWS = YES;
